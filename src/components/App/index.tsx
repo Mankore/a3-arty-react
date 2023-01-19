@@ -1,11 +1,7 @@
 import { Container } from "./styles";
 import { Map } from "../Map";
 
-interface IApp {
-  children?: React.ReactNode;
-}
-
-const App = ({ children }: IApp) => {
+const App = () => {
   return (
     <Container>
       <Map />

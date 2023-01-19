@@ -1,24 +1,10 @@
 import Leaflet from "leaflet";
+import { MapContainer, TileLayer } from "react-leaflet";
 import { Container } from "./styles";
-import { MapContainer, TileLayer, useMap, useMapEvents } from "react-leaflet";
 import { MapSettings } from "./MapSettings";
+import { MapMarkers } from "./MapMarkers";
 
 const crs = Leaflet.CRS.Simple;
-
-function ClickLog() {
-  const map = useMap();
-  const maxZoom = map.getMaxZoom();
-
-  useMapEvents({
-    click(e) {
-      const point = crs.latLngToPoint(e.latlng, maxZoom);
-      console.log(point);
-      console.log(e.latlng);
-      console.log("----");
-    },
-  });
-  return <></>;
-}
 
 export const Map = () => {
   return (
@@ -26,14 +12,14 @@ export const Map = () => {
       <MapContainer
         crs={crs}
         center={[0, 0]}
-        zoom={0}
+        zoom={3}
         minZoom={0}
         maxZoom={6}
         style={{ height: "100%", width: "100%" }}
         maxBoundsViscosity={1}
       >
         <TileLayer url="/maps/cherno/{z}/{x}/{y}.png" tileSize={128} noWrap />
-        <ClickLog />
+        <MapMarkers />
         <MapSettings />
       </MapContainer>
     </Container>
