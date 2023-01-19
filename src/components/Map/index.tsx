@@ -5,6 +5,7 @@ import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 
 const crs = Leaflet.CRS.Simple;
+const mapExtent = [0.0, -7781.0, 7801.0, 0.0];
 
 export const Map = () => {
   return (
@@ -19,8 +20,8 @@ export const Map = () => {
         maxBoundsViscosity={1}
       >
         <TileLayer url="/maps/cherno/{z}/{x}/{y}.png" tileSize={128} noWrap />
-        <MapMarkers />
-        <MapSettings />
+        <MapMarkers crs={crs}/>
+        <MapSettings crs={crs} mapExtent={mapExtent} />
       </MapContainer>
     </Container>
   );

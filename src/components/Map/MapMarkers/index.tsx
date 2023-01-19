@@ -1,14 +1,18 @@
-import Leaflet, { LatLng } from "leaflet";
+import { CRS, LatLng } from "leaflet";
 import { useState } from "react";
 import { useMap, useMapEvents, Marker, Popup } from "react-leaflet";
 import { iconTarget, iconTrigger } from "../MapIcons";
 
-const crs = Leaflet.CRS.Simple;
+interface IMapMarkers {
+  crs: CRS;
+}
 
-export const MapMarkers = () => {
+// TODO: adjust trigger icon size programmaticaly to represent 500m radius circle (depends on map)
+export const MapMarkers = ({ crs }: IMapMarkers) => {
   const [targets, setTargets] = useState<LatLng[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
+
   const map = useMap();
   const maxZoom = map.getMaxZoom();
 
@@ -16,19 +20,18 @@ export const MapMarkers = () => {
     click(e) {
       const latlng = e.latlng;
       const point = crs.latLngToPoint(latlng, maxZoom);
-      console.log(point);
-      console.log(e.latlng);
-      console.log(e);
+      const event = e.originalEvent;
+      console.log({ latlng, point });
       console.log("----");
 
-      e.originalEvent.shiftKey && setArtilleryPosition(latlng);
+      event.shiftKey && setArtilleryPosition(latlng);
 
-      e.originalEvent.ctrlKey &&
+      event.ctrlKey &&
         setTargets((prevState) => {
           return [...prevState, latlng];
         });
 
-      e.originalEvent.altKey && setTriggerPosition(latlng);
+      event.altKey && setTriggerPosition(latlng);
     },
   });
 
@@ -48,7 +51,7 @@ export const MapMarkers = () => {
       )}
       {triggerPosition && (
         <Marker position={triggerPosition} icon={iconTrigger}>
-          <Popup>Arty pos</Popup>
+          <Popup>Trigger pos</Popup>
         </Marker>
       )}
     </>

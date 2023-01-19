@@ -1,11 +1,13 @@
-import Leaflet from "leaflet";
+import Leaflet, { CRS } from "leaflet";
 import { useMap } from "react-leaflet";
 
-// Set to be editable for different maps
-const mapExtent = [0.0, -7781.0, 7801.0, 0.0];
-const crs = Leaflet.CRS.Simple;
+interface IMapSettings {
+  crs: CRS;
+  mapExtent: number[];
+}
 
-export const MapSettings = () => {
+// Used to set maxBounds for different maps
+export const MapSettings = ({ crs, mapExtent }: IMapSettings) => {
   const map = useMap();
 
   const maxZoom = map.getMaxZoom();
