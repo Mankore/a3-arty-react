@@ -39,7 +39,9 @@ export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISid
         <Label htmlFor="artillery">Artillery</Label>
         <Select name="artillery" id="artillery" onChange={(e) => onChangeHandler(e, "arty")}>
           {Object.entries(artilleryTypes).map((arty) => (
-            <option value={arty[1].Name}>{arty[1].Name}</option>
+            <option value={arty[1].Name} key={arty[1].Name}>
+              {arty[1].Name}
+            </option>
           ))}
         </Select>
       </div>
@@ -48,7 +50,9 @@ export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISid
         <Label htmlFor="shell">Shell</Label>
         <Select name="shell" id="shell" onChange={(e) => onChangeHandler(e, "shell")}>
           {artillery.shellTypes.map((shell) => (
-            <option value={shell.name}>{shell.name}</option>
+            <option value={shell.name} key={shell.name}>
+              {shell.name}
+            </option>
           ))}
         </Select>
       </div>
@@ -57,7 +61,9 @@ export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISid
         <Label htmlFor="fireMode">Fire Mode</Label>
         <Select name="fireMode" id="fireMode" onChange={(e) => onChangeHandler(e, "fireMode")}>
           {artillery.fireModes.map((fireMode) => (
-            <option value={fireMode.name}>{fireMode.name}</option>
+            <option value={fireMode.name} key={fireMode.name}>
+              {fireMode.name}
+            </option>
           ))}
         </Select>
       </div>
