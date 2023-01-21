@@ -2,7 +2,7 @@ import { CRS, LatLng } from "leaflet";
 import { useState } from "react";
 import { useMap, useMapEvents, Marker, Popup } from "react-leaflet";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
-import { Artillery, ShellType } from "../../../utils/types";
+import { Artillery, FireMode, ShellType } from "../../../utils/types";
 import { iconTarget, iconTrigger } from "../MapIcons";
 import { latLngToArmaCoords } from "../MapUtils";
 
@@ -11,6 +11,7 @@ interface IMapMarkers {
   mapExtent: number[];
   artillery: Artillery;
   shell: ShellType;
+  fireMode: FireMode;
 }
 
 interface IMarkerInfo {
@@ -19,7 +20,7 @@ interface IMarkerInfo {
 }
 
 // TODO: adjust trigger icon size programmaticaly to represent 500m radius circle (depends on map)
-export const MapMarkers = ({ crs, mapExtent, artillery, shell }: IMapMarkers) => {
+export const MapMarkers = ({ crs, mapExtent, artillery, shell, fireMode }: IMapMarkers) => {
   const [targets, setTargets] = useState<IMarkerInfo[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<IMarkerInfo>();
   const [triggerPosition, setTriggerPosition] = useState<IMarkerInfo>();
@@ -43,12 +44,12 @@ export const MapMarkers = ({ crs, mapExtent, artillery, shell }: IMapMarkers) =>
   const createTargetMarker = (latlng: LatLng) => {
     if (!artilleryPosition) return;
 
-    const targetCoords = latLngToArmaCoords(latlng, maxZoom, mapExtent);
-    const artyCoords = latLngToArmaCoords(artilleryPosition.latlng, maxZoom, mapExtent);
+    const targetCoords = latLngToArmaCoords(latlng, maxZoom, mapExtent, crs);
+    const artyCoords = latLngToArmaCoords(artilleryPosition.latlng, maxZoom, mapExtent, crs);
     const range = getRange(artyCoords.x, artyCoords.y, targetCoords.x, targetCoords.y);
     const bearing = getBearing(artyCoords.x, artyCoords.y, targetCoords.x, targetCoords.y);
 
-    const muzzleVelocity = artillery.fireModes[0].artilleryCharge * shell.initSpeed;
+    const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
     const { currentAngle, apex, tof, exitAngle, px } = getAngleSolutionForRange(
       range,
       muzzleVelocity,
@@ -64,6 +65,8 @@ export const MapMarkers = ({ crs, mapExtent, artillery, shell }: IMapMarkers) =>
         <span>
           x: {targetCoords.x}, y: {targetCoords.y}
         </span>
+        <div>Fire Mode: {fireMode.name}</div>
+        <div>Shell: {shell.name}</div>
         <div>Range: {range}</div>
         <div>Barrel Angle: {currentAngle}</div>
         <div>Bearing: {bearing}</div>
@@ -79,7 +82,7 @@ export const MapMarkers = ({ crs, mapExtent, artillery, shell }: IMapMarkers) =>
   };
 
   const createArtilleryMarker = (latlng: LatLng) => {
-    const coordinates = latLngToArmaCoords(latlng, maxZoom, mapExtent);
+    const coordinates = latLngToArmaCoords(latlng, maxZoom, mapExtent, crs);
     const popupContent = (
       <>
         <div>Artillery Position:</div>

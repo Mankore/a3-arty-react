@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { Artillery, ShellType } from "../../utils/types";
+import { Artillery, FireMode, ShellType } from "../../utils/types";
 
 const crs = Leaflet.CRS.Simple;
 const mapExtent = [0.0, -7781.0, 7801.0, 0.0];
@@ -11,9 +11,10 @@ const mapExtent = [0.0, -7781.0, 7801.0, 0.0];
 interface IMap {
   artillery: Artillery;
   shell: ShellType;
+  fireMode: FireMode;
 }
 
-export const Map = ({ artillery, shell }: IMap) => {
+export const Map = ({ artillery, shell, fireMode }: IMap) => {
   return (
     <Container>
       <MapContainer
@@ -26,7 +27,13 @@ export const Map = ({ artillery, shell }: IMap) => {
         maxBoundsViscosity={1}
       >
         <TileLayer url="/maps/cherno/{z}/{x}/{y}.png" tileSize={128} noWrap />
-        <MapMarkers crs={crs} mapExtent={mapExtent} artillery={artillery} shell={shell} />
+        <MapMarkers
+          crs={crs}
+          mapExtent={mapExtent}
+          artillery={artillery}
+          shell={shell}
+          fireMode={fireMode}
+        />
         <MapSettings crs={crs} mapExtent={mapExtent} />
       </MapContainer>
     </Container>
