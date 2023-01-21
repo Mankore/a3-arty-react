@@ -15,7 +15,7 @@ function getRange(x1: number, y1: number, x2: number, y2: number, z1: number = 0
   const valX = Math.pow(x1 - x2, 2);
   const valY = Math.pow(y1 - y2, 2);
   const valZ = Math.pow(z1 - z2, 2);
-  const range = 10 * Math.sqrt(valX + valY + valZ);
+  const range = Math.sqrt(valX + valY + valZ);
   return range;
 }
 
