@@ -12,9 +12,10 @@ interface IMap {
   shell: ShellType;
   fireMode: FireMode;
   map: MapProps;
+  topDown: boolean;
 }
 
-export const Map = ({ artillery, shell, fireMode, map }: IMap) => {
+export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
   return (
     <Container>
       <MapContainer
@@ -39,6 +40,7 @@ export const Map = ({ artillery, shell, fireMode, map }: IMap) => {
           artillery={artillery}
           shell={shell}
           fireMode={fireMode}
+          topDown={topDown}
         />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
       </MapContainer>

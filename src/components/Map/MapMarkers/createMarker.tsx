@@ -53,6 +53,7 @@ export const createTargetMarker = async (
   fireMode: FireMode,
   shell: ShellType,
   artillery: Artillery,
+  topDown: boolean,
   cb: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>
 ) => {
   if (!artilleryPosition) return;
@@ -73,13 +74,13 @@ export const createTargetMarker = async (
   const bearing = getBearing(artyCoords!.x, artyCoords!.y, targetCoords.x, targetCoords.y);
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
-  const { currentAngle, apex, tof, exitAngle, px } = getAngleSolutionForRange(
+  const { currentAngle, apex, tof, exitAngle } = getAngleSolutionForRange(
     range,
     muzzleVelocity,
     targetHeight - artyCoords!.z,
     artillery,
     shell,
-    false
+    topDown
   );
 
   const popupContent = (

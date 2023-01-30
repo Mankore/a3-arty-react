@@ -7,6 +7,7 @@ export interface IMapMarkers {
   shell: ShellType;
   fireMode: FireMode;
   currentMap: MapProps;
+  topDown: boolean;
 }
 
 export interface Coordinates {
