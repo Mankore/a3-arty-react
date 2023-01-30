@@ -22,3 +22,20 @@ export interface ShellType {
   initSpeed: number;
   name: string;
 }
+
+export interface IMapBounds {
+  x: number;
+  y: number;
+}
+
+export interface MapProps {
+  name: string;
+  mapExtent: Array<number>;
+  mapOptions: {
+    zoom: number;
+    minZoom: number;
+    maxZoom: number;
+    tileSize: number;
+  };
+  mapBounds: IMapBounds;
+}

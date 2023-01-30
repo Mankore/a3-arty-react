@@ -1,18 +1,20 @@
 import { Container, Select, Label } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
-import { Artillery, FireMode, ShellType } from "../../utils/types";
+import * as maps from "../../utils/maps";
+import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
 
 interface ISidebar {
   artillery: Artillery;
   setArtillery: React.Dispatch<React.SetStateAction<Artillery>>;
   setShell: React.Dispatch<React.SetStateAction<ShellType>>;
   setFireMode: React.Dispatch<React.SetStateAction<FireMode>>;
+  setMap: React.Dispatch<React.SetStateAction<MapProps>>;
 }
 
-export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISidebar) => {
+export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode, setMap }: ISidebar) => {
   const onChangeHandler = (
     e: React.ChangeEvent<HTMLSelectElement>,
-    type: "arty" | "shell" | "fireMode"
+    type: "arty" | "shell" | "fireMode" | "map"
   ) => {
     const val = e.target.value;
     switch (type) {
@@ -28,6 +30,10 @@ export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISid
         const fireMode = artillery.fireModes.find((item) => item.name === val);
         fireMode && setFireMode(fireMode);
         return;
+      case "map":
+        const map = Object.entries(maps).find((item) => item[1].name === val);
+        map && setMap(map[1]);
+        return;
       default:
         return;
     }
@@ -35,6 +41,17 @@ export const Sidebar = ({ artillery, setArtillery, setShell, setFireMode }: ISid
 
   return (
     <Container>
+      <div>
+        <Label htmlFor="map">Map</Label>
+        <Select name="map" id="map" onChange={(e) => onChangeHandler(e, "map")}>
+          {Object.entries(maps).map((map) => (
+            <option value={map[1].name} key={map[1].name}>
+              {map[1].name}
+            </option>
+          ))}
+        </Select>
+      </div>
+
       <div>
         <Label htmlFor="artillery">Artillery</Label>
         <Select name="artillery" id="artillery" onChange={(e) => onChangeHandler(e, "arty")}>

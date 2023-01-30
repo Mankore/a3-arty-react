@@ -36,4 +36,8 @@ export default createGlobalStyle`
     div.leaflet-bottom.leaflet-right {
         display: none !important;
     }
+
+    .leaflet-touch {
+        cursor: pointer !important;
+    }
 `;

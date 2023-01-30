@@ -3,58 +3,44 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { Artillery, FireMode, ShellType } from "../../utils/types";
-import { useEffect } from "react";
+import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
 
 const crs = Leaflet.CRS.Simple;
-// const mapExtent = [0.0, -7781.0, 7801.0, 0.0]; // cherno
-// const mapOptions = {
-//   zoom: 3,
-//   minZoom: 0,
-//   maxZoom: 6,
-//   tileSize: 128,
-// };
-
-const mapExtent = [0.0, -16384.0, 16384.0, 0.0]; // sahrani3
-const mapOptions = {
-  zoom: 3,
-  minZoom: 0,
-  maxZoom: 6,
-  tileSize: 128,
-};
 
 interface IMap {
   artillery: Artillery;
   shell: ShellType;
   fireMode: FireMode;
+  map: MapProps;
 }
 
-export const Map = ({ artillery, shell, fireMode }: IMap) => {
-  useEffect(() => {
-    fetch("/maps/sahrani3/height_map.txt").then((val) => {
-      console.log("done");
-    });
-  }, []);
+export const Map = ({ artillery, shell, fireMode, map }: IMap) => {
   return (
     <Container>
       <MapContainer
         crs={crs}
         center={[0, 0]}
-        zoom={mapOptions.zoom}
-        minZoom={mapOptions.minZoom}
-        maxZoom={mapOptions.maxZoom}
+        zoom={map.mapOptions.zoom}
+        minZoom={map.mapOptions.minZoom}
+        maxZoom={map.mapOptions.maxZoom}
         style={{ height: "100%", width: "100%" }}
         maxBoundsViscosity={1}
+        doubleClickZoom={false}
       >
-        <TileLayer url="/maps/sahrani3/{z}/{x}/{y}.png" tileSize={mapOptions.tileSize} noWrap />
+        <TileLayer
+          url={`/maps/${map.name}/{z}/{x}/{y}.png`}
+          tileSize={map.mapOptions.tileSize}
+          noWrap
+          maxNativeZoom={map.mapOptions.maxZoom}
+        />
         <MapMarkers
           crs={crs}
-          mapExtent={mapExtent}
+          currentMap={map}
           artillery={artillery}
           shell={shell}
           fireMode={fireMode}
         />
-        <MapSettings crs={crs} mapExtent={mapExtent} />
+        <MapSettings crs={crs} mapExtent={map.mapExtent} />
       </MapContainer>
     </Container>
   );
