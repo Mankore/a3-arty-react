@@ -93,25 +93,15 @@ export const createTargetMarker = async (
         <div>Solution not possible</div>
       ) : (
         <>
-          <div>Fire Mode: {fireMode.name}</div>
-          <div>Shell: {shell.name}</div>
+          <div>{fireMode.name} {shell.name}</div>
           <div>Range: {range.toFixed(1)}</div>
           <div>Elevation Angle: {currentAngle.toFixed(3)}</div>
           <div>Bearing: {bearing.toFixed(2)}</div>
-          <div>tof: {tof.toFixed(1)}</div>
+          <div>ToF: {tof.toFixed(1)}</div>
           <div>apex: {apex.toFixed(1)}</div>
           <div>exitAngle: {exitAngle.toFixed(1)}</div>
         </>
       )}
-      <button
-        onClick={() => {
-          cb((prevState) => {
-            return prevState.filter((item) => item.latlng !== latlng);
-          });
-        }}
-      >
-        Delete Marker
-      </button>
     </>
   );
   cb((prevState) => {

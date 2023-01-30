@@ -39,18 +39,27 @@ export const MapMarkers = ({
 
       event.altKey && createTriggerMarker(latlng, setTriggerPosition);
     },
-    keyup(e) {
-      if (e.originalEvent.key === "Delete") {
-        console.log(e);
-      }
-    },
   });
 
   return (
     <>
       {targets.map((marker, idx) => {
         return (
-          <Marker position={marker.latlng} key={idx} icon={iconTarget}>
+          <Marker
+            position={marker.latlng}
+            key={idx}
+            icon={iconTarget}
+            eventHandlers={{
+              mouseover: (event) => event.target.openPopup(),
+              mouseout: (event) => event.target.closePopup(),
+              keydown: (event) => {
+                if (event.originalEvent.key === "Delete")
+                  setTargets((prevState) => {
+                    return prevState.filter((item) => item.latlng !== marker.latlng);
+                  });
+              },
+            }}
+          >
             <Popup>{marker.popupContent}</Popup>
           </Marker>
         );
