@@ -4,6 +4,7 @@ import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
+import { increaseMapZoomBy } from "../../utils/variables";
 // import 'leaflet/dist/leaflet.css';
 
 const crs = Leaflet.CRS.Simple;
@@ -24,7 +25,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
         center={[0, 0]}
         zoom={map.mapOptions.zoom}
         minZoom={map.mapOptions.minZoom}
-        maxZoom={map.mapOptions.maxZoom + 2}
+        maxZoom={map.mapOptions.maxZoom + increaseMapZoomBy}
         style={{ height: "100%", width: "100%" }}
         maxBoundsViscosity={1}
         doubleClickZoom={false}
