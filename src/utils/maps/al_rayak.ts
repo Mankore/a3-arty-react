@@ -1,5 +1,5 @@
 import { MapProps } from "../types";
-const mapExtent = [0.0000,-7680.0000,7680.0000,0.0000]; // al_rayak
+const mapExtent = [0.0,-7680.0,7680.0,0.0]; // al_rayak
 const mapOptions = {
   zoom: 3,
   minZoom: 0,

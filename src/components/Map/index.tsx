@@ -4,7 +4,7 @@ import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
-import 'leaflet/dist/leaflet.css';
+// import 'leaflet/dist/leaflet.css';
 
 const crs = Leaflet.CRS.Simple;
 

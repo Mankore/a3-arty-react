@@ -1,5 +1,5 @@
 import { MapProps } from "../types";
-const mapExtent = [0.0000,-8192.0000,8192.0000,0.0000]; // virolahti
+const mapExtent = [0.0,-6750.0,6750.0,0.0]; // virolahti
 const mapOptions = {
   zoom: 3,
   minZoom: 0,
