@@ -7,7 +7,7 @@ import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 
 const App = () => {
-  const defaultMap = Object.values(maps)[0];
+  const defaultMap = Object.values(maps)[3];
   const defaultArtillery = Object.values(artilleryTypes)[0];
   const [map, setMap] = useState(defaultMap);
   const [artillery, setArtillery] = useState<Artillery>(defaultArtillery);

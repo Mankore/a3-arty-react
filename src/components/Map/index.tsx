@@ -4,6 +4,7 @@ import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
+import 'leaflet/dist/leaflet.css';
 
 const crs = Leaflet.CRS.Simple;
 
@@ -23,13 +24,13 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
         center={[0, 0]}
         zoom={map.mapOptions.zoom}
         minZoom={map.mapOptions.minZoom}
-        maxZoom={map.mapOptions.maxZoom}
+        maxZoom={map.mapOptions.maxZoom + 2}
         style={{ height: "100%", width: "100%" }}
         maxBoundsViscosity={1}
         doubleClickZoom={false}
       >
         <TileLayer
-          url={`/maps/${map.name}/{z}/{x}/{y}.png`}
+          url={`/maps/${map.name}/{z}/{y}/{x}.png`}
           tileSize={map.mapOptions.tileSize}
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
