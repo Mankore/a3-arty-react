@@ -21,3 +21,18 @@ export interface IMarkerInfo {
   popupContent: React.ReactNode;
   coordinates?: Coordinates;
 }
+
+export interface IMarkerPopup {
+  coordinates: Coordinates;
+}
+
+export interface ITargetPopup extends IMarkerPopup {
+  tof: number;
+  shell: ShellType;
+  fireMode: FireMode;
+  range: number;
+  currentAngle: number;
+  bearing: number;
+  apex: number;
+  exitAngle: number;
+}

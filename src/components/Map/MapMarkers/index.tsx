@@ -59,6 +59,7 @@ export const MapMarkers = ({
             position={marker.latlng}
             key={idx}
             icon={iconTarget}
+            draggable
             eventHandlers={{
               mouseover: (event) => event.target.openPopup(),
               mouseout: (event) => event.target.closePopup(),
@@ -68,6 +69,19 @@ export const MapMarkers = ({
                     return prevState.filter((item) => item.latlng !== marker.latlng);
                   });
               },
+              dragend: (event) => {
+                createTargetMarker(
+                  event.target._latlng,
+                  currentMap,
+                  artilleryPosition!,
+                  fireMode,
+                  shell,
+                  artillery,
+                  topDown,
+                  setTargets,
+                  idx
+                );
+              },
             }}
           >
             <Popup>{marker.popupContent}</Popup>
@@ -75,7 +89,14 @@ export const MapMarkers = ({
         );
       })}
       {artilleryPosition && (
-        <Marker position={artilleryPosition.latlng}>
+        <Marker
+          position={artilleryPosition.latlng}
+          draggable
+          eventHandlers={{
+            dragend: (e) =>
+              createArtilleryMarker(e.target._latlng, currentMap, setArtilleryPosition),
+          }}
+        >
           <Popup>{artilleryPosition.popupContent}</Popup>
         </Marker>
       )}

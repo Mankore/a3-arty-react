@@ -3,6 +3,7 @@ import { IMarkerInfo } from "./types";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
 import { latLngToArmaCoords } from "../MapUtils";
+import { ArtilleryPopup, TargetPopup } from "./Popup";
 
 async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
   const roundedX = Math.round(x / 10) * 10;
@@ -29,16 +30,8 @@ export const createArtilleryMarker = async (
     currentMap.mapBounds
   );
   const height = await fetchHeightByCoordinates(currentMap.name, coordinates.x, coordinates.y);
-  const popupContent = (
-    <>
-      <div>Artillery Position:</div>
-      <span>
-        x: {coordinates.x}
-        <br /> y: {coordinates.y}
-        <br /> z: {height}
-      </span>
-    </>
-  );
+  const position = { x: coordinates.x, y: coordinates.y, z: height };
+  const popupContent = <ArtilleryPopup coordinates={position} />;
   cb({
     latlng,
     popupContent,
@@ -54,7 +47,8 @@ export const createTargetMarker = async (
   shell: ShellType,
   artillery: Artillery,
   topDown: boolean,
-  cb: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>
+  cb: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>,
+  oldMarkerId?: number
 ) => {
   if (!artilleryPosition) return;
 
@@ -74,7 +68,7 @@ export const createTargetMarker = async (
   const bearing = getBearing(artyCoords!.x, artyCoords!.y, targetCoords.x, targetCoords.y);
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
-  const { currentAngle, apex, tof, exitAngle } = getAngleSolutionForRange(
+  const solution = getAngleSolutionForRange(
     range,
     muzzleVelocity,
     targetHeight - artyCoords!.z,
@@ -83,37 +77,43 @@ export const createTargetMarker = async (
     topDown
   );
 
+  const coordinates = { x: targetCoords.x, y: targetCoords.y, z: targetHeight };
+
   const popupContent = (
-    <>
-      <div>Target Position:</div>
-      <span>
-        x: {targetCoords.x}, y: {targetCoords.y}, z: {targetHeight}
-      </span>
-      {tof === 0 ? (
-        <div>Solution not possible</div>
-      ) : (
-        <>
-          <div>{fireMode.name} {shell.name}</div>
-          <div>Range: {range.toFixed(1)}</div>
-          <div>Elevation Angle: {currentAngle.toFixed(3)}</div>
-          <div>Bearing: {bearing.toFixed(2)}</div>
-          <div>ToF: {tof.toFixed(1)}</div>
-          <div>apex: {apex.toFixed(1)}</div>
-          <div>exitAngle: {exitAngle.toFixed(1)}</div>
-        </>
-      )}
-    </>
+    <TargetPopup
+      coordinates={coordinates}
+      shell={shell}
+      fireMode={fireMode}
+      range={range}
+      bearing={bearing}
+      {...solution}
+    />
   );
-  cb((prevState) => {
-    return [
-      ...prevState,
-      {
+
+  if (oldMarkerId === undefined) {
+    cb((prevState) => {
+      return [
+        ...prevState,
+        {
+          latlng,
+          popupContent,
+          coordinates,
+        },
+      ];
+    });
+  } else {
+    cb((prevState) => {
+      const items = [...prevState];
+      const updatedItem = {
+        ...items[oldMarkerId],
         latlng,
         popupContent,
-        coordinates: { x: targetCoords.x, y: targetCoords.y, z: targetHeight },
-      },
-    ];
-  });
+        coordinates,
+      };
+      items[oldMarkerId] = updatedItem;
+      return items;
+    });
+  }
 };
 
 export const createTriggerMarker = (
