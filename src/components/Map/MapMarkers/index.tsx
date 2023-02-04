@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMapEvents, Marker, Popup } from "react-leaflet";
 import { iconTarget, iconTrigger } from "../MapIcons";
 import { createArtilleryMarker, createTargetMarker, createTriggerMarker } from "./createMarker";
@@ -16,6 +16,16 @@ export const MapMarkers = ({
   const [targets, setTargets] = useState<IMarkerInfo[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<IMarkerInfo>();
   const [triggerPosition, setTriggerPosition] = useState<IMarkerInfo>();
+
+  const cleanupMarkers = () => {
+    setArtilleryPosition(undefined);
+    setTargets([]);
+    setTriggerPosition(undefined);
+  };
+
+  useEffect(() => {
+    cleanupMarkers();
+  }, [currentMap]);
 
   useMapEvents({
     click(e) {

@@ -3,7 +3,7 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
+import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
 import { increaseMapZoomBy } from "../../utils/variables";
 // import 'leaflet/dist/leaflet.css';
 
@@ -13,7 +13,7 @@ interface IMap {
   artillery: Artillery;
   shell: ShellType;
   fireMode: FireMode;
-  map: MapProps;
+  map: MapInfo;
   topDown: boolean;
 }
 

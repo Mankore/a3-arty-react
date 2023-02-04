@@ -1,14 +1,14 @@
 import { Container, Select, Label, Wrapper } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
-import { Artillery, FireMode, MapProps, ShellType } from "../../utils/types";
+import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
 
 interface ISidebar {
   artillery: Artillery;
   setArtillery: React.Dispatch<React.SetStateAction<Artillery>>;
   setShell: React.Dispatch<React.SetStateAction<ShellType>>;
   setFireMode: React.Dispatch<React.SetStateAction<FireMode>>;
-  setMap: React.Dispatch<React.SetStateAction<MapProps>>;
+  setMap: React.Dispatch<React.SetStateAction<MapInfo>>;
   setTopDown: React.Dispatch<React.SetStateAction<boolean>>;
 }
 

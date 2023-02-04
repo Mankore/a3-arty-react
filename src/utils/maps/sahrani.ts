@@ -1,4 +1,4 @@
-import { MapProps } from "../types";
+import { MapInfo } from "../types";
 
 const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // sahrani
 const mapOptions = {
@@ -12,7 +12,7 @@ const mapBounds = {
   y: 20480,
 };
 
-export const mapSahrani: MapProps = {
+export const mapSahrani: MapInfo = {
   name: "sahrani",
   mapExtent: mapExtent,
   mapOptions,

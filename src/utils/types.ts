@@ -28,7 +28,7 @@ export interface IMapBounds {
   y: number;
 }
 
-export interface MapProps {
+export interface MapInfo {
   name: string;
   mapExtent: Array<number>;
   mapOptions: {

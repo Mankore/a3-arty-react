@@ -1,5 +1,5 @@
-import { MapProps } from "../types";
-const mapExtent = [0.0,-6750.0,6750.0,0.0]; // virolahti
+import { MapInfo } from "../types";
+const mapExtent = [0.0, -6750.0, 6750.0, 0.0]; // virolahti
 const mapOptions = {
   zoom: 3,
   minZoom: 0,
@@ -11,4 +11,9 @@ const mapBounds = {
   y: 18000,
 };
 
-export const mapVirolahti: MapProps = { name: "virolahti", mapExtent: mapExtent, mapOptions, mapBounds };
+export const mapVirolahti: MapInfo = {
+  name: "virolahti",
+  mapExtent: mapExtent,
+  mapOptions,
+  mapBounds,
+};

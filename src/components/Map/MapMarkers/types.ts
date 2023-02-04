@@ -1,12 +1,12 @@
 import { CRS, LatLng } from "leaflet";
-import { Artillery, FireMode, MapProps, ShellType } from "../../../utils/types";
+import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
 
 export interface IMapMarkers {
   crs: CRS;
   artillery: Artillery;
   shell: ShellType;
   fireMode: FireMode;
-  currentMap: MapProps;
+  currentMap: MapInfo;
   topDown: boolean;
 }
 

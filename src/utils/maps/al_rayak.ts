@@ -1,5 +1,5 @@
-import { MapProps } from "../types";
-const mapExtent = [0.0,-7680.0,7680.0,0.0]; // al_rayak
+import { MapInfo } from "../types";
+const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // al_rayak
 const mapOptions = {
   zoom: 3,
   minZoom: 0,
@@ -11,4 +11,9 @@ const mapBounds = {
   y: 20480,
 };
 
-export const mapAlRayak: MapProps = { name: "al_rayak", mapExtent: mapExtent, mapOptions, mapBounds };
+export const mapAlRayak: MapInfo = {
+  name: "al_rayak",
+  mapExtent: mapExtent,
+  mapOptions,
+  mapBounds,
+};

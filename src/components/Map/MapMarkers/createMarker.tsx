@@ -1,7 +1,7 @@
 import { LatLng } from "leaflet";
 import { IMarkerInfo } from "./types";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
-import { Artillery, FireMode, MapProps, ShellType } from "../../../utils/types";
+import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
 import { latLngToArmaCoords } from "../MapUtils";
 
 async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
@@ -19,7 +19,7 @@ async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
 
 export const createArtilleryMarker = async (
   latlng: LatLng,
-  currentMap: MapProps,
+  currentMap: MapInfo,
   cb: React.Dispatch<React.SetStateAction<IMarkerInfo | undefined>>
 ) => {
   const coordinates = latLngToArmaCoords(
@@ -48,7 +48,7 @@ export const createArtilleryMarker = async (
 
 export const createTargetMarker = async (
   latlng: LatLng,
-  currentMap: MapProps,
+  currentMap: MapInfo,
   artilleryPosition: IMarkerInfo,
   fireMode: FireMode,
   shell: ShellType,
