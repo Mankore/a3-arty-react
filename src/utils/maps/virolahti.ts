@@ -13,7 +13,7 @@ const mapBounds = {
 
 export const mapVirolahti: MapInfo = {
   name: "virolahti",
-  mapExtent: mapExtent,
+  mapExtent,
   mapOptions,
   mapBounds,
 };

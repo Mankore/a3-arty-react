@@ -1,6 +1,5 @@
 import { MapInfo } from "../types";
-
-const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // sahrani
+const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // colombia
 const mapOptions = {
   zoom: 3,
   minZoom: 0,
@@ -12,8 +11,8 @@ const mapBounds = {
   y: 20480,
 };
 
-export const mapSahrani: MapInfo = {
-  name: "sahrani",
+export const mapColombia: MapInfo = {
+  name: "colombia",
   mapExtent,
   mapOptions,
   mapBounds,

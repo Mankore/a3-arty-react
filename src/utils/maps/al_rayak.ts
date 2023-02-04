@@ -13,7 +13,7 @@ const mapBounds = {
 
 export const mapAlRayak: MapInfo = {
   name: "al_rayak",
-  mapExtent: mapExtent,
+  mapExtent,
   mapOptions,
   mapBounds,
 };

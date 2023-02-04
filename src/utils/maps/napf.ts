@@ -1,6 +1,5 @@
 import { MapInfo } from "../types";
-
-const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // sahrani
+const mapExtent = [0.0, -7680.0, 7680.0, 0.0]; // napf
 const mapOptions = {
   zoom: 3,
   minZoom: 0,
@@ -12,9 +11,4 @@ const mapBounds = {
   y: 20480,
 };
 
-export const mapSahrani: MapInfo = {
-  name: "sahrani",
-  mapExtent,
-  mapOptions,
-  mapBounds,
-};
+export const mapNapf: MapInfo = { name: "napf", mapExtent, mapOptions, mapBounds };
