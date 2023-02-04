@@ -7,8 +7,8 @@ const mapOptions = {
   tileSize: 256,
 };
 const mapBounds = {
-  x: 15360,
-  y: 15360,
+  x: 18000,
+  y: 18000,
 };
 
 export const mapVirolahti: MapProps = { name: "virolahti", mapExtent: mapExtent, mapOptions, mapBounds };

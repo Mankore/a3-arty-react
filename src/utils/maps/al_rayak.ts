@@ -7,8 +7,8 @@ const mapOptions = {
   tileSize: 256,
 };
 const mapBounds = {
-  x: 15360,
-  y: 15360,
+  x: 20480,
+  y: 20480,
 };
 
 export const mapAlRayak: MapProps = { name: "al_rayak", mapExtent: mapExtent, mapOptions, mapBounds };
