@@ -5,7 +5,7 @@ import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
 import { increaseMapZoomBy } from "../../utils/variables";
-// import 'leaflet/dist/leaflet.css';
+import { MapMouseCoordinates } from "./MapMouseCoordinates";
 
 const crs = Leaflet.CRS.Simple;
 
@@ -27,7 +27,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
         minZoom={map.mapOptions.minZoom}
         maxZoom={map.mapOptions.maxZoom + increaseMapZoomBy}
         style={{ height: "100%", width: "100%" }}
-        maxBoundsViscosity={1}
+        maxBoundsViscosity={0.8}
         doubleClickZoom={false}
       >
         <TileLayer
@@ -45,6 +45,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
           topDown={topDown}
         />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
+        <MapMouseCoordinates {...map} />
       </MapContainer>
     </Container>
   );
