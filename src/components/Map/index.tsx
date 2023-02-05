@@ -31,7 +31,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
         doubleClickZoom={false}
       >
         <TileLayer
-          url={`/maps/${map.name}/{z}/{y}/{x}.png`}
+          url={`./maps/${map.name}/{z}/{y}/{x}.png`}
           tileSize={map.mapOptions.tileSize}
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
