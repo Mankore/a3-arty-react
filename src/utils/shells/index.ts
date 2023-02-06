@@ -11,3 +11,15 @@ export const Shell_3BK13: ShellType = {
   airFriction: -0.0005,
   initSpeed: 726,
 };
+
+export const Shell_3_WOF_27: ShellType = {
+  name: "HE_53_WOF_27",
+  airFriction: 0,
+  initSpeed: 655,
+};
+
+export const Shell_AMOS_HE: ShellType = {
+  name: "HE_AMOS",
+  airFriction: 0,
+  initSpeed: 810,
+};

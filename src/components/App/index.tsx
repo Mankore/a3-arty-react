@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Container } from "./styles";
 import { Map } from "../Map";
 import { Sidebar } from "../Sidebar";
@@ -14,6 +14,11 @@ const App = () => {
   const [shell, setShell] = useState<ShellType>(defaultArtillery.shellTypes[0]);
   const [fireMode, setFireMode] = useState<FireMode>(defaultArtillery.fireModes[0]);
   const [topDown, setTopDown] = useState<boolean>(false);
+
+  useEffect(() => {
+    setShell(artillery.shellTypes[0]);
+    setFireMode(artillery.fireModes[0]);
+  }, [artillery]);
 
   return (
     <Container>

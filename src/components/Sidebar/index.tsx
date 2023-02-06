@@ -52,6 +52,9 @@ export const Sidebar = ({
       <Wrapper>
         <Label htmlFor="map">Map</Label>
         <Select name="map" id="map" onChange={(e) => onChangeHandler(e, "map")}>
+          <option value="" disabled hidden>
+            Select map
+          </option>
           {Object.entries(maps).map((map) => (
             <option value={map[1].name} key={map[1].name}>
               {map[1].name}
