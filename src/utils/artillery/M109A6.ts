@@ -31,8 +31,8 @@ export const Arty_M109A6: Artillery = {
   ],
   shellTypes: [Shell_AMOS_HE],
   isAirFriction: false,
-  angleAdjustment: 0,
+  angleAdjustment: 0.1,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
-    return new Vector(0, 0, 0);
+    return new Vector(0, Math.cos(angle) * 1.96, Math.sin(angle) * 1.96);
   },
 };
