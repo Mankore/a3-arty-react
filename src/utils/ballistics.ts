@@ -90,7 +90,7 @@ function getAngleSolutionForRange(
   shell: ShellType,
   isTopDown: boolean
 ) {
-  const angleTolerance = toRadians(0.05);
+  const angleTolerance = toRadians(0.02);
   let minAngle = artillery.minAngle;
   let maxAngle = artillery.maxAngle;
   let attemptCount = 0;
@@ -135,6 +135,8 @@ function getAngleSolutionForRange(
   if (Math.abs(px - zeroRange) > maxError) {
     return { currentAngle: 0, tof: 0, exitAngle, apex, px };
   }
+  
+  console.log({ currentAngle });
 
   currentAngle += artillery.angleAdjustment;
 

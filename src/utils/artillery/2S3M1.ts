@@ -10,7 +10,7 @@ export const Arty_2S3M1: Artillery = {
   fireModes: [
     {
       name: "Full Charge",
-      artilleryCharge: 0.63,
+      artilleryCharge: 0.634,
     },
     {
       name: "Charge 1",
@@ -39,7 +39,7 @@ export const Arty_2S3M1: Artillery = {
   ],
   shellTypes: [Shell_3_WOF_27],
   isAirFriction: false,
-  angleAdjustment: 0,
+  angleAdjustment: -0.23,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
     return new Vector(0, 0, 0);
   },
