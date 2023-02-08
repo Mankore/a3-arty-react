@@ -47,4 +47,7 @@ export interface ITargetMarker {
 export interface IArtilleryMarker {
   artilleryPosition: IMarkerInfo;
   onDragEnd: DragEndEventHandlerFn | undefined;
+  artillery: Artillery;
+  shell: ShellType;
+  fireMode: FireMode;
 }

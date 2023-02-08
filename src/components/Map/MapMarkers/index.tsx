@@ -61,7 +61,7 @@ export const MapMarkers = ({
           artilleryPosition={artilleryPosition!}
           markerPosition={target}
           setTargets={setTargets}
-          onDragEnd={(event) => {
+          onDragEnd={(event) =>
             createTargetMarker(
               event.target._latlng,
               currentMap,
@@ -72,8 +72,8 @@ export const MapMarkers = ({
               topDown,
               setTargets,
               idx
-            );
-          }}
+            )
+          }
         />
       ))}
       {artilleryPosition && (
@@ -82,6 +82,9 @@ export const MapMarkers = ({
           onDragEnd={(e) =>
             createArtilleryMarker(e.target._latlng, currentMap, setArtilleryPosition)
           }
+          artillery={artillery}
+          shell={shell}
+          fireMode={fireMode}
         />
       )}
       {triggerPosition && (

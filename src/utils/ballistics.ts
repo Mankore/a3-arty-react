@@ -1,4 +1,4 @@
-import { Artillery, ShellType } from "./types";
+import { Artillery, FireMode, ShellType } from "./types";
 import { Vector } from "./vector";
 
 const GRAVITY = 9.8066;
@@ -135,7 +135,7 @@ function getAngleSolutionForRange(
   if (Math.abs(px - zeroRange) > maxError) {
     return { currentAngle: 0, tof: 0, exitAngle, apex, px };
   }
-  
+
   console.log({ currentAngle });
 
   currentAngle += artillery.angleAdjustment;
@@ -143,4 +143,45 @@ function getAngleSolutionForRange(
   return { currentAngle, tof, exitAngle, apex, px };
 }
 
-export { simulateShotForAngle, getAngleSolutionForRange, getRange, getBearing, getAltitudeDiff };
+function getMaxRange(artillery: Artillery, shell: ShellType, fireMode: FireMode) {
+  const angleStep = 0.2;
+  let maxRange = 0;
+  const muzzleVelocity = shell.initSpeed * fireMode.artilleryCharge;
+  let currentAngle = artillery.minAngle + artillery.maxAngle / 2;
+  let currentRange = 0;
+
+  if (!artillery.isAirFriction) {
+    currentAngle = 45;
+    maxRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    return { maxRange, currentAngle };
+  }
+
+  do {
+    currentRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    if (maxRange < currentRange) {
+      maxRange = currentRange;
+      currentAngle += angleStep;
+    }
+  } while (currentRange >= maxRange && currentAngle < artillery.maxAngle);
+
+  currentAngle -= angleStep * 2;
+
+  do {
+    currentRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    if (maxRange < currentRange) {
+      maxRange = currentRange;
+      currentAngle -= angleStep;
+    }
+  } while (currentRange >= maxRange && currentAngle > artillery.minAngle);
+
+  return { maxRange, currentAngle };
+}
+
+export {
+  simulateShotForAngle,
+  getAngleSolutionForRange,
+  getRange,
+  getBearing,
+  getAltitudeDiff,
+  getMaxRange,
+};
