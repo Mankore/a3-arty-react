@@ -21,7 +21,7 @@ async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
 export const createArtilleryMarker = async (
   latlng: LatLng,
   currentMap: MapInfo,
-  cb: React.Dispatch<React.SetStateAction<IMarkerInfo | undefined>>
+  setState: React.Dispatch<React.SetStateAction<IMarkerInfo | undefined>>
 ) => {
   const coordinates = latLngToArmaCoords(
     latlng,
@@ -32,7 +32,7 @@ export const createArtilleryMarker = async (
   const height = await fetchHeightByCoordinates(currentMap.name, coordinates.x, coordinates.y);
   const position = { x: coordinates.x, y: coordinates.y, z: height };
   const popupContent = <ArtilleryPopup coordinates={position} />;
-  cb({
+  setState({
     latlng,
     popupContent,
     coordinates: { x: coordinates.x, y: coordinates.y, z: height },
@@ -47,7 +47,7 @@ export const createTargetMarker = async (
   shell: ShellType,
   artillery: Artillery,
   topDown: boolean,
-  cb: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>,
+  setState: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>,
   oldMarkerId?: number
 ) => {
   if (!artilleryPosition) return;
@@ -91,7 +91,7 @@ export const createTargetMarker = async (
   );
 
   if (oldMarkerId === undefined) {
-    cb((prevState) => {
+    setState((prevState) => {
       return [
         ...prevState,
         {
@@ -102,7 +102,7 @@ export const createTargetMarker = async (
       ];
     });
   } else {
-    cb((prevState) => {
+    setState((prevState) => {
       const items = [...prevState];
       const updatedItem = {
         ...items[oldMarkerId],
@@ -118,7 +118,7 @@ export const createTargetMarker = async (
 
 export const createTriggerMarker = (
   latlng: LatLng,
-  cb: React.Dispatch<React.SetStateAction<IMarkerInfo | undefined>>
+  setState: React.Dispatch<React.SetStateAction<IMarkerInfo | undefined>>
 ) => {
-  cb({ latlng, popupContent: "TriggerPos" });
+  setState({ latlng, popupContent: "TriggerPos" });
 };

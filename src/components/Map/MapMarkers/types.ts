@@ -1,4 +1,4 @@
-import { CRS, LatLng } from "leaflet";
+import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
 
 export interface IMapMarkers {
@@ -35,4 +35,16 @@ export interface ITargetPopup extends IMarkerPopup {
   bearing: number;
   apex: number;
   exitAngle: number;
+}
+
+export interface ITargetMarker {
+  artilleryPosition: IMarkerInfo;
+  markerPosition: IMarkerInfo;
+  setTargets: (value: React.SetStateAction<IMarkerInfo[]>) => void;
+  onDragEnd: DragEndEventHandlerFn | undefined;
+}
+
+export interface IArtilleryMarker {
+  artilleryPosition: IMarkerInfo;
+  onDragEnd: DragEndEventHandlerFn | undefined;
 }
