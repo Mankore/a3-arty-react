@@ -136,8 +136,6 @@ function getAngleSolutionForRange(
     return { currentAngle: 0, tof: 0, exitAngle, apex, px };
   }
 
-  console.log({ currentAngle });
-
   currentAngle += artillery.angleAdjustment;
 
   return { currentAngle, tof, exitAngle, apex, px };

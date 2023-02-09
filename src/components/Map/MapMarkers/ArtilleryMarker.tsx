@@ -1,5 +1,4 @@
-import { Circle, Marker, Popup } from "react-leaflet";
-import { getMaxRange } from "../../../utils/ballistics";
+import { Marker, Popup } from "react-leaflet";
 import { IArtilleryMarker } from "./types";
 
 export const ArtilleryMarker = ({
@@ -9,10 +8,6 @@ export const ArtilleryMarker = ({
   shell,
   fireMode,
 }: IArtilleryMarker) => {
-  const { maxRange, currentAngle } = getMaxRange(artillery, shell, fireMode);
-  // const map = useMap();
-  console.log({ maxRange, currentAngle });
-
   return (
     <>
       <Marker
@@ -24,7 +19,6 @@ export const ArtilleryMarker = ({
       >
         <Popup>{artilleryPosition.popupContent}</Popup>
       </Marker>
-      <Circle center={artilleryPosition.latlng} radius={200} />
     </>
   );
 };

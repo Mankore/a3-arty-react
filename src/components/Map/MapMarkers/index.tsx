@@ -85,6 +85,7 @@ export const MapMarkers = ({
           artillery={artillery}
           shell={shell}
           fireMode={fireMode}
+          currentMap={currentMap}
         />
       )}
       {triggerPosition && (

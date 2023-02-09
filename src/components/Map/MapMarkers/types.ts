@@ -50,4 +50,5 @@ export interface IArtilleryMarker {
   artillery: Artillery;
   shell: ShellType;
   fireMode: FireMode;
+  currentMap: MapInfo;
 }
