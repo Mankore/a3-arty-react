@@ -29,3 +29,21 @@ export const Shell_155mm_AMOS: ShellType = {
   airFriction: 0,
   initSpeed: 810,
 };
+
+export const Shell_53OF546: ShellType = {
+  name: "53-VOF-546V",
+  airFriction: -0.00008,
+  initSpeed: 655,
+};
+
+export const Shell_BR540_AP: ShellType = {
+  name: "BR540 AP",
+  airFriction: -0.000099,
+  initSpeed: 600,
+};
+
+export const Shell_BP540_HEAT: ShellType = {
+  name: "BP540 HEAT",
+  airFriction: -0.000204,
+  initSpeed: 680,
+};

@@ -5,7 +5,7 @@ import { Shell_3OF56, Shell_3BK13 } from "../shells";
 export const Arty_2S1_direct: Artillery = {
   Name: "2S1 Direct Fire",
   simulationStep: 0.05,
-  minAngle: 3,
+  minAngle: 0,
   maxAngle: 70,
   fireModes: [
     {
