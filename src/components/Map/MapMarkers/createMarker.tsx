@@ -9,7 +9,7 @@ async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
   const roundedX = Math.round(x / 10) * 10;
   const roundedY = Math.round(y / 10) * 10;
   const endpoint = "http://127.0.0.1:3080/coords/";
-  const json = await fetch(`${endpoint}${mapName}/${roundedX}.${roundedY}`, {
+  const json = await fetch(`${endpoint}${mapName.toLowerCase()}/${roundedX}.${roundedY}`, {
     method: "GET",
     mode: "cors",
   }).then((res) => res.json());

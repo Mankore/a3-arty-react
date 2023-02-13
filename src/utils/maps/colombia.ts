@@ -12,7 +12,7 @@ const mapBounds = {
 };
 
 export const mapColombia: MapInfo = {
-  name: "colombia",
+  name: "Colombia",
   mapExtent,
   mapOptions,
   mapBounds,

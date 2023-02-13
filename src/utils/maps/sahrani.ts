@@ -13,7 +13,7 @@ const mapBounds = {
 };
 
 export const mapSahrani: MapInfo = {
-  name: "sahrani",
+  name: "Sahrani",
   mapExtent,
   mapOptions,
   mapBounds,

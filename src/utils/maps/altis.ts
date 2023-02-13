@@ -11,4 +11,4 @@ const mapBounds = {
   y: 30720,
 };
 
-export const mapAltis: MapInfo = { name: "altis", mapExtent, mapOptions, mapBounds };
+export const mapAltis: MapInfo = { name: "Altis", mapExtent, mapOptions, mapBounds };
