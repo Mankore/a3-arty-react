@@ -5,7 +5,7 @@ import { Shell_53OF546, Shell_BR540_AP, Shell_BP540_HEAT } from "../shells";
 // Different charges have no effect here
 // Calculate with Full Charge only for accurate results
 export const Arty_2S3M1_direct: Artillery = {
-  Name: "2S3M1 Direct Fire",
+  name: "2S3M1 Direct Fire",
   simulationStep: 0.05,
   minAngle: 0,
   maxAngle: 66.5,

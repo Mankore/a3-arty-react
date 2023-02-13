@@ -3,7 +3,7 @@ import { Vector } from "../vector";
 import { Shell_3OF56, Shell_3BK13 } from "../shells";
 
 export const Arty_2S1: Artillery = {
-  Name: "2S1",
+  name: "2S1",
   simulationStep: 0.05,
   minAngle: 1,
   maxAngle: 70,

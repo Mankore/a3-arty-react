@@ -1,7 +1,7 @@
 import { Vector } from "./vector";
 
 export interface Artillery {
-  Name: string;
+  name: string;
   simulationStep: number;
   minAngle: number;
   maxAngle: number;

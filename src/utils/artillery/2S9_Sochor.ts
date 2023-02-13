@@ -3,7 +3,7 @@ import { Vector } from "../vector";
 import { Shell_155mm_AMOS } from "../shells";
 
 export const Arty_2S9_Sochor: Artillery = {
-  Name: "2S9 Sochor",
+  name: "2S9 Sochor",
   simulationStep: 0.05,
   minAngle: 3,
   maxAngle: 80,

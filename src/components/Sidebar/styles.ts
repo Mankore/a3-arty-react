@@ -1,16 +1,23 @@
 import styled from "styled-components";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+
+export const Label = styled(InputLabel)`
+  color: white;
+`;
+
+export const Option = styled(MenuItem)``;
+
 export const Container = styled.aside`
   padding: 1rem;
   background-color: black;
   color: white;
 `;
 
-export const Select = styled.select`
+export const StyledSelect = styled(Select)`
   display: block;
-`;
-
-export const Label = styled.label`
-  margin-right: 10px;
+  background-color: white;
 `;
 
 export const Wrapper = styled.div`
