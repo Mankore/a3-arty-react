@@ -1,3 +1,4 @@
+import { Container } from "./styles";
 import { IMarkerPopup, ITargetPopup } from "../types";
 
 export const TargetPopup = ({
@@ -12,37 +13,37 @@ export const TargetPopup = ({
   exitAngle,
 }: ITargetPopup) => {
   return (
-    <>
+    <Container>
       <div>Target Position:</div>
       <span>
-        [{coordinates.x}, {coordinates.y}, {coordinates.z}]
+        <b>[{coordinates.x}, {coordinates.y}, {coordinates.z}]</b>
       </span>
       {tof === 0 ? (
         <div>Solution not possible</div>
       ) : (
         <>
           <div>
-            {shell.name} {fireMode.name}
+            {shell.name} / {fireMode.name}
           </div>
-          <div>Range: {range.toFixed(1)} m</div>
-          <div style={{ color: "red" }}>Elevation Angle: {currentAngle.toFixed(3)}&deg;</div>
-          <div>Bearing: {bearing.toFixed(2)}&deg;</div>
-          <div>ToF: {tof.toFixed(1)} s</div>
-          <div>apex: {apex.toFixed(1)} m</div>
-          <div>exitAngle: {exitAngle.toFixed(1)}&deg;</div>
+          <div><b>Range</b>: {range.toFixed(1)} m</div>
+          <div style={{ color: "red" }}><b>Elevation Angle</b>: {currentAngle.toFixed(3)}&deg;</div>
+          <div><b>Bearing</b>: {bearing.toFixed(2)}&deg;</div>
+          <div><b>ToF</b>: {tof.toFixed(1)} s</div>
+          <div><b>Apex</b>: {apex.toFixed(1)} m</div>
+          <div><b>Exit Angle</b>: {exitAngle.toFixed(1)}&deg;</div>
         </>
       )}
-    </>
+    </Container>
   );
 };
 
 export const ArtilleryPopup = ({ coordinates }: IMarkerPopup) => {
   return (
-    <>
+    <Container>
       <div>Artillery Position:</div>
       <span>
-        [{coordinates.x}, {coordinates.y}, {coordinates.z}]
+        <b>[{coordinates.x}, {coordinates.y}, {coordinates.z}]</b>
       </span>
-    </>
+    </Container>
   );
 };

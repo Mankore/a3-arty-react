@@ -8,6 +8,5 @@ export const Container = styled.div`
   background-color: #000000;
   color: white;
   padding: 10px;
-  min-width: 10px;
   z-index: 1001;
 `;
