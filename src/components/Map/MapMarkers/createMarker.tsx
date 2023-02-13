@@ -12,10 +12,12 @@ async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
   const json = await fetch(`${endpoint}${mapName.toLowerCase()}/${roundedX}.${roundedY}`, {
     method: "GET",
     mode: "cors",
-  }).then((res) => res.json());
-
-  console.log(json);
-  return json.z;
+  })
+    .then((res) => res.json())
+    .catch(() => console.warn("Couldn't fetch height, setting height to 0"));
+  const height = json ? json.z : 0;
+  
+  return height;
 }
 
 export const createArtilleryMarker = async (
