@@ -21,6 +21,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
   return (
     <Container>
       <MapContainer
+        key={map.name}
         crs={crs}
         center={[0, 0]}
         zoom={map.mapOptions.zoom}
