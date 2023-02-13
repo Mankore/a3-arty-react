@@ -1,6 +1,6 @@
 import { Artillery } from "../types";
 import { Vector } from "../vector";
-import { Shell_AMOS_HE } from "../shells";
+import { Shell_155mm_AMOS } from "../shells";
 
 export const Arty_M109A6: Artillery = {
   Name: "M109A6",
@@ -29,7 +29,7 @@ export const Arty_M109A6: Artillery = {
       artilleryCharge: 1,
     },
   ],
-  shellTypes: [Shell_AMOS_HE],
+  shellTypes: [Shell_155mm_AMOS],
   isAirFriction: false,
   angleAdjustment: 0.1,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {

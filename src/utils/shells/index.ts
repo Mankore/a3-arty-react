@@ -18,12 +18,6 @@ export const Shell_3_WOF_27: ShellType = {
   initSpeed: 655,
 };
 
-export const Shell_AMOS_HE: ShellType = {
-  name: "HE_AMOS",
-  airFriction: 0,
-  initSpeed: 810,
-};
-
 export const Shell_155mm_AMOS: ShellType = {
   name: "155mm_HE_AMOS",
   airFriction: 0,
