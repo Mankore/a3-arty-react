@@ -57,10 +57,10 @@ export const Sidebar = ({
   return (
     <Container>
       <Wrapper>
-        <Label id="select-map">Map</Label>
+        <Label id="label-map">Map</Label>
         <StyledSelect
-          labelId="select-map"
-          id="map"
+          labelId="label-map"
+          id="select-map"
           onChange={(e) => onChangeHandler(e, "map")}
           value={map.name}
         >
@@ -73,10 +73,10 @@ export const Sidebar = ({
       </Wrapper>
 
       <Wrapper>
-        <Label htmlFor="artillery">Artillery</Label>
+        <Label id="label-artillery">Artillery</Label>
         <StyledSelect
-          name="artillery"
-          id="artillery"
+          labelId="label-artillery"
+          id="select-artillery"
           onChange={(e) => onChangeHandler(e, "arty")}
           value={artillery.name}
         >
@@ -89,10 +89,10 @@ export const Sidebar = ({
       </Wrapper>
 
       <Wrapper>
-        <Label htmlFor="shell">Shell</Label>
+        <Label id="label-shell">Shell</Label>
         <StyledSelect
-          name="shell"
-          id="shell"
+          labelId="lable-shell"
+          id="select-shell"
           onChange={(e) => onChangeHandler(e, "shell")}
           value={shell.name}
         >
@@ -105,10 +105,10 @@ export const Sidebar = ({
       </Wrapper>
 
       <Wrapper>
-        <Label htmlFor="fireMode">Fire Mode</Label>
+        <Label id="label-fireMode">Fire Mode</Label>
         <StyledSelect
-          name="fireMode"
-          id="fireMode"
+          labelId="label-fireMode"
+          id="select-fireMode"
           onChange={(e) => onChangeHandler(e, "fireMode")}
           value={fireMode.name}
         >
