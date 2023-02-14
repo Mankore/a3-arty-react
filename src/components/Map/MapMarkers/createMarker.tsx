@@ -2,23 +2,8 @@ import { LatLng } from "leaflet";
 import { IMarkerInfo } from "./types";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
-import { latLngToArmaCoords } from "../MapUtils";
+import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { ArtilleryPopup, TargetPopup } from "./Popup";
-
-async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
-  const roundedX = Math.round(x / 10) * 10;
-  const roundedY = Math.round(y / 10) * 10;
-  const endpoint = "http://127.0.0.1:3080/coords/";
-  const json = await fetch(`${endpoint}${mapName.toLowerCase()}/${roundedX}.${roundedY}`, {
-    method: "GET",
-    mode: "cors",
-  })
-    .then((res) => res.json())
-    .catch(() => console.warn("Couldn't fetch height, setting height to 0"));
-  const height = json ? json.z : 0;
-  
-  return height;
-}
 
 export const createArtilleryMarker = async (
   latlng: LatLng,
