@@ -35,6 +35,7 @@ export const createTargetMarker = async (
   artillery: Artillery,
   topDown: boolean,
   setState: React.Dispatch<React.SetStateAction<IMarkerInfo[]>>,
+  heightAdjustment: number,
   oldMarkerId?: number
 ) => {
   if (!artilleryPosition) return;
@@ -58,7 +59,7 @@ export const createTargetMarker = async (
   const solution = getAngleSolutionForRange(
     range,
     muzzleVelocity,
-    targetHeight - artyCoords!.z,
+    targetHeight - artyCoords!.z + heightAdjustment,
     artillery,
     shell,
     topDown

@@ -8,6 +8,7 @@ export interface IMapMarkers {
   fireMode: FireMode;
   currentMap: MapInfo;
   topDown: boolean;
+  heightAdjustment: number;
 }
 
 export interface Coordinates {

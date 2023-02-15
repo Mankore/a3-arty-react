@@ -15,9 +15,10 @@ interface IMap {
   fireMode: FireMode;
   map: MapInfo;
   topDown: boolean;
+  heightAdjustment: number;
 }
 
-export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
+export const Map = ({ artillery, shell, fireMode, map, topDown, heightAdjustment }: IMap) => {
   return (
     <Container>
       <MapContainer
@@ -44,6 +45,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown }: IMap) => {
           shell={shell}
           fireMode={fireMode}
           topDown={topDown}
+          heightAdjustment={heightAdjustment}
         />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />

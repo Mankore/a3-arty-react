@@ -14,6 +14,7 @@ export const MapMarkers = ({
   fireMode,
   currentMap,
   topDown,
+  heightAdjustment,
 }: IMapMarkers) => {
   const [targets, setTargets] = useState<IMarkerInfo[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<IMarkerInfo>();
@@ -46,7 +47,8 @@ export const MapMarkers = ({
           shell,
           artillery,
           topDown,
-          setTargets
+          setTargets,
+          heightAdjustment
         );
 
       event.altKey && createTriggerMarker(latlng, setTriggerPosition);
@@ -71,6 +73,7 @@ export const MapMarkers = ({
               artillery,
               topDown,
               setTargets,
+              heightAdjustment,
               idx
             )
           }

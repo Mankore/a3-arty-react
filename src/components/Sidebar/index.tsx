@@ -1,4 +1,12 @@
-import { Container, Label, Wrapper, Option, StyledSelect } from "./styles";
+import {
+  Container,
+  Label,
+  Wrapper,
+  Option,
+  StyledSelect,
+  StyledInput,
+  StyledFormHelperText,
+} from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
@@ -8,11 +16,13 @@ interface ISidebar {
   shell: ShellType;
   fireMode: FireMode;
   map: MapInfo;
+  heightAdjustment: number;
   setArtillery: React.Dispatch<React.SetStateAction<Artillery>>;
   setShell: React.Dispatch<React.SetStateAction<ShellType>>;
   setFireMode: React.Dispatch<React.SetStateAction<FireMode>>;
   setMap: React.Dispatch<React.SetStateAction<MapInfo>>;
   setTopDown: React.Dispatch<React.SetStateAction<boolean>>;
+  setHeightAdjustment: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export const Sidebar = ({
@@ -25,6 +35,8 @@ export const Sidebar = ({
   setFireMode,
   setMap,
   setTopDown,
+  setHeightAdjustment,
+  heightAdjustment,
 }: ISidebar) => {
   const onChangeHandler = (e: any, type: "arty" | "shell" | "fireMode" | "map") => {
     const val = e.target.value;
@@ -128,6 +140,17 @@ export const Sidebar = ({
           name="topDown"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopDown(e.target.checked)}
         />
+      </Wrapper>
+
+      <Wrapper>
+        <StyledInput
+          id="height-adjustment"
+          aria-describedby="label-height-adjustment"
+          type="number"
+          value={heightAdjustment}
+          onChange={(e) => setHeightAdjustment(Number(e.target.value))}
+        />
+        <StyledFormHelperText id="label-height-adjustment">Height adjustment, meters</StyledFormHelperText>
       </Wrapper>
     </Container>
   );
