@@ -150,7 +150,9 @@ export const Sidebar = ({
           value={heightAdjustment}
           onChange={(e) => setHeightAdjustment(Number(e.target.value))}
         />
-        <StyledFormHelperText id="label-height-adjustment">Height adjustment, meters</StyledFormHelperText>
+        <StyledFormHelperText id="label-height-adjustment">
+          Height adjustment, meters
+        </StyledFormHelperText>
       </Wrapper>
     </Container>
   );

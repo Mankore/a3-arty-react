@@ -20,6 +20,10 @@ export const Container = styled.aside`
 export const StyledSelect = styled(Select)`
   display: block;
   background-color: white;
+
+  .MuiSelect-select {
+    padding: 0.75rem;
+  }
 `;
 
 export const Wrapper = styled.div`
