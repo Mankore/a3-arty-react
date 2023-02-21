@@ -1,9 +1,17 @@
 import { LatLng } from "leaflet";
-import { IMarkerInfo } from "./types";
+import { Coordinates, IMarkerInfo } from "./types";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { ArtilleryPopup, TargetPopup } from "./Popup";
+
+const getLoadingMarkerState = (latlng: LatLng, coords: Coordinates) => {
+  return {
+    latlng,
+    popupContent: <>Loading</>,
+    coordinates: { x: coords.x, y: coords.y, z: 0 },
+  };
+};
 
 export const createArtilleryMarker = async (
   latlng: LatLng,
@@ -16,6 +24,9 @@ export const createArtilleryMarker = async (
     currentMap.mapExtent,
     currentMap.mapBounds
   );
+
+  setState(getLoadingMarkerState(latlng, { ...coordinates, z: 0 }));
+
   const height = await fetchHeightByCoordinates(currentMap.name, coordinates.x, coordinates.y);
   const position = { x: coordinates.x, y: coordinates.y, z: height };
   const popupContent = <ArtilleryPopup coordinates={position} />;
@@ -46,6 +57,25 @@ export const createTargetMarker = async (
     currentMap.mapExtent,
     currentMap.mapBounds
   );
+
+  const loadingMarker = getLoadingMarkerState(latlng, { ...targetCoords, z: 0 });
+  if (oldMarkerId === undefined) {
+    setState((prevState) => {
+      oldMarkerId = prevState.length;
+      return [...prevState, loadingMarker];
+    });
+  } else {
+    setState((prevState) => {
+      const items = [...prevState];
+      const updatedItem = {
+        ...items[oldMarkerId!],
+        ...loadingMarker,
+      };
+      items[oldMarkerId!] = updatedItem;
+      return items;
+    });
+  }
+
   const targetHeight = await fetchHeightByCoordinates(
     currentMap.name,
     targetCoords.x,
@@ -93,12 +123,12 @@ export const createTargetMarker = async (
     setState((prevState) => {
       const items = [...prevState];
       const updatedItem = {
-        ...items[oldMarkerId],
+        ...items[oldMarkerId!],
         latlng,
         popupContent,
         coordinates,
       };
-      items[oldMarkerId] = updatedItem;
+      items[oldMarkerId!] = updatedItem;
       return items;
     });
   }
