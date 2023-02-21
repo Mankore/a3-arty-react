@@ -1,6 +1,6 @@
 import { CRS, LatLng, Point } from "leaflet";
 import { IMapBounds } from "../../../utils/types";
-import { isBackendAvailable } from "../../../utils/variables";
+import { isBackendAvailable, coordsBackendEndpoint } from "../../../utils/variables";
 
 export const latLngToArmaCoords = (
   latLng: LatLng,
@@ -24,10 +24,9 @@ export const latLngToArmaCoords = (
 export async function fetchHeightByCoordinates(mapName: string, x: number, y: number) {
   const roundedX = Math.round(x / 10) * 10;
   const roundedY = Math.round(y / 10) * 10;
-  const endpoint = "http://127.0.0.1:3080/coords/";
   let height = 0;
   if (isBackendAvailable) {
-    const json = await fetch(`${endpoint}${mapName.toLowerCase()}/${roundedX}.${roundedY}`, {
+    const json = await fetch(`${coordsBackendEndpoint}${mapName.toLowerCase()}/${roundedX}.${roundedY}`, {
       method: "GET",
       mode: "cors",
     })
