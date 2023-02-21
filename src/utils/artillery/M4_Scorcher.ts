@@ -5,7 +5,7 @@ import { Shell_155mm_AMOS } from "../shells";
 export const Artillery_M4_Scorcher: Artillery = {
   name: "M4 Scorcher",
   simulationStep: 0.05,
-  minAngle: 3,
+  minAngle: 0,
   maxAngle: 80,
   fireModes: [
     {

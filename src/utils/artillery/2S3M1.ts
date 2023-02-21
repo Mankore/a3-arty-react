@@ -5,7 +5,7 @@ import { Shell_3_WOF_27 } from "../shells";
 export const Arty_2S3M1: Artillery = {
   name: "2S3M1",
   simulationStep: 0.05,
-  minAngle: 1,
+  minAngle: 0,
   maxAngle: 66.5,
   fireModes: [
     {
@@ -41,6 +41,6 @@ export const Arty_2S3M1: Artillery = {
   isAirFriction: false,
   angleAdjustment: -0.23,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
-    return new Vector(0, 0, 0);
+    return new Vector(0, Math.cos(angle) * 1.88, 1.96 + Math.sin(angle) * 1.88);
   },
 };
