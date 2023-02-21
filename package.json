@@ -1,8 +1,11 @@
 {
   "name": "a3-arty-react",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://mankore.github.io/a3-arty-react/",
+  "author": {
+    "name": "Mankor"
+  },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
     "@mui/material": "^5.11.8",
