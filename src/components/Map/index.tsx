@@ -33,7 +33,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown, heightAdjustment
         doubleClickZoom={false}
       >
         <TileLayer
-          url={`${process.env.PUBLIC_URL}/maps/${map.name}/{z}/{y}/{x}.png`}
+          url={`${process.env.PUBLIC_URL}/maps/${map.name.toLowerCase()}/{z}/{y}/{x}.png`}
           tileSize={map.mapOptions.tileSize}
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
