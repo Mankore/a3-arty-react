@@ -60,7 +60,7 @@ export const ArtilleryPopup = ({ coordinates, flatness }: IMarkerPopup) => {
           [{coordinates.x}, {coordinates.y}, {coordinates.z}]
         </b>
       </span>
-      <div>Flatness: {flatness ? flatness.toFixed(4) : "loading"}</div>
+      {/* <div>Flatness: {flatness !== undefined? flatness.toFixed(4) : "loading"}</div> */}
     </Container>
   );
 };

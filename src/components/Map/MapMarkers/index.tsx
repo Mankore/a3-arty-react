@@ -1,10 +1,10 @@
+import { DragEndEvent, LatLng } from "leaflet";
 import { useEffect, useState } from "react";
-import { useMapEvents, Marker, Popup } from "react-leaflet";
-import { iconTrigger } from "../MapIcons";
+import { useMapEvents } from "react-leaflet";
 import { ArtilleryMarker } from "./ArtilleryMarker";
-import { createArtilleryMarker, createTargetMarker, createTriggerMarker } from "./createMarker";
 import { TargetMarker } from "./TargetMarker";
-import { IMapMarkers, IMarkerInfo } from "./types";
+import { TriggerMarker } from "./TriggerMarker";
+import { IMapMarkers } from "./types";
 
 // TODO: adjust trigger icon size programmaticaly to represent 500m radius circle (depends on map)
 export const MapMarkers = ({
@@ -16,9 +16,10 @@ export const MapMarkers = ({
   topDown,
   heightAdjustment,
 }: IMapMarkers) => {
-  const [targets, setTargets] = useState<IMarkerInfo[]>([]);
-  const [artilleryPosition, setArtilleryPosition] = useState<IMarkerInfo>();
-  const [triggerPosition, setTriggerPosition] = useState<IMarkerInfo>();
+  const [targets, setTargets] = useState<LatLng[]>([]);
+  const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
+  const [triggerPosition, setTriggerPosition] = useState<LatLng>();
+  const [artilleryHeight, setArtilleryHeight] = useState<number>(0);
 
   const cleanupMarkers = () => {
     setArtilleryPosition(undefined);
@@ -35,23 +36,15 @@ export const MapMarkers = ({
       const latlng = e.latlng;
       const event = e.originalEvent;
 
-      event.shiftKey && createArtilleryMarker(latlng, currentMap, setArtilleryPosition);
+      event.shiftKey && setArtilleryPosition(latlng);
 
       event.ctrlKey &&
         artilleryPosition &&
-        createTargetMarker(
-          latlng,
-          currentMap,
-          artilleryPosition,
-          fireMode,
-          shell,
-          artillery,
-          topDown,
-          setTargets,
-          heightAdjustment
-        );
+        setTargets((prevState) => {
+          return [...prevState, latlng];
+        });
 
-      event.altKey && createTriggerMarker(latlng, setTriggerPosition);
+      event.altKey && setTriggerPosition(latlng);
     },
   });
 
@@ -61,41 +54,36 @@ export const MapMarkers = ({
         <TargetMarker
           key={idx}
           artilleryPosition={artilleryPosition!}
+          artilleryHeight={artilleryHeight}
           markerPosition={target}
+          onDragEnd={(e: DragEndEvent) => {
+            setTargets((prevState) => {
+              const items = [...prevState];
+              items[idx] = e.target._latlng;
+              return items;
+            });
+          }}
           setTargets={setTargets}
-          onDragEnd={(event) =>
-            createTargetMarker(
-              event.target._latlng,
-              currentMap,
-              artilleryPosition!,
-              fireMode,
-              shell,
-              artillery,
-              topDown,
-              setTargets,
-              heightAdjustment,
-              idx
-            )
-          }
+          currentMap={currentMap}
+          artillery={artillery}
+          fireMode={fireMode}
+          shell={shell}
+          topDown={topDown}
+          heightAdjustment={heightAdjustment}
         />
       ))}
       {artilleryPosition && (
         <ArtilleryMarker
           artilleryPosition={artilleryPosition}
-          onDragEnd={(e) =>
-            createArtilleryMarker(e.target._latlng, currentMap, setArtilleryPosition)
-          }
-          artillery={artillery}
-          shell={shell}
-          fireMode={fireMode}
+          onDragEnd={(e) => {
+            setArtilleryPosition(e.target._latlng);
+          }}
           currentMap={currentMap}
+          setArtilleryHeight={setArtilleryHeight}
+          artilleryHeight={artilleryHeight}
         />
       )}
-      {triggerPosition && (
-        <Marker position={triggerPosition.latlng} icon={iconTrigger}>
-          <Popup>{triggerPosition.popupContent}</Popup>
-        </Marker>
-      )}
+      {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}
     </>
   );
 };

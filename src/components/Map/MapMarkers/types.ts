@@ -14,7 +14,7 @@ export interface IMapMarkers {
 export interface Coordinates {
   x: number;
   y: number;
-  z: number;
+  z: number | undefined;
 }
 
 export interface IMarkerInfo {
@@ -40,17 +40,35 @@ export interface ITargetPopup extends IMarkerPopup {
 }
 
 export interface ITargetMarker {
-  artilleryPosition: IMarkerInfo;
-  markerPosition: IMarkerInfo;
-  setTargets: (value: React.SetStateAction<IMarkerInfo[]>) => void;
+  artilleryPosition: LatLng;
+  markerPosition: LatLng;
+  setTargets: (value: React.SetStateAction<LatLng[]>) => void;
   onDragEnd: DragEndEventHandlerFn | undefined;
-}
-
-export interface IArtilleryMarker {
-  artilleryPosition: IMarkerInfo;
-  onDragEnd: DragEndEventHandlerFn | undefined;
+  artilleryHeight: number;
   artillery: Artillery;
   shell: ShellType;
   fireMode: FireMode;
   currentMap: MapInfo;
+  topDown: boolean;
+  heightAdjustment: number;
+}
+
+export interface IArtilleryMarker {
+  artilleryPosition: LatLng;
+  onDragEnd: DragEndEventHandlerFn | undefined;
+  currentMap: MapInfo;
+  artilleryHeight: number;
+  setArtilleryHeight: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export interface ITriggerMarker {
+  triggerPosition: LatLng;
+}
+
+export interface ITargetMarkerVisuals {
+  artilleryPosition: LatLng;
+  markerPosition: LatLng;
+  setTargets: (value: React.SetStateAction<LatLng[]>) => void;
+  onDragEnd: DragEndEventHandlerFn | undefined;
+  popupContent: React.ReactNode;
 }
