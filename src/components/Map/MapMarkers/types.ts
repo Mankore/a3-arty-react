@@ -25,6 +25,7 @@ export interface IMarkerInfo {
 
 export interface IMarkerPopup {
   coordinates: Coordinates;
+  flatness?: number;
 }
 
 export interface ITargetPopup extends IMarkerPopup {

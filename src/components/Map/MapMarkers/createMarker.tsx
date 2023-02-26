@@ -2,7 +2,11 @@ import { LatLng } from "leaflet";
 import { Coordinates, IMarkerInfo } from "./types";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
-import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
+import {
+  fetchFlatnessByCoordinates,
+  fetchHeightByCoordinates,
+  latLngToArmaCoords,
+} from "../MapUtils";
 import { ArtilleryPopup, TargetPopup } from "./Popup";
 
 const getLoadingMarkerState = (latlng: LatLng, coords: Coordinates) => {
@@ -29,13 +33,27 @@ export const createArtilleryMarker = async (
 
   const height = await fetchHeightByCoordinates(currentMap.name, coordinates.x, coordinates.y);
   const position = { x: coordinates.x, y: coordinates.y, z: height };
+
+  setFlatness(latlng, setState, position, currentMap.name);
   const popupContent = <ArtilleryPopup coordinates={position} />;
   setState({
     latlng,
     popupContent,
-    coordinates: { x: coordinates.x, y: coordinates.y, z: height },
+    coordinates: position,
   });
 };
+
+async function setFlatness(latlng: LatLng, setState: any, position: Coordinates, mapName: string) {
+  const flatness = await fetchFlatnessByCoordinates(mapName, position.x, position.y);
+  console.log({ flatness });
+  const popupContent = <ArtilleryPopup coordinates={position} flatness={flatness} />;
+  
+  setState({
+    latlng,
+    popupContent,
+    coordinates: position,
+  });
+}
 
 export const createTargetMarker = async (
   latlng: LatLng,
