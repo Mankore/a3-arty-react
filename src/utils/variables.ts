@@ -9,4 +9,4 @@ export const backend = {
   },
 };
 
-export const isBackendAvailable = true;
+export const isBackendAvailable = false;
