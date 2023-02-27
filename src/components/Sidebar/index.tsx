@@ -6,10 +6,12 @@ import {
   StyledSelect,
   StyledInput,
   StyledFormHelperText,
+  StyledCheckbox,
 } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 interface ISidebar {
   artillery: Artillery;
@@ -133,12 +135,14 @@ export const Sidebar = ({
       </Wrapper>
 
       <Wrapper>
-        <Label htmlFor="topDown">Top Down Mode</Label>
-        <input
-          type="checkbox"
-          id="topDown"
-          name="topDown"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopDown(e.target.checked)}
+        <FormControlLabel
+          control={
+            <StyledCheckbox
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTopDown(e.target.checked)}
+            />
+          }
+          labelPlacement="start"
+          label="Top-down mode"
         />
       </Wrapper>
 

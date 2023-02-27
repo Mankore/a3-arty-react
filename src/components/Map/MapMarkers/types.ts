@@ -59,6 +59,9 @@ export interface IArtilleryMarker {
   currentMap: MapInfo;
   artilleryHeight: number;
   setArtilleryHeight: React.Dispatch<React.SetStateAction<number>>;
+  artillery: Artillery;
+  shell: ShellType;
+  fireMode: FireMode;
 }
 
 export interface ITriggerMarker {

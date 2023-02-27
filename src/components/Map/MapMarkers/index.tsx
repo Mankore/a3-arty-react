@@ -6,7 +6,6 @@ import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { IMapMarkers } from "./types";
 
-// TODO: adjust trigger icon size programmaticaly to represent 500m radius circle (depends on map)
 export const MapMarkers = ({
   crs,
   artillery,
@@ -81,6 +80,9 @@ export const MapMarkers = ({
           currentMap={currentMap}
           setArtilleryHeight={setArtilleryHeight}
           artilleryHeight={artilleryHeight}
+          artillery={artillery}
+          shell={shell}
+          fireMode={fireMode}
         />
       )}
       {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}
