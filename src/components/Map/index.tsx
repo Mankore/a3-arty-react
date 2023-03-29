@@ -14,11 +14,10 @@ interface IMap {
   shell: ShellType;
   fireMode: FireMode;
   map: MapInfo;
-  topDown: boolean;
   heightAdjustment: number;
 }
 
-export const Map = ({ artillery, shell, fireMode, map, topDown, heightAdjustment }: IMap) => {
+export const Map = ({ artillery, shell, fireMode, map, heightAdjustment }: IMap) => {
   return (
     <Container>
       <MapContainer
@@ -38,15 +37,7 @@ export const Map = ({ artillery, shell, fireMode, map, topDown, heightAdjustment
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
         />
-        <MapMarkers
-          crs={crs}
-          currentMap={map}
-          artillery={artillery}
-          shell={shell}
-          fireMode={fireMode}
-          topDown={topDown}
-          heightAdjustment={heightAdjustment}
-        />
+        <MapMarkers crs={crs} currentMap={map} artillery={artillery} shell={shell} fireMode={fireMode} heightAdjustment={heightAdjustment} />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
       </MapContainer>

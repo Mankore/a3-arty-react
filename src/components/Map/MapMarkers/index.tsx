@@ -6,15 +6,7 @@ import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { IMapMarkers } from "./types";
 
-export const MapMarkers = ({
-  crs,
-  artillery,
-  shell,
-  fireMode,
-  currentMap,
-  topDown,
-  heightAdjustment,
-}: IMapMarkers) => {
+export const MapMarkers = ({ crs, artillery, shell, fireMode, currentMap, heightAdjustment }: IMapMarkers) => {
   const [targets, setTargets] = useState<LatLng[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
@@ -67,7 +59,6 @@ export const MapMarkers = ({
           artillery={artillery}
           fireMode={fireMode}
           shell={shell}
-          topDown={topDown}
           heightAdjustment={heightAdjustment}
         />
       ))}
