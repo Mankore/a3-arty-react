@@ -1,7 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 import mainReducer from "./main";
 
+// TODO: Redux doesnt like classes in state (getBaseProjectileSpawnPoint: Vector), review later
 export const store = configureStore({
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
   reducer: {
     main: mainReducer,
   },
