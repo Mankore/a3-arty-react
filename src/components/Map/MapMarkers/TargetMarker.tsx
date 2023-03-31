@@ -1,27 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 import { Circle, Marker, Polyline, Popup, useMap } from "react-leaflet";
 import { useMainSelector } from "../../../state/main/hooks";
-import { selectTopDown } from "../../../state/main/selectors";
+import { selectArtillery, selectFireMode, selectHeightAdjustment, selectMap, selectShell, selectTopDown } from "../../../state/main/selectors";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
 import { ITargetMarker, ITargetMarkerVisuals } from "./types";
 
-export const TargetMarker = ({
-  artilleryPosition,
-  markerPosition,
-  onDragEnd,
-  setTargets,
-  artilleryHeight,
-  currentMap,
-  artillery,
-  fireMode,
-  shell,
-  // topDown,
-  heightAdjustment,
-}: ITargetMarker) => {
+export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, setTargets, artilleryHeight }: ITargetMarker) => {
   const isTopDown = useMainSelector(selectTopDown);
+  const artillery = useMainSelector(selectArtillery);
+  const fireMode = useMainSelector(selectFireMode);
+  const shell = useMainSelector(selectShell);
+  const heightAdjustment = useMainSelector(selectHeightAdjustment);
+  const currentMap = useMainSelector(selectMap);
 
   // Calculate Marker Solution
   const [targetHeight, setTargetHeight] = useState<number | undefined>(undefined);

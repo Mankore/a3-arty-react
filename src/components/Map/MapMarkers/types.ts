@@ -1,14 +1,8 @@
 import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
-import { Artillery, FireMode, MapInfo, ShellType } from "../../../utils/types";
+import { FireMode, MapInfo, ShellType } from "../../../utils/types";
 
 export interface IMapMarkers {
   crs: CRS;
-  artillery: Artillery;
-  shell: ShellType;
-  fireMode: FireMode;
-  currentMap: MapInfo;
-  // topDown: boolean;
-  heightAdjustment: number;
 }
 
 export interface Coordinates {
@@ -45,11 +39,6 @@ export interface ITargetMarker {
   setTargets: (value: React.SetStateAction<LatLng[]>) => void;
   onDragEnd: DragEndEventHandlerFn | undefined;
   artilleryHeight: number;
-  artillery: Artillery;
-  shell: ShellType;
-  fireMode: FireMode;
-  currentMap: MapInfo;
-  heightAdjustment: number;
 }
 
 export interface IArtilleryMarker {
@@ -58,9 +47,6 @@ export interface IArtilleryMarker {
   currentMap: MapInfo;
   artilleryHeight: number;
   setArtilleryHeight: React.Dispatch<React.SetStateAction<number>>;
-  artillery: Artillery;
-  shell: ShellType;
-  fireMode: FireMode;
 }
 
 export interface ITriggerMarker {

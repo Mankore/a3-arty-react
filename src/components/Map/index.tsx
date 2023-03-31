@@ -3,21 +3,16 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
 import { increaseMapZoomBy } from "../../utils/variables";
 import { MapMouseCoordinates } from "./MapMouseCoordinates";
+import { useMainSelector } from "../../state/main/hooks";
+import { selectMap } from "../../state/main/selectors";
 
 const crs = Leaflet.CRS.Simple;
 
-interface IMap {
-  artillery: Artillery;
-  shell: ShellType;
-  fireMode: FireMode;
-  map: MapInfo;
-  heightAdjustment: number;
-}
+export const Map = () => {
+  const map = useMainSelector(selectMap);
 
-export const Map = ({ artillery, shell, fireMode, map, heightAdjustment }: IMap) => {
   return (
     <Container>
       <MapContainer
@@ -37,7 +32,7 @@ export const Map = ({ artillery, shell, fireMode, map, heightAdjustment }: IMap)
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
         />
-        <MapMarkers crs={crs} currentMap={map} artillery={artillery} shell={shell} fireMode={fireMode} heightAdjustment={heightAdjustment} />
+        <MapMarkers crs={crs} />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
       </MapContainer>
