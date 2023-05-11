@@ -21,6 +21,8 @@ export interface ShellType {
   airFriction: number;
   initSpeed: number;
   name: string;
+  thrust?: number;
+  thrustTime?: number;
 }
 
 export interface IMapBounds {

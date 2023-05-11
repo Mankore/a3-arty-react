@@ -41,3 +41,11 @@ export const Shell_BP540_HEAT: ShellType = {
   airFriction: -0.000204,
   initSpeed: 680,
 };
+
+export const Rocket_CUP_Grad: ShellType = {
+  name: "9M28F (HE) Rocket",
+  airFriction: 0,
+  initSpeed: 690,
+  thrust: 210,
+  thrustTime: 1.5,
+};

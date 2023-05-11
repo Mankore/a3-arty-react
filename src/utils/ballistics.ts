@@ -56,11 +56,15 @@ function simulateShotForAngle(
   let apex = 0;
 
   while (currentPos.z >= altDiff || speed.z > 0) {
-    // console.log({ deltaV, currentPos, speed, radians });
     currentPos = currentPos.add(speed.scaleBy(deltaT));
     deltaV = artillery.isAirFriction
       ? speed.scaleBy(speed.length() * shell.airFriction).add(gravV)
       : gravV;
+
+    if (shell.thrust && shell.thrustTime && !artillery.isAirFriction) {
+      const airFrictionRocketMultiplier = -0.002;
+      deltaV.scaleBy(1 / airFrictionRocketMultiplier);
+    }
 
     speed = speed.add(deltaV.scaleBy(deltaT));
     tof += deltaT;
