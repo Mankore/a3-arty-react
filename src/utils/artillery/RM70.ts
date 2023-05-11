@@ -27,7 +27,7 @@ export const Arty_RM70: Artillery = {
   ],
   shellTypes: [Rocket_CUP_Grad],
   isAirFriction: false,
-  angleAdjustment: 0.02,
+  angleAdjustment: -0.022,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
     return new Vector(0, Math.cos(angle) * 2.5, 2.71 + Math.sin(angle) * 2.5);
   },
