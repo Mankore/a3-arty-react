@@ -13,6 +13,7 @@ export const CoordinateOverlay = styled.div`
   inset: 0;
   color: red;
   z-index: 1001;
+  pointer-events: none;
 `;
 
 interface DivPosition {
@@ -32,7 +33,6 @@ const lineStroke = "1px";
 const Line = styled.div<DivPosition>`
   position: absolute;
   background-color: red;
-  pointer-events: none;
   top: ${(props) => props.top}px;
   left: ${(props) => props.left}px;
 `;
