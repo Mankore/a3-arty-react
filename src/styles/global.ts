@@ -4,6 +4,8 @@ import "@fontsource/roboto/400.css";
 import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 
+import cursorSvg from "../assets/svg/a3_cursor.svg";
+
 // Credit: https://www.joshwcomeau.com/css/custom-css-reset/
 export default createGlobalStyle`
     *, *::before, *::after {
@@ -41,6 +43,7 @@ export default createGlobalStyle`
     }
 
     .leaflet-touch {
-        cursor: pointer !important;
+        cursor: url(${cursorSvg}) 20 20, auto;	
+
     }
 `;
