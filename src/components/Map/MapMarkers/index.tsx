@@ -1,20 +1,16 @@
 import { DragEndEvent, LatLng } from "leaflet";
 import { useEffect, useState } from "react";
 import { useMapEvents } from "react-leaflet";
+import { useMainSelector } from "../../../state/main/hooks";
+import { selectMap } from "../../../state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { IMapMarkers } from "./types";
 
-export const MapMarkers = ({
-  crs,
-  artillery,
-  shell,
-  fireMode,
-  currentMap,
-  topDown,
-  heightAdjustment,
-}: IMapMarkers) => {
+export const MapMarkers = ({ crs }: IMapMarkers) => {
+  const currentMap = useMainSelector(selectMap);
+  
   const [targets, setTargets] = useState<LatLng[]>([]);
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
@@ -63,12 +59,6 @@ export const MapMarkers = ({
             });
           }}
           setTargets={setTargets}
-          currentMap={currentMap}
-          artillery={artillery}
-          fireMode={fireMode}
-          shell={shell}
-          topDown={topDown}
-          heightAdjustment={heightAdjustment}
         />
       ))}
       {artilleryPosition && (
@@ -80,9 +70,6 @@ export const MapMarkers = ({
           currentMap={currentMap}
           setArtilleryHeight={setArtilleryHeight}
           artilleryHeight={artilleryHeight}
-          artillery={artillery}
-          shell={shell}
-          fireMode={fireMode}
         />
       )}
       {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}
