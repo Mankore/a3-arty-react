@@ -43,7 +43,7 @@ export default createGlobalStyle`
     }
 
     .leaflet-touch {
-        cursor: url(${cursorSvg}) 20 20, auto;	
+        cursor: url(${cursorSvg}) 15 15, auto;	
 
     }
 `;

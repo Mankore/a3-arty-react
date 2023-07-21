@@ -1,12 +1,50 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  font-size: 16px;
+export const Coordinates = styled.div<DivPosition>`
+  font-size: 14px;
+  font-weight: bold;
   position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #000000;
-  color: white;
-  padding: 10px;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+`
+
+export const CoordinateOverlay = styled.div`
+  position: absolute;
+  inset: 0;
+  color: red;
   z-index: 1001;
+`;
+
+interface DivPosition {
+  top: number;
+  left: number;
+}
+
+interface IHorizontalLine extends DivPosition {
+  translateX?: number;
+}
+interface IVerticalLine extends DivPosition {
+  translateY?: number;
+}
+
+const lineStroke = "1px";
+
+const Line = styled.div<DivPosition>`
+  position: absolute;
+  background-color: red;
+  pointer-events: none;
+  top: ${(props) => props.top}px;
+  left: ${(props) => props.left}px;
+`;
+
+export const HorizontalLine = styled(Line)<IHorizontalLine>`
+  width: 100%;
+  height: ${lineStroke};
+  transform: translateX(${(props) => props.translateX}%);
+`;
+
+export const VerticalLine = styled(Line)<IVerticalLine>`
+  height: 100%;
+  width: ${lineStroke};
+  transform: translateY(${(props) => props.translateY}%);
 `;
