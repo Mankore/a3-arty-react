@@ -27,7 +27,7 @@ export const Sidebar = () => {
         return;
       case "fireMode":
         const fireMode = artillery.fireModes.find((item) => item.name === val);
-        fireMode && setFireMode(fireMode);
+        fireMode && dispatch(setFireMode(fireMode));
         return;
       case "map":
         const map = Object.entries(maps).find((item) => item[1].name === val);
