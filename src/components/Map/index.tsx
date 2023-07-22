@@ -5,8 +5,9 @@ import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { increaseMapZoomBy } from "../../utils/variables";
 import { MapMouseCoordinates } from "./MapMouseCoordinates";
-import { useMainSelector } from "../../state/main/hooks";
+import { useMainSelector } from "../../state/hooks";
 import { selectMap } from "../../state/main/selectors";
+import { MapButtons } from "./MapButtons";
 
 const crs = Leaflet.CRS.Simple;
 
@@ -15,6 +16,7 @@ export const Map = () => {
 
   return (
     <Container>
+      <MapButtons />
       <MapContainer
         key={map.name}
         crs={crs}

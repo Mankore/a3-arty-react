@@ -1,30 +1,32 @@
 import { DragEndEvent, LatLng } from "leaflet";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useMapEvents } from "react-leaflet";
-import { useMainSelector } from "../../../state/main/hooks";
+import { useMainDispatch, useMainSelector } from "../../../state/hooks";
 import { selectMap } from "../../../state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { IMapMarkers } from "./types";
+import { setTargets } from "../../../state/main";
+import { selectTargets } from "../../../state/main/selectors";
 
 export const MapMarkers = ({ crs }: IMapMarkers) => {
   const currentMap = useMainSelector(selectMap);
-  
-  const [targets, setTargets] = useState<LatLng[]>([]);
+  const dispatch = useMainDispatch();
+  const targets = useMainSelector(selectTargets);
+
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
   const [artilleryHeight, setArtilleryHeight] = useState<number>(0);
 
-  const cleanupMarkers = () => {
+  const cleanupMarkers = useCallback(() => {
     setArtilleryPosition(undefined);
-    setTargets([]);
     setTriggerPosition(undefined);
-  };
+  }, []);
 
   useEffect(() => {
     cleanupMarkers();
-  }, [currentMap]);
+  }, [currentMap, cleanupMarkers]);
 
   useMapEvents({
     click(e) {
@@ -33,11 +35,7 @@ export const MapMarkers = ({ crs }: IMapMarkers) => {
 
       event.shiftKey && setArtilleryPosition(latlng);
 
-      event.ctrlKey &&
-        artilleryPosition &&
-        setTargets((prevState) => {
-          return [...prevState, latlng];
-        });
+      event.ctrlKey && artilleryPosition && dispatch(setTargets([...targets, latlng]));
 
       event.altKey && setTriggerPosition(latlng);
     },
@@ -52,13 +50,10 @@ export const MapMarkers = ({ crs }: IMapMarkers) => {
           artilleryHeight={artilleryHeight}
           markerPosition={target}
           onDragEnd={(e: DragEndEvent) => {
-            setTargets((prevState) => {
-              const items = [...prevState];
-              items[idx] = e.target._latlng;
-              return items;
-            });
+            const items = [...targets];
+            items[idx] = e.target._latlng;
+            dispatch(setTargets(items));
           }}
-          setTargets={setTargets}
         />
       ))}
       {artilleryPosition && (
