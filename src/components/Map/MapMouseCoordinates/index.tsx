@@ -5,14 +5,55 @@ import { MapInfo } from "../../../utils/types";
 import { latLngToArmaCoords } from "../MapUtils";
 import { CoordinateOverlay, Coordinates, HorizontalLine, VerticalLine } from "./styles";
 
+const cursorSize = 30;
+
+const setDivPosition = (
+  ref: React.RefObject<HTMLDivElement>,
+  pos: Point,
+  left: number,
+  top: number
+) => {
+  if (ref && ref.current) {
+    ref.current.style.left = `${pos.x + left}px`;
+    ref.current.style.top = `${pos.y + top}px`;
+  }
+};
+
 export const MapMouseCoordinates = (map: MapInfo) => {
   const [coords, setCoords] = useState<Point>();
-  const [mousePos, setMousePos] = useState<Point>();
   const leftHorLine = useRef<HTMLDivElement>(null);
   const rightHorLine = useRef<HTMLDivElement>(null);
   const topVerLine = useRef<HTMLDivElement>(null);
   const bottomVerLine = useRef<HTMLDivElement>(null);
   const coordinatesRef = useRef<HTMLDivElement>(null);
+
+  const overlayElements = [
+    {
+      ref: leftHorLine,
+      left: cursorSize,
+      top: 0,
+    },
+    {
+      ref: rightHorLine,
+      left: -cursorSize,
+      top: 0,
+    },
+    {
+      ref: topVerLine,
+      left: 0,
+      top: cursorSize,
+    },
+    {
+      ref: bottomVerLine,
+      left: 0,
+      top: -cursorSize,
+    },
+    {
+      ref: coordinatesRef,
+      left: 50,
+      top: -35,
+    },
+  ];
 
   useMapEvents({
     mousemove(event) {
@@ -23,29 +64,10 @@ export const MapMouseCoordinates = (map: MapInfo) => {
         map.mapBounds
       );
       setCoords(point);
-      const pos = event.containerPoint;
-      setMousePos(pos);
 
-      if (leftHorLine && leftHorLine.current) {
-        leftHorLine.current.style.left = `${pos.x + 30}px`;
-        leftHorLine.current.style.top = `${pos.y}px`;
-      }
-      if (rightHorLine && rightHorLine.current) {
-        rightHorLine.current.style.left = `${pos.x - 30}px`;
-        rightHorLine.current.style.top = `${pos.y}px`;
-      }
-      if (topVerLine && topVerLine.current) {
-        topVerLine.current.style.left = `${pos.x}px`;
-        topVerLine.current.style.top = `${pos.y + 30}px`;
-      }
-      if (bottomVerLine && bottomVerLine.current) {
-        bottomVerLine.current.style.left = `${pos.x}px`;
-        bottomVerLine.current.style.top = `${pos.y - 30}px`;
-      }
-      if (coordinatesRef && coordinatesRef.current) {
-        coordinatesRef.current.style.left = `${pos.x + 50}px`;
-        coordinatesRef.current.style.top = `${pos.y - 35}px`;
-      }
+      overlayElements.forEach((elem) => {
+        setDivPosition(elem.ref, event.containerPoint, elem.left, elem.top);
+      });
     },
     mouseout() {
       setCoords(undefined);
@@ -54,17 +76,13 @@ export const MapMouseCoordinates = (map: MapInfo) => {
 
   return coords ? (
     <CoordinateOverlay>
-      {mousePos && (
-        <>
-          <Coordinates ref={coordinatesRef}>
-            [{coords.x}, {coords.y}]
-          </Coordinates>
-          <HorizontalLine ref={leftHorLine} />
-          <HorizontalLine translateX={-100} ref={rightHorLine} />
-          <VerticalLine ref={topVerLine} />
-          <VerticalLine translateY={-100} ref={bottomVerLine} />
-        </>
-      )}
+      <Coordinates ref={coordinatesRef}>
+        [{coords.x}, {coords.y}]
+      </Coordinates>
+      <HorizontalLine ref={leftHorLine} />
+      <HorizontalLine translateX={-100} ref={rightHorLine} />
+      <VerticalLine ref={topVerLine} />
+      <VerticalLine translateY={-100} ref={bottomVerLine} />
     </CoordinateOverlay>
   ) : (
     <></>
