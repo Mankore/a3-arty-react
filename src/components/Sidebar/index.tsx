@@ -2,7 +2,7 @@ import { Container, Label, Wrapper, Option, StyledSelect, StyledInput, StyledFor
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { useMainDispatch, useMainSelector } from "../../state/main/hooks";
+import { useMainDispatch, useMainSelector } from "../../state/hooks";
 import { setMap, setArtillery, setIsTopDown, setShell, setFireMode, setHeightAdjustment } from "../../state/main";
 import { selectArtillery, selectFireMode, selectHeightAdjustment, selectMap, selectShell } from "../../state/main/selectors";
 

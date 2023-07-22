@@ -1,14 +1,28 @@
 import { useEffect, useMemo, useState } from "react";
 import { Circle, Marker, Polyline, Popup, useMap } from "react-leaflet";
-import { useMainSelector } from "../../../state/main/hooks";
-import { selectArtillery, selectFireMode, selectHeightAdjustment, selectMap, selectShell, selectTopDown } from "../../../state/main/selectors";
+import { useMainDispatch, useMainSelector } from "../../../state/hooks";
+import {
+  selectArtillery,
+  selectFireMode,
+  selectHeightAdjustment,
+  selectMap,
+  selectShell,
+  selectTopDown,
+} from "../../../state/main/selectors";
 import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
 import { ITargetMarker, ITargetMarkerVisuals } from "./types";
+import { selectTargets } from "../../../state/main/selectors";
+import { setTargets } from "../../../state/main";
 
-export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, setTargets, artilleryHeight }: ITargetMarker) => {
+export const TargetMarker = ({
+  artilleryPosition,
+  markerPosition,
+  onDragEnd,
+  artilleryHeight,
+}: ITargetMarker) => {
   const isTopDown = useMainSelector(selectTopDown);
   const artillery = useMainSelector(selectArtillery);
   const fireMode = useMainSelector(selectFireMode);
@@ -18,9 +32,19 @@ export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, set
 
   // Calculate Marker Solution
   const [targetHeight, setTargetHeight] = useState<number | undefined>(undefined);
-  const targetPoint = latLngToArmaCoords(markerPosition, currentMap.mapOptions.maxZoom, currentMap.mapExtent, currentMap.mapBounds);
+  const targetPoint = latLngToArmaCoords(
+    markerPosition,
+    currentMap.mapOptions.maxZoom,
+    currentMap.mapExtent,
+    currentMap.mapBounds
+  );
 
-  const artyPoint = latLngToArmaCoords(artilleryPosition, currentMap.mapOptions.maxZoom, currentMap.mapExtent, currentMap.mapBounds);
+  const artyPoint = latLngToArmaCoords(
+    artilleryPosition,
+    currentMap.mapOptions.maxZoom,
+    currentMap.mapExtent,
+    currentMap.mapBounds
+  );
 
   useEffect(() => {
     async function fetchTargetHeight() {
@@ -35,7 +59,10 @@ export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, set
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
 
-  const altDiff = targetHeight !== undefined ? targetHeight - artilleryHeight + heightAdjustment : heightAdjustment;
+  const altDiff =
+    targetHeight !== undefined
+      ? targetHeight - artilleryHeight + heightAdjustment
+      : heightAdjustment;
 
   const solution = useMemo(
     () => getAngleSolutionForRange(range, muzzleVelocity, altDiff, artillery, shell, isTopDown),
@@ -48,11 +75,17 @@ export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, set
     <TargetMarkerVisuals
       artilleryPosition={artilleryPosition}
       markerPosition={markerPosition}
-      setTargets={setTargets}
       onDragEnd={onDragEnd}
       popupContent={
         targetHeight !== undefined ? (
-          <TargetPopup coordinates={coordinates} shell={shell} fireMode={fireMode} range={range} bearing={bearing} {...solution!} />
+          <TargetPopup
+            coordinates={coordinates}
+            shell={shell}
+            fireMode={fireMode}
+            range={range}
+            bearing={bearing}
+            {...solution!}
+          />
         ) : (
           <>Loading...</>
         )
@@ -61,7 +94,12 @@ export const TargetMarker = ({ artilleryPosition, markerPosition, onDragEnd, set
   );
 };
 
-const TargetMarkerVisuals = ({ artilleryPosition, markerPosition, setTargets, onDragEnd, popupContent }: ITargetMarkerVisuals) => {
+const TargetMarkerVisuals = ({
+  artilleryPosition,
+  markerPosition,
+  onDragEnd,
+  popupContent,
+}: ITargetMarkerVisuals) => {
   // Calculate Marker Visual State
   const [isHovered, setIsHovered] = useState(false);
   const map = useMap();
@@ -69,6 +107,9 @@ const TargetMarkerVisuals = ({ artilleryPosition, markerPosition, setTargets, on
   const point1 = map.project(artilleryPosition, minZoom);
   const point2 = map.project(markerPosition, minZoom);
   const dist = point1.distanceTo(point2);
+
+  const dispatch = useMainDispatch();
+  const targets = useMainSelector(selectTargets);
 
   return (
     <>
@@ -87,9 +128,7 @@ const TargetMarkerVisuals = ({ artilleryPosition, markerPosition, setTargets, on
           },
           keydown: (event) => {
             if (event.originalEvent.key === "Delete")
-              setTargets((prevState) => {
-                return prevState.filter((item) => item !== markerPosition);
-              });
+              dispatch(setTargets(targets.filter((item) => item !== markerPosition)));
           },
           dragend: onDragEnd,
         }}

@@ -14,3 +14,5 @@ export const selectFireMode = createSelector(selectDomain, (main) => main.fireMo
 export const selectShell = createSelector(selectDomain, (main) => main.shell);
 
 export const selectHeightAdjustment = createSelector(selectDomain, (main) => main.heightAdjustment);
+
+export const selectTargets = createSelector(selectDomain, (main) => main.targets);

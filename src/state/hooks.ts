@@ -1,5 +1,5 @@
 import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
-import { MainState, MainDispatch } from "..";
+import { MainState, MainDispatch } from ".";
 
 // Use throughout your app instead of plain `useDispatch` and `useSelector`
 type DispatchFunc = () => MainDispatch;

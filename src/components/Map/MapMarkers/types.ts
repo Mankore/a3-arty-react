@@ -36,7 +36,6 @@ export interface ITargetPopup extends IMarkerPopup {
 export interface ITargetMarker {
   artilleryPosition: LatLng;
   markerPosition: LatLng;
-  setTargets: (value: React.SetStateAction<LatLng[]>) => void;
   onDragEnd: DragEndEventHandlerFn | undefined;
   artilleryHeight: number;
 }
@@ -56,7 +55,6 @@ export interface ITriggerMarker {
 export interface ITargetMarkerVisuals {
   artilleryPosition: LatLng;
   markerPosition: LatLng;
-  setTargets: (value: React.SetStateAction<LatLng[]>) => void;
   onDragEnd: DragEndEventHandlerFn | undefined;
   popupContent: React.ReactNode;
 }

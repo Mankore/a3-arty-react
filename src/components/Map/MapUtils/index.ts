@@ -9,6 +9,7 @@ export const latLngToArmaCoords = (
   mapBounds: IMapBounds,
   crs: CRS = CRS.Simple
 ) => {
+  if (!latLng) new Point(0, 0);
   const point = crs.latLngToPoint(latLng, maxZoom);
   const coords = new Point(point.x, Math.abs(mapExtent[1]) - point.y);
 
