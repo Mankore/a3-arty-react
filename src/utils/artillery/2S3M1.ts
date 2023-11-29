@@ -39,7 +39,7 @@ export const Arty_2S3M1: Artillery = {
   ],
   shellTypes: [Shell_3_WOF_27],
   isAirFriction: false,
-  angleAdjustment: -0.23,
+  angleAdjustment: -0.2349,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
     return new Vector(0, Math.cos(angle) * 1.88, 1.96 + Math.sin(angle) * 1.88);
   },
