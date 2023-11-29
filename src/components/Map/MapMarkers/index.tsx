@@ -11,9 +11,9 @@ import { setTargets } from "../../../state/main";
 import { selectTargets } from "../../../state/main/selectors";
 
 export const MapMarkers = ({ crs }: IMapMarkers) => {
-  const currentMap = useMainSelector(selectMap);
   const dispatch = useMainDispatch();
   const targets = useMainSelector(selectTargets);
+  const currentMap = useMainSelector(selectMap);
 
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();

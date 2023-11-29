@@ -6,3 +6,5 @@ export { Arty_M109A6 } from "./M109A6";
 export { Arty_2S9_Sochor } from "./2S9_Sochor";
 export { Artillery_M4_Scorcher } from "./M4_Scorcher";
 export { Arty_RM70 } from "./RM70";
+// export { Arty_BMP_1 } from "./BMP-1";
+// export { Arty_T_72 } from "./T-72";

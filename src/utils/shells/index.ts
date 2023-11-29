@@ -49,3 +49,42 @@ export const Rocket_CUP_Grad: ShellType = {
   thrust: 210,
   thrustTime: 1.5,
 };
+
+export const Shell_OG15: ShellType = {
+  name: "HE-FRAG OG15V",
+  airFriction: -0.00011934,
+  initSpeed: 290,
+};
+
+export const Shell_PG15: ShellType = {
+  name: "HEAT PG15V",
+  airFriction: -0.00084,
+  initSpeed: 690,
+};
+
+export const Shell_3BM46: ShellType = {
+  name: "3BM46",
+  airFriction: -0.000032,
+  initSpeed: 1700,
+};
+
+export const Shell_3BM26: ShellType = {
+  name: "3BM26",
+  airFriction: -0.0000396,
+  initSpeed: 1720,
+};
+
+export const Shell_3OF26: ShellType = {
+  name: "3OF26",
+  airFriction: -0.0002,
+  initSpeed: 850,
+};
+
+export const Shell_3BK14: ShellType = {
+  name: "3BK14",
+  airFriction: -0.0000396,
+  initSpeed: 905,
+};
+
+
+
