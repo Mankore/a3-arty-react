@@ -8,3 +8,5 @@ export { Artillery_M4_Scorcher } from "./M4_Scorcher";
 export { Arty_RM70 } from "./RM70";
 // export { Arty_BMP_1 } from "./BMP-1";
 // export { Arty_T_72 } from "./T-72";
+export { Arty_2B14 } from "./2B14-1_Podnos";
+export { Arty_M252 } from "./M252";
