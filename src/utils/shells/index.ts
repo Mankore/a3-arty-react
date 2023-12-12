@@ -86,5 +86,19 @@ export const Shell_3BK14: ShellType = {
   initSpeed: 905,
 };
 
+export const Shell_3VO18: ShellType = {
+  name: "3VO18",
+  airFriction: 0,
+  initSpeed: 211,
+};
+
+export const Shell_M821: ShellType = {
+  name: "M821 HE",
+  airFriction: 0,
+  initSpeed: 200,
+};
+
+
+
 
 
