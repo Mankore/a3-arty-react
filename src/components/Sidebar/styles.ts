@@ -48,3 +48,13 @@ export const StyledInput = styled(Input)`
 export const StyledFormHelperText = styled(FormHelperText)`
   color: ${colors.white};
 `;
+
+export const KeyBindingTip = styled.div`
+  margin-bottom: 1rem;
+`;
+
+export const KeyBindingTipTitle = styled.span`
+  background: ${colors.darkGreen};
+  border-radius: 3px;
+  padding: 3px;
+`;
