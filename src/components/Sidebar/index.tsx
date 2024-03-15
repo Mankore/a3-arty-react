@@ -1,4 +1,4 @@
-import { Container, Label, Wrapper, Option, StyledSelect, StyledInput, StyledFormHelperText, StyledCheckbox } from "./styles";
+import { Container, Label, Wrapper, Option, StyledSelect, StyledInput, StyledFormHelperText, StyledCheckbox, KeyBindingTip, KeyBindingTipTitle } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -101,6 +101,22 @@ export const Sidebar = () => {
           onChange={(e) => dispatch(setHeightAdjustment(Number(e.target.value)))}
         />
         <StyledFormHelperText id="label-height-adjustment">Height adjustment, meters</StyledFormHelperText>
+      </Wrapper>
+
+      <Wrapper>
+        <Label>How to use / Controls</Label>
+        <KeyBindingTip>
+          <KeyBindingTipTitle>LMB</KeyBindingTipTitle>: pan map
+        </KeyBindingTip>
+        <KeyBindingTip>
+          <KeyBindingTipTitle>Shift + LMB</KeyBindingTipTitle>: set artillery position
+        </KeyBindingTip>
+        <KeyBindingTip>
+          <KeyBindingTipTitle>CTRL + LMB</KeyBindingTipTitle>: set target position
+        </KeyBindingTip>
+        <KeyBindingTip>
+          <KeyBindingTipTitle>ALT + LMB</KeyBindingTipTitle>: set yellow circle (as a point of interest position)
+        </KeyBindingTip>
       </Wrapper>
     </Container>
   );
