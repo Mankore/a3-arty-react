@@ -1,13 +1,4 @@
-import {
-  Container,
-  Label,
-  Wrapper,
-  Option,
-  StyledSelect,
-  StyledInput,
-  StyledFormHelperText,
-  StyledCheckbox,
-} from "./styles";
+import { Container, Wrapper, Option } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import { useMainDispatch, useMainSelector } from "../../state/hooks";
@@ -26,6 +17,10 @@ import {
   selectMap,
   selectShell,
 } from "../../state/main/selectors";
+import { Select } from "../catalyst/select";
+import { Input } from "../catalyst/input";
+import { Description, Field, Label } from "../catalyst/fieldset";
+import { Switch, SwitchField } from "../catalyst/switch";
 
 export const Sidebar = () => {
   const dispatch = useMainDispatch();
@@ -72,88 +67,98 @@ export const Sidebar = () => {
   return (
     <Container>
       <Wrapper>
-        <Label id="label-map">Map</Label>
-        <StyledSelect
-          id="select-map"
-          onChange={(e) => onChangeHandler(e, "map")}
-          value={map.name}
-        >
-          {Object.entries(maps).map((map) => (
-            <Option value={map[1].name} key={map[1].name}>
-              {map[1].name}
-            </Option>
-          ))}
-        </StyledSelect>
+        <Field>
+          <Label id="label-map">Map</Label>
+          <Select
+            id="select-map"
+            onChange={(e) => onChangeHandler(e, "map")}
+            value={map.name}
+          >
+            {Object.entries(maps).map((map) => (
+              <Option value={map[1].name} key={map[1].name}>
+                {map[1].name}
+              </Option>
+            ))}
+          </Select>
+        </Field>
       </Wrapper>
 
       <Wrapper>
-        <Label id="label-artillery">Artillery</Label>
-        <StyledSelect
-          id="select-artillery"
-          onChange={(e) => onChangeHandler(e, "arty")}
-          value={artillery.name}
-        >
-          {Object.entries(artilleryTypes).map((arty) => (
-            <Option value={arty[1].name} key={arty[1].name}>
-              {arty[1].name}
-            </Option>
-          ))}
-        </StyledSelect>
+        <Field>
+          <Label id="label-artillery">Artillery</Label>
+          <Select
+            id="select-artillery"
+            onChange={(e) => onChangeHandler(e, "arty")}
+            value={artillery.name}
+          >
+            {Object.entries(artilleryTypes).map((arty) => (
+              <Option value={arty[1].name} key={arty[1].name}>
+                {arty[1].name}
+              </Option>
+            ))}
+          </Select>
+        </Field>
       </Wrapper>
 
       <Wrapper>
-        <Label id="label-shell">Shell</Label>
-        <StyledSelect
-          id="select-shell"
-          onChange={(e) => onChangeHandler(e, "shell")}
-          value={shell.name}
-        >
-          {artillery.shellTypes.map((shell) => (
-            <Option value={shell.name} key={shell.name}>
-              {shell.name}
-            </Option>
-          ))}
-        </StyledSelect>
+        <Field>
+          <Label id="label-shell">Shell</Label>
+          <Select
+            id="select-shell"
+            onChange={(e) => onChangeHandler(e, "shell")}
+            value={shell.name}
+          >
+            {artillery.shellTypes.map((shell) => (
+              <Option value={shell.name} key={shell.name}>
+                {shell.name}
+              </Option>
+            ))}
+          </Select>
+        </Field>
       </Wrapper>
 
       <Wrapper>
-        <Label id="label-fireMode">Fire Mode</Label>
-        <StyledSelect
-          id="select-fireMode"
-          onChange={(e) => onChangeHandler(e, "fireMode")}
-          value={fireMode.name}
-        >
-          {artillery.fireModes.map((fireMode) => (
-            <Option value={fireMode.name} key={fireMode.name}>
-              {fireMode.name}
-            </Option>
-          ))}
-        </StyledSelect>
+        <Field>
+          <Label>Fire Mode</Label>
+          <Select
+            onChange={(e) => onChangeHandler(e, "fireMode")}
+            value={fireMode.name}
+          >
+            {artillery.fireModes.map((fireMode) => (
+              <Option value={fireMode.name} key={fireMode.name}>
+                {fireMode.name}
+              </Option>
+            ))}
+          </Select>
+        </Field>
       </Wrapper>
 
       <Wrapper>
-        <label>High angle</label>
-        <StyledCheckbox
-          type="checkbox"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            dispatch(setIsTopDown(e.target.checked))
-          }
-        />
+        <SwitchField>
+          <Label>High angle</Label>
+          <Switch
+            name="high_angle"
+            onChange={(checked: boolean) => dispatch(setIsTopDown(checked))}
+          />
+        </SwitchField>
       </Wrapper>
 
       <Wrapper>
-        <StyledInput
-          id="height-adjustment"
-          aria-describedby="label-height-adjustment"
-          type="number"
-          value={heightAdjustment}
-          onChange={(e) =>
-            dispatch(setHeightAdjustment(Number(e.target.value)))
-          }
-        />
-        <StyledFormHelperText id="label-height-adjustment">
-          Height adjustment, meters
-        </StyledFormHelperText>
+        <Field>
+          <Input
+            id="height-adjustment"
+            aria-describedby="label-height-adjustment"
+            type="number"
+            value={heightAdjustment}
+            onChange={(e) =>
+              dispatch(setHeightAdjustment(Number(e.target.value)))
+            }
+          />
+          <Description>
+            Height adjustment, meters <br />
+            Target.z - Artillery.z
+          </Description>
+        </Field>
       </Wrapper>
     </Container>
   );
