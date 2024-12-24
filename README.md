@@ -1,50 +1,42 @@
-# React + TypeScript + Vite
+# About
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Github Pages: https://mankore.github.io/a3-arty-react/
 
-Currently, two official plugins are available:
+Web version of my [Arma 3 RHS Artillery Calculator](https://github.com/Mankore/A3_Artillery_Calculator_RHS) made with React and Typescript. Calculates solutions for both airFriction and non-airFriction artillery types and shells.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Interface / Sidebar
 
-## Expanding the ESLint configuration
+Select Map/Shells/Artillery e.t.c. in the Sidebar.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Height difference: it's the difference of Target Z coordinate (height) and artillery height coordinate (```targetCoord.z - artilleryCoord.z```). It's important to set it to correct value before placing Target marker in order to calculate the most accurate solution.
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+### How to use / Controls
+```
+Shift + LMB: set artillery position
+CTRL + LMB: set target position
+ALT + LMB: set yellow circle (as a point of interest position)
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+Artillery position needs to be placed first. 
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+Artillery/Target Markers can be dragged, when Target Marker is dragged it will recalculate the solution with current settings.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+Marker info is shown either on click or on hover over the Marker icon.
+
+Markers can also be deleted when they are selected by pressing DELETE key on keyboard.
+
+## Important Info
+
+Always place your artillery **perfectly facing the current target** and on the **perfectly flat surface**. Any additional surface angle can cause your round to miss completely, especially when firing in a flat trajectory (< 45deg).
+
+Why is it important to perfectly face your target? When you move the barrel of artillery piece on X axis you also change the vertical angle of your shot, but the in-game interface doesn't tell you that. The solutions of this calculator will be most accurate if you follow these 2 simple rules.
+
+## Tools
+
+Arma 3 map export: https://community.bistudio.com/wiki/diag_exportTerrainSVG
+
+Map library: [React-leaflet](https://react-leaflet.js.org/)
+
+Map tiles: [libvips](https://www.libvips.org/)
+
+Terrain export: [Arma Terrain Export](https://github.com/Keithenneu/Beowulf.ArmaTerrainExport)
