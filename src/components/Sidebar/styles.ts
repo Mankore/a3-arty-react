@@ -8,11 +8,6 @@ export const StyledCheckbox = styled.input`
     color: ${colors.green};
   }
 `;
-
-export const Label = styled.label`
-  color: ${colors.white};
-`;
-
 export const Option = styled.option``;
 
 export const Container = styled.aside`
@@ -21,24 +16,6 @@ export const Container = styled.aside`
   color: ${colors.white};
 `;
 
-export const StyledSelect = styled.select`
-  display: block;
-  background-color: ${colors.white};
-
-  .MuiSelect-select {
-    padding: 0.75rem;
-  }
-`;
-
 export const Wrapper = styled.div`
   margin: 10px;
-`;
-
-export const StyledInput = styled.input`
-  background-color: ${colors.white};
-  padding: 0.5rem;
-`;
-
-export const StyledFormHelperText = styled.span`
-  color: ${colors.white};
 `;
