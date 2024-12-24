@@ -98,6 +98,13 @@ export const Shell_M821: ShellType = {
   initSpeed: 200,
 };
 
+export const Shell_3UOF17: ShellType = {
+  name: "3UOF17",
+  airFriction: -0.00001,
+  initSpeed: 250,
+};
+
+
 
 
 

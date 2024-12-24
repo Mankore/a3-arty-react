@@ -88,7 +88,7 @@ export const Sidebar = () => {
         <FormControlLabel
           control={<StyledCheckbox onChange={(e: React.ChangeEvent<HTMLInputElement>) => dispatch(setIsTopDown(e.target.checked))} />}
           labelPlacement="start"
-          label="Top-down mode"
+          label="High angle"
         />
       </Wrapper>
 
