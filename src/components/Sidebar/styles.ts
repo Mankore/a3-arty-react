@@ -1,13 +1,7 @@
 import styled from "styled-components";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import Input from "@mui/material/Input";
-import FormHelperText from "@mui/material/FormHelperText";
-import Checkbox from "@mui/material/Checkbox";
 import { colors } from "../../styles/variables";
 
-export const StyledCheckbox = styled(Checkbox)`
+export const StyledCheckbox = styled.input`
   color: ${colors.darkGreen};
 
   &.Mui-checked {
@@ -15,11 +9,11 @@ export const StyledCheckbox = styled(Checkbox)`
   }
 `;
 
-export const Label = styled(InputLabel)`
+export const Label = styled.label`
   color: ${colors.white};
 `;
 
-export const Option = styled(MenuItem)``;
+export const Option = styled.option``;
 
 export const Container = styled.aside`
   padding: 1rem;
@@ -27,7 +21,7 @@ export const Container = styled.aside`
   color: ${colors.white};
 `;
 
-export const StyledSelect = styled(Select)`
+export const StyledSelect = styled.select`
   display: block;
   background-color: ${colors.white};
 
@@ -40,11 +34,11 @@ export const Wrapper = styled.div`
   margin: 10px;
 `;
 
-export const StyledInput = styled(Input)`
+export const StyledInput = styled.input`
   background-color: ${colors.white};
   padding: 0.5rem;
 `;
 
-export const StyledFormHelperText = styled(FormHelperText)`
+export const StyledFormHelperText = styled.span`
   color: ${colors.white};
 `;
