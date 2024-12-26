@@ -1,6 +1,6 @@
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
-import { Field, Label } from "../catalyst/fieldset";
-import { Switch } from "../catalyst/switch";
+import { Field, Label } from "@/components/catalyst/fieldset";
+import { Switch } from "@/components/catalyst/switch";
 import { selectBackendEnabled } from "@/state/main/selectors";
 import { setIsBackendEnabled } from "@/state/main";
 

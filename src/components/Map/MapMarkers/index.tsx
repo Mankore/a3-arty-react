@@ -1,14 +1,14 @@
 import { DragEndEvent, LatLng } from "leaflet";
 import { useCallback, useEffect, useState } from "react";
 import { useMapEvents } from "react-leaflet";
-import { useMainDispatch, useMainSelector } from "../../../state/hooks";
-import { selectMap } from "../../../state/main/selectors";
+import { useMainDispatch, useMainSelector } from "@/state/hooks";
+import { selectMap } from "@/state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { IMapMarkers } from "./types";
-import { setTargets } from "../../../state/main";
-import { selectTargets } from "../../../state/main/selectors";
+import { setTargets } from "@/state/main";
+import { selectTargets } from "@/state/main/selectors";
 
 export const MapMarkers = ({ crs }: IMapMarkers) => {
   const dispatch = useMainDispatch();
