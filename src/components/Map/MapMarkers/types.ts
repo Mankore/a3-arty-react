@@ -1,5 +1,5 @@
 import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
-import { FireMode, MapInfo, ShellType } from "../../../utils/types";
+import { FireMode, MapInfo, ShellType } from "@/utils/types";
 
 export interface IMapMarkers {
   crs: CRS;

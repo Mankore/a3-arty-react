@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Circle, Marker, Polyline, Popup, useMap } from "react-leaflet";
-import { useMainDispatch, useMainSelector } from "../../../state/hooks";
+import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import {
   selectArtillery,
   selectBackendEnabled,

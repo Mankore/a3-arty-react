@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
-import { mapAltis } from "../../utils/maps";
-import { Arty_M109A6 } from "../../utils/artillery";
+import { Artillery, FireMode, MapInfo, ShellType } from "@/utils/types";
+import { mapAltis } from "@/utils/maps";
+import { Arty_M109A6 } from "@/utils/artillery";
 import { LatLng } from "leaflet";
 
 const defaultArty = Arty_M109A6;

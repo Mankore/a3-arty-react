@@ -1,5 +1,5 @@
 import { QuestionMarkCircleIcon, MapPinIcon } from "@heroicons/react/16/solid";
-import { Avatar } from "../../catalyst/avatar";
+import { Avatar } from "@/components/catalyst/avatar";
 
 import {
   SidebarHeader,
@@ -9,7 +9,7 @@ import {
   SidebarBody,
   SidebarFooter,
   Sidebar,
-} from "../../catalyst/sidebar";
+} from "@/components/catalyst/sidebar";
 
 import logo from "@/assets//logo/logo.png";
 import { PropsWithChildren } from "react";
