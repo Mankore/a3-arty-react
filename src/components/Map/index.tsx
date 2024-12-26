@@ -28,12 +28,12 @@ export const Map = () => {
         doubleClickZoom={false}
       >
         <TileLayer
-          url={`/maps/${map.name.toLowerCase()}/{z}/{y}/{x}.png`}
+          url={`${import.meta.env.BASE_URL}maps/${map.name.toLowerCase()}/{z}/{y}/{x}.png`}
           tileSize={map.mapOptions.tileSize}
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
         />
-        <MapMarkers crs={crs} />
+        <MapMarkers />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
       </MapContainer>
