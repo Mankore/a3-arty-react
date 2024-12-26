@@ -8,7 +8,7 @@ export const TargetPopup = ({
   fireMode,
   range,
   currentAngle,
-  bearing,
+  azimuth,
   apex,
   exitAngle,
 }: ITargetPopup) => {
@@ -34,7 +34,7 @@ export const TargetPopup = ({
             <b>Elevation Angle</b>: {currentAngle.toFixed(3)}&deg;
           </div>
           <div>
-            <b>Bearing</b>: {bearing.toFixed(2)}&deg;
+            <b>Azimuth</b>: {azimuth.toFixed(2)}&deg;
           </div>
           <div>
             <b>ToF</b>: {tof.toFixed(1)} s
@@ -51,7 +51,7 @@ export const TargetPopup = ({
   );
 };
 
-export const ArtilleryPopup = ({ coordinates, flatness }: IMarkerPopup) => {
+export const ArtilleryPopup = ({ coordinates }: IMarkerPopup) => {
   return (
     <Container>
       <div>Artillery Position:</div>
