@@ -3,23 +3,24 @@ import { Circle, Marker, Polyline, Popup, useMap } from "react-leaflet";
 import { useMainDispatch, useMainSelector } from "../../../state/hooks";
 import {
   selectArtillery,
+  selectBackendEnabled,
   selectFireMode,
   selectHeightAdjustment,
   selectMap,
   selectShell,
   selectTopDown,
-} from "../../../state/main/selectors";
+} from "@/state/main/selectors";
 import {
   getAngleSolutionForRange,
   getAzimuth,
   getRange,
-} from "../../../utils/ballistics";
+} from "@/utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
 import { ITargetMarker, ITargetMarkerVisuals } from "./types";
-import { selectTargets } from "../../../state/main/selectors";
-import { setTargets } from "../../../state/main";
+import { selectTargets } from "@/state/main/selectors";
+import { setTargets } from "@/state/main";
 
 export const TargetMarker = ({
   artilleryPosition,
@@ -33,6 +34,7 @@ export const TargetMarker = ({
   const shell = useMainSelector(selectShell);
   const heightAdjustment = useMainSelector(selectHeightAdjustment);
   const currentMap = useMainSelector(selectMap);
+  const isBackendEnabled = useMainSelector(selectBackendEnabled);
 
   // Calculate Marker Solution
   const [targetHeight, setTargetHeight] = useState<number | undefined>(
@@ -58,11 +60,12 @@ export const TargetMarker = ({
         currentMap.name,
         targetPoint.x,
         targetPoint.y,
+        isBackendEnabled,
       );
       setTargetHeight(height);
     }
     fetchTargetHeight();
-  }, [currentMap.name, targetPoint.x, targetPoint.y]);
+  }, [currentMap.name, targetPoint.x, targetPoint.y, isBackendEnabled]);
 
   const range = getRange(
     artyPoint.x,

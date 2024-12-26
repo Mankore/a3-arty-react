@@ -8,5 +8,3 @@ export const backend = {
     flatness: "/flatness",
   },
 };
-
-export const isBackendAvailable = false;

@@ -14,7 +14,7 @@ export const CustomNavbar = () => {
     <Navbar>
       <NavbarSpacer />
       <NavbarSection>
-        <NavbarItem aria-label="Logo">
+        <NavbarItem aria-label="Logo" href="https://github.com/Mankore/a3-arty-react" target="_blank">
           Arma 3 Artillery Calculator
           <Avatar src={logo} />
         </NavbarItem>
