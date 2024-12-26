@@ -1,32 +1,34 @@
 import { DragEndEvent, LatLng } from "leaflet";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useMapEvents } from "react-leaflet";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import { selectMap } from "@/state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
-import { IMapMarkers } from "./types";
 import { setTargets } from "@/state/main";
 import { selectTargets } from "@/state/main/selectors";
+import { useGetHeight } from "@/utils/hooks/useGetHeight";
 
-export const MapMarkers = ({ crs }: IMapMarkers) => {
+export const MapMarkers = () => {
   const dispatch = useMainDispatch();
   const targets = useMainSelector(selectTargets);
   const currentMap = useMainSelector(selectMap);
 
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
-  const [artilleryHeight, setArtilleryHeight] = useState<number>(0);
-
-  const cleanupMarkers = useCallback(() => {
-    setArtilleryPosition(undefined);
-    setTriggerPosition(undefined);
-  }, []);
+  const { data: artilleryHeightData } = useGetHeight({
+    map: currentMap.name,
+    x: artilleryPosition?.lng ?? 0,
+    y: artilleryPosition?.lat ?? 0,
+    enabled: !!artilleryPosition,
+  });
 
   useEffect(() => {
-    cleanupMarkers();
-  }, [currentMap, cleanupMarkers]);
+    // Reset markers on map change
+    setArtilleryPosition(undefined);
+    setTriggerPosition(undefined);
+  }, [currentMap]);
 
   useMapEvents({
     click(e) {
@@ -48,7 +50,7 @@ export const MapMarkers = ({ crs }: IMapMarkers) => {
         <TargetMarker
           key={idx}
           artilleryPosition={artilleryPosition!}
-          artilleryHeight={artilleryHeight}
+          artilleryHeight={artilleryHeightData?.z}
           markerPosition={target}
           onDragEnd={(e: DragEndEvent) => {
             const items = [...targets];
@@ -64,8 +66,7 @@ export const MapMarkers = ({ crs }: IMapMarkers) => {
             setArtilleryPosition(e.target._latlng);
           }}
           currentMap={currentMap}
-          setArtilleryHeight={setArtilleryHeight}
-          artilleryHeight={artilleryHeight}
+          artilleryHeight={artilleryHeightData?.z}
         />
       )}
       {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}

@@ -18,7 +18,7 @@ export const TargetPopup = ({
         <b>
           [<span title="X">{coordinates.x}</span>,{" "}
           <span title="Y">{coordinates.y}</span>,{" "}
-          <span title="Z">{coordinates.z}</span>]
+          <span title="Z">{coordinates.z ?? 0}</span>]
         </b>
       </span>
       {tof === 0 ? (
@@ -58,7 +58,9 @@ export const ArtilleryPopup = ({ coordinates }: IMarkerPopup) => {
       <div>Artillery Position:</div>
       <span>
         <b>
-          [{coordinates.x}, {coordinates.y}, {coordinates.z}]
+          [<span title="X">{coordinates.x}</span>,{" "}
+          <span title="Y">{coordinates.y}</span>,{" "}
+          <span title="Z">{coordinates.z ?? 0}</span>]
         </b>
       </span>
       {/* <div>Flatness: {flatness !== undefined? flatness.toFixed(4) : "loading"}</div> */}
