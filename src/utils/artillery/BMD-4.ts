@@ -17,6 +17,6 @@ export const Arty_BMD_4: Artillery = {
   isAirFriction: true,
   angleAdjustment: 0,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
-    return new Vector(0, 0, 0);
+    return new Vector(0, Math.cos(angle) * 1, 1.5 + Math.sin(angle) * 1);
   },
 };
