@@ -3,7 +3,7 @@ import { Sidebar } from "../Sidebar";
 
 const App = () => {
   return (
-    <div className="grid grid-cols-[225px_auto] w-dvw h-dvh">
+    <div className="grid h-dvh w-dvw grid-cols-[225px_auto]">
       <Sidebar />
       <Map />
     </div>

@@ -14,7 +14,7 @@ export const Map = () => {
   const map = useMainSelector(selectMap);
 
   return (
-    <div className="relative w-full h-full">
+    <div className="relative h-full w-full">
       <MapButtons />
       <MapContainer
         key={map.name}

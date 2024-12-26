@@ -15,12 +15,16 @@ export const ArtilleryMarker = ({
     artilleryPosition,
     currentMap.mapOptions.maxZoom,
     currentMap.mapExtent,
-    currentMap.mapBounds
+    currentMap.mapBounds,
   );
 
   useEffect(() => {
     async function fetchHeight() {
-      const height = await fetchHeightByCoordinates(currentMap.name, coordinates.x, coordinates.y);
+      const height = await fetchHeightByCoordinates(
+        currentMap.name,
+        coordinates.x,
+        coordinates.y,
+      );
       setArtilleryHeight(height);
     }
     fetchHeight();

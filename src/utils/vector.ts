@@ -9,7 +9,9 @@ export class Vector {
   }
 
   scaleBy(number: number) {
-    return new Vector(...[this.x, this.y, this.z].map((component) => component * number));
+    return new Vector(
+      ...[this.x, this.y, this.z].map((component) => component * number),
+    );
   }
 
   add(vector: Vector) {

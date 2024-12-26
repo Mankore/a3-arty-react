@@ -59,6 +59,14 @@ export const mainSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setIsTopDown, setMap, setArtillery, setFireMode, setShell, setHeightAdjustment, setTargets } = mainSlice.actions;
+export const {
+  setIsTopDown,
+  setMap,
+  setArtillery,
+  setFireMode,
+  setShell,
+  setHeightAdjustment,
+  setTargets,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;

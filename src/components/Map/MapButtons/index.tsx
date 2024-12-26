@@ -5,7 +5,7 @@ import { Button } from "../../catalyst/button";
 export const MapButtons = () => {
   const dispatch = useMainDispatch();
   return (
-    <div className="absolute top-4 left-20 z-[1002]">
+    <div className="absolute left-20 top-4 z-[1002]">
       <Button color="red" onClick={() => dispatch(setTargets([]))}>
         Remove All Targets
       </Button>

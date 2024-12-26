@@ -31,13 +31,13 @@ export const Sidebar = () => {
 
   const onChangeHandler = (
     e: React.ChangeEvent<HTMLSelectElement>,
-    type: "arty" | "shell" | "fireMode" | "map"
+    type: "arty" | "shell" | "fireMode" | "map",
   ) => {
     const val = e.target.value;
     switch (type) {
       case "arty": {
         const arty = Object.entries(artilleryTypes).find(
-          (item) => item[1].name === val
+          (item) => item[1].name === val,
         );
         if (arty) dispatch(setArtillery(arty[1]));
         break;
@@ -64,7 +64,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="bg-black text-white p-2">
+    <div className="bg-black p-2 text-white">
       <div className="m-2">
         <Field>
           <Label id="label-map">Map</Label>
