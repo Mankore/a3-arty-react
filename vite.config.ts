@@ -8,6 +8,7 @@ export default defineConfig({
   server: {
     open: true,
   },
+  base: "/a3-arty-react/",
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
