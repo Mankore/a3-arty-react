@@ -16,7 +16,7 @@ export const Arty_BMP_1: Artillery = {
   shellTypes: [Shell_OG15, Shell_PG15],
   isAirFriction: true,
   angleAdjustment: 0,
-  getBaseProjectileSpawnPoint: function (angle: number): Vector {
+  getBaseProjectileSpawnPoint: function (): Vector {
     return new Vector(0, 0, 0);
   },
 };

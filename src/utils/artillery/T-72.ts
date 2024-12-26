@@ -16,7 +16,7 @@ export const Arty_T_72: Artillery = {
   shellTypes: [Shell_3BM46, Shell_3OF26, Shell_3BM26, Shell_3BK14],
   isAirFriction: true,
   angleAdjustment: 0,
-  getBaseProjectileSpawnPoint: function (angle: number): Vector {
+  getBaseProjectileSpawnPoint: function (): Vector {
     return new Vector(0, 0, 0);
   },
 };
