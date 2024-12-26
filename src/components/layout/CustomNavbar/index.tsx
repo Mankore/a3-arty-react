@@ -1,20 +1,24 @@
-import { Avatar } from "../../catalyst/avatar";
+import { Avatar } from "@/components/catalyst/avatar";
 
 import {
   NavbarSpacer,
   NavbarSection,
   NavbarItem,
   Navbar,
-} from "../../catalyst/navbar";
+} from "@/components/catalyst/navbar";
 
-import logo from "../../../assets/logo/logo.png";
+import logo from "@/assets/logo/logo.png";
 
 export const CustomNavbar = () => {
   return (
     <Navbar>
       <NavbarSpacer />
       <NavbarSection>
-        <NavbarItem aria-label="Logo" href="https://github.com/Mankore/a3-arty-react" target="_blank">
+        <NavbarItem
+          aria-label="Logo"
+          href="https://github.com/Mankore/a3-arty-react"
+          target="_blank"
+        >
           Arma 3 Artillery Calculator
           <Avatar src={logo} />
         </NavbarItem>
