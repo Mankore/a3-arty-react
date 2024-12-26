@@ -1,4 +1,3 @@
-import { Container } from "./styles";
 import { IMarkerPopup, ITargetPopup } from "../types";
 
 export const TargetPopup = ({
@@ -13,7 +12,7 @@ export const TargetPopup = ({
   exitAngle,
 }: ITargetPopup) => {
   return (
-    <Container>
+    <div className="select-none text-sm">
       <div>Target Position:</div>
       <span>
         <b>
@@ -49,13 +48,13 @@ export const TargetPopup = ({
           </div>
         </>
       )}
-    </Container>
+    </div>
   );
 };
 
 export const ArtilleryPopup = ({ coordinates }: IMarkerPopup) => {
   return (
-    <Container>
+    <div className="select-none text-sm">
       <div>Artillery Position:</div>
       <span>
         <b>
@@ -63,6 +62,6 @@ export const ArtilleryPopup = ({ coordinates }: IMarkerPopup) => {
         </b>
       </span>
       {/* <div>Flatness: {flatness !== undefined? flatness.toFixed(4) : "loading"}</div> */}
-    </Container>
+    </div>
   );
 };

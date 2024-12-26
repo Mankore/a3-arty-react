@@ -33,11 +33,12 @@ export const MapMarkers = ({ crs }: IMapMarkers) => {
       const latlng = e.latlng;
       const event = e.originalEvent;
 
-      event.shiftKey && setArtilleryPosition(latlng);
+      if (event.shiftKey) setArtilleryPosition(latlng);
 
-      event.ctrlKey && artilleryPosition && dispatch(setTargets([...targets, latlng]));
+      if (event.ctrlKey && artilleryPosition)
+        dispatch(setTargets([...targets, latlng]));
 
-      event.altKey && setTriggerPosition(latlng);
+      if (event.altKey) setTriggerPosition(latlng);
     },
   });
 
