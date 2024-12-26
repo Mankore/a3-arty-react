@@ -9,7 +9,7 @@ import {
   selectShell,
   selectTopDown,
 } from "../../../state/main/selectors";
-import { getAngleSolutionForRange, getBearing, getRange } from "../../../utils/ballistics";
+import { getAngleSolutionForRange, getAzimuth, getRange } from "../../../utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
@@ -55,7 +55,7 @@ export const TargetMarker = ({
   }, [currentMap.name, targetPoint.x, targetPoint.y]);
 
   const range = getRange(artyPoint.x, artyPoint.y, targetPoint.x, targetPoint.y);
-  const bearing = getBearing(artyPoint.x, artyPoint.y, targetPoint.x, targetPoint.y);
+  const azimuth = getAzimuth(artyPoint.x, artyPoint.y, targetPoint.x, targetPoint.y);
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
 
@@ -83,7 +83,7 @@ export const TargetMarker = ({
             shell={shell}
             fireMode={fireMode}
             range={range}
-            bearing={bearing}
+            azimuth={azimuth}
             {...solution!}
           />
         ) : (
@@ -122,8 +122,8 @@ const TargetMarkerVisuals = ({
             event.target.openPopup();
             setIsHovered(true);
           },
-          mouseout: (event) => {
-            event.target.closePopup();
+          mouseout: () => {
+            // event.target.closePopup();
             setIsHovered(false);
           },
           keydown: (event) => {

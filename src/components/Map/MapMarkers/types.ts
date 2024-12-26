@@ -28,7 +28,7 @@ export interface ITargetPopup extends IMarkerPopup {
   fireMode: FireMode;
   range: number;
   currentAngle: number;
-  bearing: number;
+  azimuth: number;
   apex: number;
   exitAngle: number;
 }

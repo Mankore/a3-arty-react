@@ -19,18 +19,18 @@ function getRange(x1: number, y1: number, x2: number, y2: number, z1: number = 0
   return range;
 }
 
-function getBearing(x1: number, y1: number, x2: number, y2: number) {
+function getAzimuth(x1: number, y1: number, x2: number, y2: number) {
   const valX = x1 - x2;
   const valY = y1 - y2;
   const atan = Math.atan(valY / valX);
   const degrees = toDegrees(atan);
-  let approxBearing;
+  let approxAzimuth;
   if (x1 > x2) {
-    approxBearing = 270;
+    approxAzimuth = 270;
   } else {
-    approxBearing = 90;
+    approxAzimuth = 90;
   }
-  const result = approxBearing - degrees;
+  const result = approxAzimuth - degrees;
   return result;
 }
 
@@ -74,8 +74,8 @@ function simulateShotForAngle(
     radians = Math.atan2(speed.z, speed.y);
   }
 
-  let vzRatio = (altDiff - currentPos.z) / speed.z;
-  let pyCorrection = Math.abs(speed.y * vzRatio);
+  const vzRatio = (altDiff - currentPos.z) / speed.z;
+  const pyCorrection = Math.abs(speed.y * vzRatio);
   currentPos.y -= pyCorrection;
 
   if (apex < altDiff) {
@@ -185,7 +185,7 @@ export {
   simulateShotForAngle,
   getAngleSolutionForRange,
   getRange,
-  getBearing,
+  getAzimuth,
   getAltitudeDiff,
   getMaxRange,
 };
