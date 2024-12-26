@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
-import { mapAltis } from "../../utils/maps";
-import { Arty_M109A6 } from "../../utils/artillery";
+import { Artillery, FireMode, MapInfo, ShellType } from "@/utils/types";
+import { mapAltis } from "@/utils/maps";
+import { Arty_M109A6 } from "@/utils/artillery";
 import { LatLng } from "leaflet";
 
 const defaultArty = Arty_M109A6;
@@ -15,6 +15,7 @@ interface MainState {
   shell: ShellType;
   heightAdjustment: number;
   targets: LatLng[];
+  isBackendEnabled: boolean;
 }
 
 const initState: MainState = {
@@ -25,6 +26,7 @@ const initState: MainState = {
   shell: defaultArty.shellTypes[0],
   heightAdjustment: 0,
   targets: [],
+  isBackendEnabled: false,
 };
 
 export const mainSlice = createSlice({
@@ -55,10 +57,22 @@ export const mainSlice = createSlice({
     setTargets: (state, action: PayloadAction<LatLng[]>) => {
       state.targets = action.payload;
     },
+    setIsBackendEnabled: (state, action: PayloadAction<boolean>) => {
+      state.isBackendEnabled = action.payload;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setIsTopDown, setMap, setArtillery, setFireMode, setShell, setHeightAdjustment, setTargets } = mainSlice.actions;
+export const {
+  setIsTopDown,
+  setMap,
+  setArtillery,
+  setFireMode,
+  setShell,
+  setHeightAdjustment,
+  setTargets,
+  setIsBackendEnabled,
+} = mainSlice.actions;
 
 export default mainSlice.reducer;

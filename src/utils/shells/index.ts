@@ -103,9 +103,3 @@ export const Shell_3UOF17: ShellType = {
   airFriction: -0.00001,
   initSpeed: 250,
 };
-
-
-
-
-
-

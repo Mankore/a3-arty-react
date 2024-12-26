@@ -1,15 +1,14 @@
-import { useMainDispatch } from "../../../state/hooks";
-import { setTargets } from "../../../state/main";
-import { Container } from "./styles";
-import Button from "@mui/material/Button";
+import { useMainDispatch } from "@/state/hooks";
+import { setTargets } from "@/state/main";
+import { Button } from "@/components/catalyst/button";
 
 export const MapButtons = () => {
   const dispatch = useMainDispatch();
   return (
-    <Container>
-      <Button variant="outlined" color="error" onClick={() => dispatch(setTargets([]))}>
+    <div className="absolute left-20 top-4 z-[1002]">
+      <Button color="red" onClick={() => dispatch(setTargets([]))}>
         Remove All Targets
       </Button>
-    </Container>
+    </div>
   );
 };

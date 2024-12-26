@@ -6,7 +6,7 @@ export const Arty_M252: Artillery = {
   name: "M252",
   simulationStep: 0.05,
   minAngle: 45,
-  maxAngle: 85.20,
+  maxAngle: 85.2,
   fireModes: [
     {
       name: "Charge 0",

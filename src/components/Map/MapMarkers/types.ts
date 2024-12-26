@@ -1,5 +1,5 @@
 import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
-import { FireMode, MapInfo, ShellType } from "../../../utils/types";
+import { FireMode, MapInfo, ShellType } from "@/utils/types";
 
 export interface IMapMarkers {
   crs: CRS;
@@ -28,7 +28,7 @@ export interface ITargetPopup extends IMarkerPopup {
   fireMode: FireMode;
   range: number;
   currentAngle: number;
-  bearing: number;
+  azimuth: number;
   apex: number;
   exitAngle: number;
 }
@@ -37,15 +37,14 @@ export interface ITargetMarker {
   artilleryPosition: LatLng;
   markerPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
-  artilleryHeight: number;
+  artilleryHeight: number | undefined;
 }
 
 export interface IArtilleryMarker {
   artilleryPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
   currentMap: MapInfo;
-  artilleryHeight: number;
-  setArtilleryHeight: React.Dispatch<React.SetStateAction<number>>;
+  artilleryHeight: number | undefined;
 }
 
 export interface ITriggerMarker {

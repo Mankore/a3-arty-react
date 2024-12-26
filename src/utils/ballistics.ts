@@ -11,7 +11,14 @@ function toRadians(grad: number) {
   return (Math.PI / 180) * grad;
 }
 
-function getRange(x1: number, y1: number, x2: number, y2: number, z1: number = 0, z2: number = 0) {
+function getRange(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+  z1: number = 0,
+  z2: number = 0,
+) {
   const valX = Math.pow(x1 - x2, 2);
   const valY = Math.pow(y1 - y2, 2);
   const valZ = Math.pow(z1 - z2, 2);
@@ -19,18 +26,18 @@ function getRange(x1: number, y1: number, x2: number, y2: number, z1: number = 0
   return range;
 }
 
-function getBearing(x1: number, y1: number, x2: number, y2: number) {
+function getAzimuth(x1: number, y1: number, x2: number, y2: number) {
   const valX = x1 - x2;
   const valY = y1 - y2;
   const atan = Math.atan(valY / valX);
   const degrees = toDegrees(atan);
-  let approxBearing;
+  let approxAzimuth;
   if (x1 > x2) {
-    approxBearing = 270;
+    approxAzimuth = 270;
   } else {
-    approxBearing = 90;
+    approxAzimuth = 90;
   }
-  const result = approxBearing - degrees;
+  const result = approxAzimuth - degrees;
   return result;
 }
 
@@ -43,12 +50,16 @@ function simulateShotForAngle(
   angle: number,
   artillery: Artillery,
   shell: ShellType,
-  altDiff: number = 0
+  altDiff: number = 0,
 ) {
   const deltaT = artillery.simulationStep;
   const gravV = new Vector(0, 0, -GRAVITY);
   let radians = toRadians(angle);
-  let speed = new Vector(0, Math.cos(radians) * muzzleVelocity, Math.sin(radians) * muzzleVelocity);
+  let speed = new Vector(
+    0,
+    Math.cos(radians) * muzzleVelocity,
+    Math.sin(radians) * muzzleVelocity,
+  );
   let currentPos = artillery.getBaseProjectileSpawnPoint(radians);
 
   let deltaV = new Vector(0, 0, 0);
@@ -74,8 +85,8 @@ function simulateShotForAngle(
     radians = Math.atan2(speed.z, speed.y);
   }
 
-  let vzRatio = (altDiff - currentPos.z) / speed.z;
-  let pyCorrection = Math.abs(speed.y * vzRatio);
+  const vzRatio = (altDiff - currentPos.z) / speed.z;
+  const pyCorrection = Math.abs(speed.y * vzRatio);
   currentPos.y -= pyCorrection;
 
   if (apex < altDiff) {
@@ -92,7 +103,7 @@ function getAngleSolutionForRange(
   altDiff: number,
   artillery: Artillery,
   shell: ShellType,
-  isTopDown: boolean
+  isTopDown: boolean,
 ) {
   const angleTolerance = toRadians(0.02);
   let minAngle = artillery.minAngle;
@@ -111,7 +122,7 @@ function getAngleSolutionForRange(
       currentAngle,
       artillery,
       shell,
-      altDiff
+      altDiff,
     );
     if (zeroRange <= px) {
       if (!isTopDown) {
@@ -147,7 +158,11 @@ function getAngleSolutionForRange(
   return { currentAngle, tof, exitAngle, apex, px };
 }
 
-function getMaxRange(artillery: Artillery, shell: ShellType, fireMode: FireMode) {
+function getMaxRange(
+  artillery: Artillery,
+  shell: ShellType,
+  fireMode: FireMode,
+) {
   const angleStep = 0.2;
   let maxRange = 0;
   const muzzleVelocity = shell.initSpeed * fireMode.artilleryCharge;
@@ -156,12 +171,24 @@ function getMaxRange(artillery: Artillery, shell: ShellType, fireMode: FireMode)
 
   if (!artillery.isAirFriction) {
     currentAngle = 45;
-    maxRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    maxRange = simulateShotForAngle(
+      muzzleVelocity,
+      currentAngle,
+      artillery,
+      shell,
+      0,
+    )[0];
     return { maxRange, currentAngle };
   }
 
   do {
-    currentRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    currentRange = simulateShotForAngle(
+      muzzleVelocity,
+      currentAngle,
+      artillery,
+      shell,
+      0,
+    )[0];
     if (maxRange < currentRange) {
       maxRange = currentRange;
       currentAngle += angleStep;
@@ -171,7 +198,13 @@ function getMaxRange(artillery: Artillery, shell: ShellType, fireMode: FireMode)
   currentAngle -= angleStep * 2;
 
   do {
-    currentRange = simulateShotForAngle(muzzleVelocity, currentAngle, artillery, shell, 0)[0];
+    currentRange = simulateShotForAngle(
+      muzzleVelocity,
+      currentAngle,
+      artillery,
+      shell,
+      0,
+    )[0];
     if (maxRange < currentRange) {
       maxRange = currentRange;
       currentAngle -= angleStep;
@@ -185,7 +218,7 @@ export {
   simulateShotForAngle,
   getAngleSolutionForRange,
   getRange,
-  getBearing,
+  getAzimuth,
   getAltitudeDiff,
   getMaxRange,
 };

@@ -1,6 +1,6 @@
 import L from "leaflet";
-import targetSVG from "../../../assets/svg/target.svg";
-import triggerSVG from "../../../assets/svg/trigger.svg";
+import targetSVG from "@/assets/svg/target.svg";
+import triggerSVG from "@/assets/svg/trigger.svg";
 
 const iconTarget = new L.Icon({
   iconUrl: targetSVG,
