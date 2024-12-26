@@ -32,7 +32,7 @@ export const Arty_2S9_Sochor: Artillery = {
   shellTypes: [Shell_155mm_AMOS],
   isAirFriction: false,
   angleAdjustment: 0.14,
-  getBaseProjectileSpawnPoint: function (angle: number): Vector {
+  getBaseProjectileSpawnPoint: function (): Vector {
     return new Vector(0, 0, 0);
   },
 };
