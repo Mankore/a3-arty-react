@@ -8,16 +8,17 @@ Web version of my [Arma 3 RHS Artillery Calculator](https://github.com/Mankore/A
 
 Select Map/Shells/Artillery e.t.c. in the Sidebar.
 
-Height difference: it's the difference of Target Z coordinate (height) and artillery height coordinate (```targetCoord.z - artilleryCoord.z```). It's important to set it to correct value before placing Target marker in order to calculate the most accurate solution.
+Height difference: it's the difference of Target Z coordinate (height) and artillery height coordinate (`targetCoord.z - artilleryCoord.z`). It's important to set it to correct value before placing Target marker in order to calculate the most accurate solution.
 
 ### How to use / Controls
+
 ```
 Shift + LMB: set artillery position
 CTRL + LMB: set target position
 ALT + LMB: set yellow circle (as a point of interest position)
 ```
 
-Artillery position needs to be placed first. 
+Artillery position needs to be placed first.
 
 Artillery/Target Markers can be dragged, when Target Marker is dragged it will recalculate the solution with current settings.
 

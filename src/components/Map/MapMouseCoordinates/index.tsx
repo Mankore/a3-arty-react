@@ -10,7 +10,7 @@ const setDivPosition = (
   ref: React.RefObject<HTMLDivElement>,
   pos: Point,
   left: number,
-  top: number
+  top: number,
 ) => {
   if (ref && ref.current) {
     ref.current.style.left = `${pos.x + left}px`;
@@ -60,7 +60,7 @@ export const MapMouseCoordinates = (map: MapInfo) => {
         event.latlng,
         map.mapOptions.maxZoom,
         map.mapExtent,
-        map.mapBounds
+        map.mapBounds,
       );
       setCoords(point);
 
@@ -74,18 +74,18 @@ export const MapMouseCoordinates = (map: MapInfo) => {
   });
 
   return coords ? (
-    <div className="absolute z-[1001] pointer-events-none inset-0 text-red-600">
+    <div className="pointer-events-none absolute inset-0 z-[1001] text-red-600">
       <div className="absolute text-sm font-bold" ref={coordinatesRef}>
         [{coords.x}, {coords.y}]
       </div>
-      <div className="absolute w-full h-[1px] bg-red-600" ref={leftHorLine} />
+      <div className="absolute h-[1px] w-full bg-red-600" ref={leftHorLine} />
       <div
-        className="absolute w-full h-[1px] bg-red-600 -translate-x-full"
+        className="absolute h-[1px] w-full -translate-x-full bg-red-600"
         ref={rightHorLine}
       />
       <div className="absolute h-full w-[1px] bg-red-600" ref={topVerLine} />
       <div
-        className="absolute h-full w-[1px] bg-red-600 -translate-y-full"
+        className="absolute h-full w-[1px] -translate-y-full bg-red-600"
         ref={bottomVerLine}
       />
     </div>

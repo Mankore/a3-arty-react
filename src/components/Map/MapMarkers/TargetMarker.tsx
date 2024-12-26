@@ -9,7 +9,11 @@ import {
   selectShell,
   selectTopDown,
 } from "../../../state/main/selectors";
-import { getAngleSolutionForRange, getAzimuth, getRange } from "../../../utils/ballistics";
+import {
+  getAngleSolutionForRange,
+  getAzimuth,
+  getRange,
+} from "../../../utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { fetchHeightByCoordinates, latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
@@ -31,31 +35,47 @@ export const TargetMarker = ({
   const currentMap = useMainSelector(selectMap);
 
   // Calculate Marker Solution
-  const [targetHeight, setTargetHeight] = useState<number | undefined>(undefined);
+  const [targetHeight, setTargetHeight] = useState<number | undefined>(
+    undefined,
+  );
   const targetPoint = latLngToArmaCoords(
     markerPosition,
     currentMap.mapOptions.maxZoom,
     currentMap.mapExtent,
-    currentMap.mapBounds
+    currentMap.mapBounds,
   );
 
   const artyPoint = latLngToArmaCoords(
     artilleryPosition,
     currentMap.mapOptions.maxZoom,
     currentMap.mapExtent,
-    currentMap.mapBounds
+    currentMap.mapBounds,
   );
 
   useEffect(() => {
     async function fetchTargetHeight() {
-      const height = await fetchHeightByCoordinates(currentMap.name, targetPoint.x, targetPoint.y);
+      const height = await fetchHeightByCoordinates(
+        currentMap.name,
+        targetPoint.x,
+        targetPoint.y,
+      );
       setTargetHeight(height);
     }
     fetchTargetHeight();
   }, [currentMap.name, targetPoint.x, targetPoint.y]);
 
-  const range = getRange(artyPoint.x, artyPoint.y, targetPoint.x, targetPoint.y);
-  const azimuth = getAzimuth(artyPoint.x, artyPoint.y, targetPoint.x, targetPoint.y);
+  const range = getRange(
+    artyPoint.x,
+    artyPoint.y,
+    targetPoint.x,
+    targetPoint.y,
+  );
+  const azimuth = getAzimuth(
+    artyPoint.x,
+    artyPoint.y,
+    targetPoint.x,
+    targetPoint.y,
+  );
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
 
@@ -65,8 +85,16 @@ export const TargetMarker = ({
       : heightAdjustment;
 
   const solution = useMemo(
-    () => getAngleSolutionForRange(range, muzzleVelocity, altDiff, artillery, shell, isTopDown),
-    [range, muzzleVelocity, altDiff, artillery, shell, isTopDown]
+    () =>
+      getAngleSolutionForRange(
+        range,
+        muzzleVelocity,
+        altDiff,
+        artillery,
+        shell,
+        isTopDown,
+      ),
+    [range, muzzleVelocity, altDiff, artillery, shell, isTopDown],
   );
 
   const coordinates = { x: targetPoint.x, y: targetPoint.y, z: targetHeight };
@@ -128,7 +156,9 @@ const TargetMarkerVisuals = ({
           },
           keydown: (event) => {
             if (event.originalEvent.key === "Delete")
-              dispatch(setTargets(targets.filter((item) => item !== markerPosition)));
+              dispatch(
+                setTargets(targets.filter((item) => item !== markerPosition)),
+              );
           },
           dragend: onDragEnd,
         }}
@@ -136,7 +166,11 @@ const TargetMarkerVisuals = ({
         <Popup>{popupContent}</Popup>
         {isHovered && (
           <>
-            <Circle center={artilleryPosition!} radius={dist} pathOptions={{ fillColor: "none" }} />
+            <Circle
+              center={artilleryPosition!}
+              radius={dist}
+              pathOptions={{ fillColor: "none" }}
+            />
             <Polyline positions={[artilleryPosition, markerPosition]} />
           </>
         )}

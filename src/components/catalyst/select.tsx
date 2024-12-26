@@ -8,7 +8,7 @@ export const Select = forwardRef(function Select(
     multiple,
     ...props
   }: { className?: string } & Omit<Headless.SelectProps, "as" | "className">,
-  ref: React.ForwardedRef<HTMLSelectElement>
+  ref: React.ForwardedRef<HTMLSelectElement>,
 ) {
   return (
     <span
