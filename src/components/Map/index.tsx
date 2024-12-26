@@ -2,11 +2,11 @@ import Leaflet from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { increaseMapZoomBy } from "../../utils/variables";
 import { MapMouseCoordinates } from "./MapMouseCoordinates";
-import { useMainSelector } from "../../state/hooks";
-import { selectMap } from "../../state/main/selectors";
 import { MapButtons } from "./MapButtons";
+import { useMainSelector } from "@/state/hooks";
+import { increaseMapZoomBy } from "@/utils/variables";
+import { selectMap } from "@/state/main/selectors";
 
 const crs = Leaflet.CRS.Simple;
 
