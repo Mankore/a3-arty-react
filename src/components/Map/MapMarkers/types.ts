@@ -37,15 +37,14 @@ export interface ITargetMarker {
   artilleryPosition: LatLng;
   markerPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
-  artilleryHeight: number;
+  artilleryHeight: number | undefined;
 }
 
 export interface IArtilleryMarker {
   artilleryPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
   currentMap: MapInfo;
-  artilleryHeight: number;
-  setArtilleryHeight: React.Dispatch<React.SetStateAction<number>>;
+  artilleryHeight: number | undefined;
 }
 
 export interface ITriggerMarker {
