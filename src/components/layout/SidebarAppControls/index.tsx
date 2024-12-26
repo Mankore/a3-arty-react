@@ -139,7 +139,7 @@ export const SidebarAppControls = () => {
       </SwitchField>
       <SidebarDivider />
 
-      <Field>
+      <Field title="If backend is running this can be used to imitate target elevation relative to the ground. If not, this is a difference between target and artillery heights">
         <Label htmlFor="height-adjustment">Height adjustment</Label>
         <Input
           id="height-adjustment"
