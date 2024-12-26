@@ -1,13 +1,12 @@
-import { Container } from "./styles";
 import { Map } from "../Map";
 import { Sidebar } from "../Sidebar";
 
 const App = () => {
   return (
-    <Container>
+    <div className="grid grid-cols-[225px_auto] w-dvw h-dvh">
       <Sidebar />
       <Map />
-    </Container>
+    </div>
   );
 };
 

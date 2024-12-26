@@ -1,6 +1,5 @@
 import Leaflet from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
 import { increaseMapZoomBy } from "../../utils/variables";
@@ -15,7 +14,7 @@ export const Map = () => {
   const map = useMainSelector(selectMap);
 
   return (
-    <Container>
+    <div className="relative w-full h-full">
       <MapButtons />
       <MapContainer
         key={map.name}
@@ -38,6 +37,6 @@ export const Map = () => {
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
       </MapContainer>
-    </Container>
+    </div>
   );
 };

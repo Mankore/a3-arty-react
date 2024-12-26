@@ -3,7 +3,6 @@ import { useRef, useState } from "react";
 import { useMapEvents } from "react-leaflet";
 import { MapInfo } from "../../../utils/types";
 import { latLngToArmaCoords } from "../MapUtils";
-import { CoordinateOverlay, Coordinates, HorizontalLine, VerticalLine } from "./styles";
 
 const cursorSize = 30;
 
@@ -75,16 +74,20 @@ export const MapMouseCoordinates = (map: MapInfo) => {
   });
 
   return coords ? (
-    <CoordinateOverlay>
-      <Coordinates ref={coordinatesRef}>
+    <div className="absolute z-[1001] pointer-events-none inset-0 text-red-600">
+      <div className="absolute text-sm font-bold" ref={coordinatesRef}>
         [{coords.x}, {coords.y}]
-      </Coordinates>
-      <HorizontalLine ref={leftHorLine} />
-      <HorizontalLine $translateX={-100} ref={rightHorLine} />
-      <VerticalLine ref={topVerLine} />
-      <VerticalLine $translateY={-100} ref={bottomVerLine} />
-    </CoordinateOverlay>
-  ) : (
-    <></>
-  );
+      </div>
+      <div className="absolute w-full h-[1px] bg-red-600" ref={leftHorLine} />
+      <div
+        className="absolute w-full h-[1px] bg-red-600 -translate-x-full"
+        ref={rightHorLine}
+      />
+      <div className="absolute h-full w-[1px] bg-red-600" ref={topVerLine} />
+      <div
+        className="absolute h-full w-[1px] bg-red-600 -translate-y-full"
+        ref={bottomVerLine}
+      />
+    </div>
+  ) : null;
 };

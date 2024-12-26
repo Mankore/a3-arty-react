@@ -1,4 +1,3 @@
-import { Container, Wrapper, Option } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
 import { useMainDispatch, useMainSelector } from "../../state/hooks";
@@ -65,8 +64,8 @@ export const Sidebar = () => {
   };
 
   return (
-    <Container>
-      <Wrapper>
+    <div className="bg-black text-white p-2">
+      <div className="m-2">
         <Field>
           <Label id="label-map">Map</Label>
           <Select
@@ -75,15 +74,15 @@ export const Sidebar = () => {
             value={map.name}
           >
             {Object.entries(maps).map((map) => (
-              <Option value={map[1].name} key={map[1].name}>
+              <option value={map[1].name} key={map[1].name}>
                 {map[1].name}
-              </Option>
+              </option>
             ))}
           </Select>
         </Field>
-      </Wrapper>
+      </div>
 
-      <Wrapper>
+      <div className="m-2">
         <Field>
           <Label id="label-artillery">Artillery</Label>
           <Select
@@ -92,15 +91,15 @@ export const Sidebar = () => {
             value={artillery.name}
           >
             {Object.entries(artilleryTypes).map((arty) => (
-              <Option value={arty[1].name} key={arty[1].name}>
+              <option value={arty[1].name} key={arty[1].name}>
                 {arty[1].name}
-              </Option>
+              </option>
             ))}
           </Select>
         </Field>
-      </Wrapper>
+      </div>
 
-      <Wrapper>
+      <div className="m-2">
         <Field>
           <Label id="label-shell">Shell</Label>
           <Select
@@ -109,15 +108,15 @@ export const Sidebar = () => {
             value={shell.name}
           >
             {artillery.shellTypes.map((shell) => (
-              <Option value={shell.name} key={shell.name}>
+              <option value={shell.name} key={shell.name}>
                 {shell.name}
-              </Option>
+              </option>
             ))}
           </Select>
         </Field>
-      </Wrapper>
+      </div>
 
-      <Wrapper>
+      <div className="m-2">
         <Field>
           <Label>Fire Mode</Label>
           <Select
@@ -125,15 +124,15 @@ export const Sidebar = () => {
             value={fireMode.name}
           >
             {artillery.fireModes.map((fireMode) => (
-              <Option value={fireMode.name} key={fireMode.name}>
+              <option value={fireMode.name} key={fireMode.name}>
                 {fireMode.name}
-              </Option>
+              </option>
             ))}
           </Select>
         </Field>
-      </Wrapper>
+      </div>
 
-      <Wrapper>
+      <div className="m-2">
         <SwitchField>
           <Label>High angle</Label>
           <Switch
@@ -141,9 +140,9 @@ export const Sidebar = () => {
             onChange={(checked: boolean) => dispatch(setIsTopDown(checked))}
           />
         </SwitchField>
-      </Wrapper>
+      </div>
 
-      <Wrapper>
+      <div className="m-2">
         <Field>
           <Input
             id="height-adjustment"
@@ -159,7 +158,7 @@ export const Sidebar = () => {
             Target.z - Artillery.z
           </Description>
         </Field>
-      </Wrapper>
-    </Container>
+      </div>
+    </div>
   );
 };
