@@ -31,3 +31,8 @@ export const selectTargets = createSelector(
   selectDomain,
   (main) => main.targets,
 );
+
+export const selectBackendEnabled = createSelector(
+  selectDomain,
+  (main) => main.isBackendEnabled,
+);

@@ -1,6 +1,6 @@
 import { CRS, LatLng, Point } from "leaflet";
-import { IMapBounds } from "../../../utils/types";
-import { isBackendAvailable, backend } from "../../../utils/variables";
+import { IMapBounds } from "@/utils/types";
+import { backend } from "@/utils/variables";
 
 export const latLngToArmaCoords = (
   latLng: LatLng,
@@ -26,12 +26,13 @@ export async function fetchHeightByCoordinates(
   mapName: string,
   x: number,
   y: number,
+  isBackendEnabled: boolean = false,
 ) {
   const defaultValue = 0;
   const roundedX = Math.round(x / 10) * 10;
   const roundedY = Math.round(y / 10) * 10;
   let height = defaultValue;
-  if (isBackendAvailable) {
+  if (isBackendEnabled) {
     const json = await fetch(
       `${backend.basepath}${
         backend.routes.coordinates
@@ -53,12 +54,13 @@ export async function fetchFlatnessByCoordinates(
   mapName: string,
   x: number,
   y: number,
+  isBackendEnabled: boolean = false,
 ) {
   const defaultValue = 999;
   const roundedX = Math.round(x / 10) * 10;
   const roundedY = Math.round(y / 10) * 10;
   let flatness = defaultValue;
-  if (isBackendAvailable) {
+  if (isBackendEnabled) {
     const json = await fetch(
       `${backend.basepath}${
         backend.routes.flatness

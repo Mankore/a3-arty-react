@@ -14,6 +14,7 @@ import {
 import logo from "@/assets//logo/logo.png";
 import githubLogo from "@/assets/svg/logo-github.svg";
 import { PropsWithChildren } from "react";
+import { BackendSwitch } from "@/components/BackendSwitch";
 
 export const CustomSidebar = ({ children }: PropsWithChildren) => {
   return (
@@ -28,7 +29,7 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
             <MapPinIcon />
             <SidebarLabel>Map</SidebarLabel>
           </SidebarItem>
-          <SidebarItem>
+          <SidebarItem disabled>
             <QuestionMarkCircleIcon />
             <SidebarLabel>About</SidebarLabel>
           </SidebarItem>
@@ -39,6 +40,7 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
       </SidebarBody>
       <SidebarFooter className="max-lg:hidden">
         <SidebarSection>
+          <BackendSwitch />
           <SidebarItem
             href="https://github.com/Mankore/a3-arty-react"
             target="_blank"
