@@ -9,4 +9,8 @@ export const backend = {
   },
 };
 
-export const isBackendAvailable = false;
+export const QUERY_KEY = {
+  height: "height",
+  flatness: "flatness",
+  ping: "ping",
+};

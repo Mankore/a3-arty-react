@@ -11,4 +11,9 @@ const mapBounds = {
   y: 15360,
 };
 
-export const mapCherno: MapInfo = { name: "Cherno", mapExtent, mapOptions, mapBounds };
+export const mapCherno: MapInfo = {
+  name: "Cherno",
+  mapExtent,
+  mapOptions,
+  mapBounds,
+};

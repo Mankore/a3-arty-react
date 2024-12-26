@@ -11,4 +11,9 @@ const mapBounds = {
   y: 20480,
 };
 
-export const mapNapf: MapInfo = { name: "Napf", mapExtent, mapOptions, mapBounds };
+export const mapNapf: MapInfo = {
+  name: "Napf",
+  mapExtent,
+  mapOptions,
+  mapBounds,
+};

@@ -1,13 +1,12 @@
 import Leaflet from "leaflet";
 import { MapContainer, TileLayer } from "react-leaflet";
-import { Container } from "./styles";
 import { MapSettings } from "./MapSettings";
 import { MapMarkers } from "./MapMarkers";
-import { increaseMapZoomBy } from "../../utils/variables";
 import { MapMouseCoordinates } from "./MapMouseCoordinates";
-import { useMainSelector } from "../../state/hooks";
-import { selectMap } from "../../state/main/selectors";
 import { MapButtons } from "./MapButtons";
+import { useMainSelector } from "@/state/hooks";
+import { increaseMapZoomBy } from "@/utils/variables";
+import { selectMap } from "@/state/main/selectors";
 
 const crs = Leaflet.CRS.Simple;
 
@@ -15,7 +14,7 @@ export const Map = () => {
   const map = useMainSelector(selectMap);
 
   return (
-    <Container>
+    <div className="relative h-full w-full">
       <MapButtons />
       <MapContainer
         key={map.name}
@@ -29,15 +28,15 @@ export const Map = () => {
         doubleClickZoom={false}
       >
         <TileLayer
-          url={`${process.env.PUBLIC_URL}/maps/${map.name.toLowerCase()}/{z}/{y}/{x}.png`}
+          url={`${import.meta.env.BASE_URL}maps/${map.name.toLowerCase()}/{z}/{y}/{x}.png`}
           tileSize={map.mapOptions.tileSize}
           noWrap
           maxNativeZoom={map.mapOptions.maxZoom}
         />
-        <MapMarkers crs={crs} />
+        <MapMarkers />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
       </MapContainer>
-    </Container>
+    </div>
   );
 };
