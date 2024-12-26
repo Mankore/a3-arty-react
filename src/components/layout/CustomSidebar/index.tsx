@@ -20,11 +20,7 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
     <Sidebar>
       <SidebarHeader>
         <SidebarSection>
-          <SidebarItem
-            className="max-lg:hidden"
-            href="https://github.com/Mankore/a3-arty-react"
-            target="_blank"
-          >
+          <SidebarItem className="max-lg:hidden">
             <Avatar src={logo} />
             <SidebarLabel>Arma 3 Artillery Calculator</SidebarLabel>
           </SidebarItem>
