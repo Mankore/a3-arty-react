@@ -2,12 +2,12 @@ import { Marker, Popup } from "react-leaflet";
 import { latLngToArmaCoords } from "../MapUtils";
 import { ArtilleryPopup } from "./Popup";
 import { IArtilleryMarker } from "./types";
+import { useGetHeight } from "@/utils/hooks/useGetHeight";
 
 export const ArtilleryMarker = ({
   artilleryPosition,
   onDragEnd,
   currentMap,
-  artilleryHeight,
 }: IArtilleryMarker) => {
   const coordinates = latLngToArmaCoords(
     artilleryPosition,
@@ -16,7 +16,17 @@ export const ArtilleryMarker = ({
     currentMap.mapBounds,
   );
 
-  const position = { x: coordinates.x, y: coordinates.y, z: artilleryHeight };
+  const { data: artilleryHeightData } = useGetHeight({
+    map: currentMap.name,
+    x: coordinates.x,
+    y: coordinates.y,
+  });
+
+  const position = {
+    x: coordinates.x,
+    y: coordinates.y,
+    z: artilleryHeightData?.z,
+  };
 
   return (
     <>

@@ -26,7 +26,6 @@ export const TargetMarker = ({
   artilleryPosition,
   markerPosition,
   onDragEnd,
-  artilleryHeight,
 }: ITargetMarker) => {
   const isTopDown = useMainSelector(selectTopDown);
   const artillery = useMainSelector(selectArtillery);
@@ -58,6 +57,12 @@ export const TargetMarker = ({
       y: targetPoint.y,
     });
 
+  const { data: artilleryHeightData } = useGetHeight({
+    map: currentMap.name,
+    x: artyPoint.x,
+    y: artyPoint.y,
+  });
+
   const range = getRange(
     artyPoint.x,
     artyPoint.y,
@@ -73,10 +78,10 @@ export const TargetMarker = ({
 
   const muzzleVelocity = fireMode.artilleryCharge * shell.initSpeed;
 
-  const altDiff =
-    targetHeightData && artilleryHeight
-      ? targetHeightData.z - artilleryHeight + heightAdjustment
-      : heightAdjustment;
+  const targetHeight = targetHeightData ? targetHeightData.z : 0;
+  const artilleryHeight = artilleryHeightData ? artilleryHeightData.z : 0;
+
+  const altDiff = targetHeight - artilleryHeight + heightAdjustment;
 
   const solution = useMemo(
     () =>
