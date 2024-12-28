@@ -4,6 +4,8 @@ import { useMainSelector } from "../../state/hooks";
 import { selectBackendEnabled } from "../../state/main/selectors";
 
 interface GetHeightResponse {
+  x: number;
+  y: number;
   z: number;
 }
 
