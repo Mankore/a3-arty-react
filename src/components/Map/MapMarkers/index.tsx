@@ -8,7 +8,6 @@ import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
 import { setTargets } from "@/state/main";
 import { selectTargets } from "@/state/main/selectors";
-import { useGetHeight } from "@/utils/hooks/useGetHeight";
 
 export const MapMarkers = () => {
   const dispatch = useMainDispatch();
@@ -17,12 +16,6 @@ export const MapMarkers = () => {
 
   const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
-  const { data: artilleryHeightData } = useGetHeight({
-    map: currentMap.name,
-    x: artilleryPosition?.lng ?? 0,
-    y: artilleryPosition?.lat ?? 0,
-    enabled: !!artilleryPosition,
-  });
 
   useEffect(() => {
     // Reset markers on map change
@@ -50,7 +43,6 @@ export const MapMarkers = () => {
         <TargetMarker
           key={idx}
           artilleryPosition={artilleryPosition!}
-          artilleryHeight={artilleryHeightData?.z}
           markerPosition={target}
           onDragEnd={(e: DragEndEvent) => {
             const items = [...targets];
@@ -66,7 +58,6 @@ export const MapMarkers = () => {
             setArtilleryPosition(e.target._latlng);
           }}
           currentMap={currentMap}
-          artilleryHeight={artilleryHeightData?.z}
         />
       )}
       {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}

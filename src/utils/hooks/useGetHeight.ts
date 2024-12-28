@@ -48,5 +48,6 @@ export const useGetHeight = ({ map, x, y, enabled }: Props) => {
     },
     enabled,
     retry: false,
+    staleTime: Infinity,
   });
 };
