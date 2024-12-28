@@ -26,7 +26,7 @@ export const BackendSwitch = () => {
         id="switch-backend"
         name="switch-backend"
         onChange={(checked: boolean) => dispatch(setIsBackendEnabled(checked))}
-        value={String(isBackendEnabled)}
+        checked={isBackendEnabled}
       />
     </Field>
   );
