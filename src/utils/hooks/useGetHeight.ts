@@ -41,7 +41,7 @@ export const useGetHeight = ({ map, x, y, enabled }: Props) => {
   const isBackendEnabled = useMainSelector(selectBackendEnabled);
 
   return useQuery({
-    queryKey: [QUERY_KEY.height, map, x, y, isBackendEnabled],
+    queryKey: [QUERY_KEY.coordinates, map, x, y, isBackendEnabled],
     queryFn: () => {
       if (!isBackendEnabled) return { z: 0 };
       return getHeightByCoordinates({ map, x, y });

@@ -10,7 +10,7 @@ export const backend = {
 };
 
 export const QUERY_KEY = {
-  height: "height",
+  coordinates: "coordinates",
   flatness: "flatness",
   ping: "ping",
 };
