@@ -221,4 +221,6 @@ export {
   getAzimuth,
   getAltitudeDiff,
   getMaxRange,
+  toDegrees,
+  toRadians,
 };
