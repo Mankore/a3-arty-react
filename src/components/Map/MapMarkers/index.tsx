@@ -30,7 +30,7 @@ export const MapMarkers = () => {
 
       if (event.shiftKey) dispatch(setArtilleryPosition(latlng));
 
-      if (event.ctrlKey && artilleryPosition)
+      if ((event.ctrlKey || event.metaKey) && artilleryPosition)
         dispatch(setTargets([...targets, latlng]));
 
       if (event.altKey) setTriggerPosition(latlng);
