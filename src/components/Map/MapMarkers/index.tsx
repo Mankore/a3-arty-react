@@ -2,33 +2,33 @@ import { DragEndEvent, LatLng } from "leaflet";
 import { useEffect, useState } from "react";
 import { useMapEvents } from "react-leaflet";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
-import { selectMap } from "@/state/main/selectors";
+import { selectArtilleryPosition, selectMap } from "@/state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
 import { TriggerMarker } from "./TriggerMarker";
-import { setTargets } from "@/state/main";
+import { setArtilleryPosition, setTargets } from "@/state/main";
 import { selectTargets } from "@/state/main/selectors";
 
 export const MapMarkers = () => {
   const dispatch = useMainDispatch();
   const targets = useMainSelector(selectTargets);
   const currentMap = useMainSelector(selectMap);
+  const artilleryPosition = useMainSelector(selectArtilleryPosition);
 
-  const [artilleryPosition, setArtilleryPosition] = useState<LatLng>();
   const [triggerPosition, setTriggerPosition] = useState<LatLng>();
 
   useEffect(() => {
     // Reset markers on map change
-    setArtilleryPosition(undefined);
+    dispatch(setArtilleryPosition(undefined));
     setTriggerPosition(undefined);
-  }, [currentMap]);
+  }, [dispatch, currentMap]);
 
   useMapEvents({
     click(e) {
       const latlng = e.latlng;
       const event = e.originalEvent;
 
-      if (event.shiftKey) setArtilleryPosition(latlng);
+      if (event.shiftKey) dispatch(setArtilleryPosition(latlng));
 
       if (event.ctrlKey && artilleryPosition)
         dispatch(setTargets([...targets, latlng]));
@@ -51,15 +51,7 @@ export const MapMarkers = () => {
           }}
         />
       ))}
-      {artilleryPosition && (
-        <ArtilleryMarker
-          artilleryPosition={artilleryPosition}
-          onDragEnd={(e) => {
-            setArtilleryPosition(e.target._latlng);
-          }}
-          currentMap={currentMap}
-        />
-      )}
+      {artilleryPosition && <ArtilleryMarker currentMap={currentMap} />}
       {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}
     </>
   );

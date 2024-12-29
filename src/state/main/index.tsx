@@ -15,6 +15,7 @@ interface MainState {
   shell: ShellType;
   heightAdjustment: number;
   targets: LatLng[];
+  artilleryPosition: LatLng | undefined;
   isBackendEnabled: boolean;
 }
 
@@ -26,6 +27,7 @@ const initState: MainState = {
   shell: defaultArty.shellTypes[0],
   heightAdjustment: 0,
   targets: [],
+  artilleryPosition: undefined,
   isBackendEnabled: false,
 };
 
@@ -60,6 +62,9 @@ export const mainSlice = createSlice({
     setIsBackendEnabled: (state, action: PayloadAction<boolean>) => {
       state.isBackendEnabled = action.payload;
     },
+    setArtilleryPosition: (state, action: PayloadAction<LatLng | undefined>) => {
+      state.artilleryPosition = action.payload;
+    },
   },
 });
 
@@ -73,6 +78,7 @@ export const {
   setHeightAdjustment,
   setTargets,
   setIsBackendEnabled,
+  setArtilleryPosition,
 } = mainSlice.actions;
 
 export default mainSlice.reducer;

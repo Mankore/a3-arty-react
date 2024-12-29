@@ -7,6 +7,7 @@ import { MapButtons } from "./MapButtons";
 import { useMainSelector } from "@/state/hooks";
 import { increaseMapZoomBy } from "@/utils/variables";
 import { selectMap } from "@/state/main/selectors";
+import { MapContextMenu } from "./MapContextMenu";
 
 const crs = Leaflet.CRS.Simple;
 
@@ -36,6 +37,7 @@ export const Map = () => {
         <MapMarkers />
         <MapSettings crs={crs} mapExtent={map.mapExtent} />
         <MapMouseCoordinates {...map} />
+        <MapContextMenu />
       </MapContainer>
     </div>
   );
