@@ -40,8 +40,6 @@ export interface ITargetMarker {
 }
 
 export interface IArtilleryMarker {
-  artilleryPosition: LatLng;
-  onDragEnd: DragEndEventHandlerFn | undefined;
   currentMap: MapInfo;
 }
 

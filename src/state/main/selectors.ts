@@ -36,3 +36,8 @@ export const selectBackendEnabled = createSelector(
   selectDomain,
   (main) => main.isBackendEnabled,
 );
+
+export const selectArtilleryPosition = createSelector(
+  selectDomain,
+  (main) => main.artilleryPosition,
+);
