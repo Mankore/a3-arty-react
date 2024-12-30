@@ -14,6 +14,7 @@ import {
 import logo from "@/assets//logo/logo.png";
 import { PropsWithChildren } from "react";
 import { BackendSwitch } from "@/components/BackendSwitch";
+import { routes } from "@/utils/variables";
 
 export const CustomSidebar = ({ children }: PropsWithChildren) => {
   return (
@@ -24,11 +25,11 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
             <Avatar src={logo} />
             <SidebarLabel>Arma 3 Artillery Calculator</SidebarLabel>
           </SidebarItem>
-          <SidebarItem>
+          <SidebarItem href={routes.base + routes.home}>
             <MapPinIcon />
             <SidebarLabel>Map</SidebarLabel>
           </SidebarItem>
-          <SidebarItem disabled>
+          <SidebarItem href={routes.base + routes.about}>
             <QuestionMarkCircleIcon />
             <SidebarLabel>About</SidebarLabel>
           </SidebarItem>
