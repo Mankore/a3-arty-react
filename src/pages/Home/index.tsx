@@ -1,4 +1,4 @@
-import { Page } from "@/shared/layout/Page";
+import { Page } from "@/shared/ui/layout/Page";
 import { Map } from "@/pages/Home/features/Map";
 
 export const Home = () => {

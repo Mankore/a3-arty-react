@@ -1,4 +1,4 @@
-import { toDegrees } from "@/utils/ballistics";
+import { toDegrees } from "@/shared/utils/ballistics";
 import { IMarkerPopup, ITargetPopup } from "../types";
 
 export const TargetPopup = ({

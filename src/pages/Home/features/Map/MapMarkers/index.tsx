@@ -1,11 +1,9 @@
-import { DragEndEvent, LatLng } from "leaflet";
-import { useEffect, useState } from "react";
+import { DragEndEvent } from "leaflet";
 import { useMapEvents } from "react-leaflet";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import { selectArtilleryPosition, selectMap } from "@/state/main/selectors";
 import { ArtilleryMarker } from "./ArtilleryMarker";
 import { TargetMarker } from "./TargetMarker";
-import { TriggerMarker } from "./TriggerMarker";
 import { setArtilleryPosition, setTargets } from "@/state/main";
 import { selectTargets } from "@/state/main/selectors";
 
@@ -15,13 +13,7 @@ export const MapMarkers = () => {
   const currentMap = useMainSelector(selectMap);
   const artilleryPosition = useMainSelector(selectArtilleryPosition);
 
-  const [triggerPosition, setTriggerPosition] = useState<LatLng>();
-
-  useEffect(() => {
-    // Reset markers on map change
-    dispatch(setArtilleryPosition(undefined));
-    setTriggerPosition(undefined);
-  }, [dispatch, currentMap]);
+  // const [triggerPosition, setTriggerPosition] = useState<LatLng>();
 
   useMapEvents({
     click(e) {
@@ -33,7 +25,7 @@ export const MapMarkers = () => {
       if ((event.ctrlKey || event.metaKey) && artilleryPosition)
         dispatch(setTargets([...targets, latlng]));
 
-      if (event.altKey) setTriggerPosition(latlng);
+      // if (event.altKey) setTriggerPosition(latlng);
     },
   });
 
@@ -52,7 +44,7 @@ export const MapMarkers = () => {
         />
       ))}
       {artilleryPosition && <ArtilleryMarker currentMap={currentMap} />}
-      {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />}
+      {/* {triggerPosition && <TriggerMarker triggerPosition={triggerPosition} />} */}
     </>
   );
 };

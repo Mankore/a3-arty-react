@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router";
 import { Home } from "@/pages/Home";
-import { routes } from "@/utils/variables";
+import { routes } from "@/shared/utils/variables";
 import { About } from "@/pages/About";
 
 export const Router = () => {

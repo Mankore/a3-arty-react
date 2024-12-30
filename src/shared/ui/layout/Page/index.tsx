@@ -1,7 +1,7 @@
 import { SidebarLayout } from "@/shared/ui/catalyst/sidebar-layout";
 import { CustomNavbar } from "../CustomNavbar";
 import { CustomSidebar } from "../CustomSidebar";
-import { SidebarAppControls } from "../../../pages/Home/features/SidebarAppControls";
+import { SidebarAppControls } from "../../../../pages/Home/features/SidebarAppControls";
 import { PropsWithChildren } from "react";
 
 interface Props extends PropsWithChildren {

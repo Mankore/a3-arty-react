@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Artillery, FireMode, MapInfo, ShellType } from "@/utils/types";
-import { mapAltis } from "@/utils/maps";
-import { Arty_M109A6 } from "@/utils/artillery";
+import { Artillery, FireMode, MapInfo, ShellType } from "@/shared/utils/types";
+import { mapAltis } from "@/shared/utils/maps";
+import { Arty_M109A6 } from "@/shared/utils/artillery";
 import { LatLng } from "leaflet";
 
 const defaultArty = Arty_M109A6;
@@ -39,8 +39,9 @@ export const mainSlice = createSlice({
       state.isTopDown = action.payload;
     },
     setMap: (state, action: PayloadAction<MapInfo>) => {
-      state.targets = [];
       state.map = action.payload;
+      state.targets = [];
+      state.artilleryPosition = undefined;
     },
     setArtillery: (state, action: PayloadAction<Artillery>) => {
       state.artillery = action.payload;

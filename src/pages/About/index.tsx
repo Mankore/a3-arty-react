@@ -1,5 +1,5 @@
-import { CustomSidebar } from "@/shared/layout/CustomSidebar";
-import { Page } from "@/shared/layout/Page";
+import { CustomSidebar } from "@/shared/ui/layout/CustomSidebar";
+import { Page } from "@/shared/ui/layout/Page";
 
 export const About = () => {
   return (

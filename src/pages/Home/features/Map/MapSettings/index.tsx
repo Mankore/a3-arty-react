@@ -1,6 +1,6 @@
 import Leaflet, { CRS } from "leaflet";
 import { useMap } from "react-leaflet";
-import { increaseMapZoomBy } from "@/utils/variables";
+import { increaseMapZoomBy } from "@/shared/utils/variables";
 
 interface IMapSettings {
   crs: CRS;

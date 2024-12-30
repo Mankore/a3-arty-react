@@ -3,6 +3,7 @@ import { Circle, Marker, Polyline, Popup, useMap } from "react-leaflet";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import {
   selectArtillery,
+  selectArtilleryPosition,
   selectFireMode,
   selectHeightAdjustment,
   selectMap,
@@ -13,14 +14,14 @@ import {
   getAngleSolutionForRange,
   getAzimuth,
   getRange,
-} from "@/utils/ballistics";
+} from "@/shared/utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
 import { ITargetMarker, ITargetMarkerVisuals } from "./types";
 import { selectTargets } from "@/state/main/selectors";
 import { setTargets } from "@/state/main";
-import { useGetHeight } from "@/utils/hooks/useGetHeight";
+import { useGetHeight } from "@/shared/utils/hooks/useGetHeight";
 
 export const TargetMarker = ({
   artilleryPosition,
@@ -42,6 +43,8 @@ export const TargetMarker = ({
     currentMap.mapExtent,
     currentMap.mapBounds,
   );
+
+  console.log({ artilleryPosition });
 
   const artyPoint = latLngToArmaCoords(
     artilleryPosition,
@@ -104,7 +107,6 @@ export const TargetMarker = ({
 
   return (
     <TargetMarkerVisuals
-      artilleryPosition={artilleryPosition}
       markerPosition={markerPosition}
       onDragEnd={onDragEnd}
       popupContent={
@@ -126,7 +128,6 @@ export const TargetMarker = ({
 };
 
 const TargetMarkerVisuals = ({
-  artilleryPosition,
   markerPosition,
   onDragEnd,
   popupContent,
@@ -135,12 +136,15 @@ const TargetMarkerVisuals = ({
   const [isHovered, setIsHovered] = useState(false);
   const map = useMap();
   const minZoom = map.getMinZoom();
-  const point1 = map.project(artilleryPosition, minZoom);
-  const point2 = map.project(markerPosition, minZoom);
-  const dist = point1.distanceTo(point2);
 
   const dispatch = useMainDispatch();
   const targets = useMainSelector(selectTargets);
+  const artilleryPosition = useMainSelector(selectArtilleryPosition);
+
+  if (!artilleryPosition) return null;
+  const point1 = map.project(artilleryPosition, minZoom);
+  const point2 = map.project(markerPosition, minZoom);
+  const dist = point1.distanceTo(point2);
 
   return (
     <>

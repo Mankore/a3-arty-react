@@ -2,7 +2,7 @@ import { Marker, Popup } from "react-leaflet";
 import { latLngToArmaCoords } from "../MapUtils";
 import { ArtilleryPopup } from "./Popup";
 import { IArtilleryMarker } from "./types";
-import { useGetHeight } from "@/utils/hooks/useGetHeight";
+import { useGetHeight } from "@/shared/utils/hooks/useGetHeight";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import { selectArtilleryPosition } from "@/state/main/selectors";
 import { setArtilleryPosition } from "@/state/main";

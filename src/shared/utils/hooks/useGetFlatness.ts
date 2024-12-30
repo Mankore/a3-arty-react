@@ -1,7 +1,7 @@
 import { backend, QUERY_KEY } from "../variables";
 import { useQuery } from "@tanstack/react-query";
-import { useMainSelector } from "../../state/hooks";
-import { selectBackendEnabled } from "../../state/main/selectors";
+import { useMainSelector } from "../../../state/hooks";
+import { selectBackendEnabled } from "../../../state/main/selectors";
 
 interface GetFlatnessResponse {
   flatness: number;

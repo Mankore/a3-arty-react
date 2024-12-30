@@ -17,10 +17,11 @@ import {
 } from "@/state/main/selectors";
 import { Description, Field, Label } from "@/shared/ui/catalyst/fieldset";
 import { Select } from "@/shared/ui/catalyst/select";
-import * as artilleryTypes from "@/utils/artillery";
-import * as maps from "@/utils/maps";
+import * as artilleryTypes from "@/shared/utils/artillery";
+import * as maps from "@/shared/utils/maps";
 import { Input } from "@/shared/ui/catalyst/input";
 import { Switch, SwitchField } from "@/shared/ui/catalyst/switch";
+import { BackendSwitch } from "@/shared/features/BackendSwitch";
 
 export const SidebarAppControls = () => {
   const dispatch = useMainDispatch();
@@ -151,6 +152,9 @@ export const SidebarAppControls = () => {
         />
         <Description>Target.z - Artillery.z</Description>
       </Field>
+      <SidebarDivider />
+
+      <BackendSwitch />
     </>
   );
 };

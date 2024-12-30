@@ -1,5 +1,5 @@
 import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
-import { FireMode, MapInfo, ShellType } from "@/utils/types";
+import { FireMode, MapInfo, ShellType } from "@/shared/utils/types";
 
 export interface IMapMarkers {
   crs: CRS;
@@ -34,7 +34,7 @@ export interface ITargetPopup extends IMarkerPopup {
 }
 
 export interface ITargetMarker {
-  artilleryPosition: LatLng;
+  artilleryPosition: LatLng | undefined;
   markerPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
 }
@@ -48,7 +48,6 @@ export interface ITriggerMarker {
 }
 
 export interface ITargetMarkerVisuals {
-  artilleryPosition: LatLng;
   markerPosition: LatLng;
   onDragEnd: DragEndEventHandlerFn | undefined;
   popupContent: React.ReactNode;
