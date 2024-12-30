@@ -1,5 +1,5 @@
-import { Page } from "@/components/layout/Page";
-import { Map } from "@/components/Map";
+import { Page } from "@/shared/layout/Page";
+import { Map } from "@/pages/Home/features/Map";
 
 export const Home = () => {
   return (

@@ -6,7 +6,7 @@ import "./styles/index.css";
 import "./styles/leaflet-overrides.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter } from "react-router";
-import { Router } from "./components/Router";
+import { Router } from "./shared/features/Router";
 
 // Create a client
 const queryClient = new QueryClient();

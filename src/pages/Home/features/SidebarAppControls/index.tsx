@@ -1,4 +1,4 @@
-import { SidebarDivider } from "@/components/catalyst/sidebar";
+import { SidebarDivider } from "@/shared/ui/catalyst/sidebar";
 import { useMainDispatch, useMainSelector } from "@/state/hooks";
 import {
   setMap,
@@ -15,12 +15,12 @@ import {
   selectFireMode,
   selectHeightAdjustment,
 } from "@/state/main/selectors";
-import { Description, Field, Label } from "@/components/catalyst/fieldset";
-import { Select } from "@/components/catalyst/select";
+import { Description, Field, Label } from "@/shared/ui/catalyst/fieldset";
+import { Select } from "@/shared/ui/catalyst/select";
 import * as artilleryTypes from "@/utils/artillery";
 import * as maps from "@/utils/maps";
-import { Input } from "@/components/catalyst/input";
-import { Switch, SwitchField } from "@/components/catalyst/switch";
+import { Input } from "@/shared/ui/catalyst/input";
+import { Switch, SwitchField } from "@/shared/ui/catalyst/switch";
 
 export const SidebarAppControls = () => {
   const dispatch = useMainDispatch();

@@ -1,11 +1,11 @@
-import { Avatar } from "@/components/catalyst/avatar";
+import { Avatar } from "@/shared/ui/catalyst/avatar";
 
 import {
   NavbarSpacer,
   NavbarSection,
   NavbarItem,
   Navbar,
-} from "@/components/catalyst/navbar";
+} from "@/shared/ui/catalyst/navbar";
 
 import logo from "@/assets/logo/logo.png";
 

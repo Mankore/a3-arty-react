@@ -1,6 +1,6 @@
 import { useMainDispatch } from "@/state/hooks";
 import { setTargets } from "@/state/main";
-import { Button } from "@/components/catalyst/button";
+import { Button } from "@/shared/ui/catalyst/button";
 
 export const MapButtons = () => {
   const dispatch = useMainDispatch();

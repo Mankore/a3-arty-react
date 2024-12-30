@@ -1,5 +1,5 @@
 import { QuestionMarkCircleIcon, MapPinIcon } from "@heroicons/react/16/solid";
-import { Avatar } from "@/components/catalyst/avatar";
+import { Avatar } from "@/shared/ui/catalyst/avatar";
 
 import {
   SidebarHeader,
@@ -9,11 +9,11 @@ import {
   SidebarBody,
   SidebarFooter,
   Sidebar,
-} from "@/components/catalyst/sidebar";
+} from "@/shared/ui/catalyst/sidebar";
 
 import logo from "@/assets//logo/logo.png";
 import { PropsWithChildren } from "react";
-import { BackendSwitch } from "@/components/BackendSwitch";
+import { BackendSwitch } from "@/shared/features/BackendSwitch";
 import { routes } from "@/utils/variables";
 
 export const CustomSidebar = ({ children }: PropsWithChildren) => {
