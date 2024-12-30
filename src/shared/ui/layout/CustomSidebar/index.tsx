@@ -13,8 +13,7 @@ import {
 
 import logo from "@/assets//logo/logo.png";
 import { PropsWithChildren } from "react";
-import { BackendSwitch } from "@/shared/features/BackendSwitch";
-import { routes } from "@/utils/variables";
+import { routes } from "@/shared/utils/variables";
 
 export const CustomSidebar = ({ children }: PropsWithChildren) => {
   return (
@@ -40,7 +39,6 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
       </SidebarBody>
       <SidebarFooter className="max-lg:hidden">
         <SidebarSection>
-          <BackendSwitch />
           <SidebarItem
             href="https://github.com/Mankore/a3-arty-react"
             target="_blank"

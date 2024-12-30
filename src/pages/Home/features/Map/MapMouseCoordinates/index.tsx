@@ -1,7 +1,7 @@
 import { Point } from "leaflet";
 import { useRef, useState } from "react";
 import { useMapEvents } from "react-leaflet";
-import { MapInfo } from "@/utils/types";
+import { MapInfo } from "@/shared/utils/types";
 import { latLngToArmaCoords } from "../MapUtils";
 
 const cursorSize = 30;

@@ -1,14 +1,14 @@
 import { CRS, LatLng, Point } from "leaflet";
-import { IMapBounds } from "@/utils/types";
+import { IMapBounds } from "@/shared/utils/types";
 
 export const latLngToArmaCoords = (
-  latLng: LatLng,
+  latLng: LatLng | undefined,
   maxZoom: number,
   mapExtent: number[],
   mapBounds: IMapBounds,
   crs: CRS = CRS.Simple,
 ) => {
-  if (!latLng) new Point(0, 0);
+  if (!latLng) return new Point(0, 0);
   const point = crs.latLngToPoint(latLng, maxZoom);
   const coords = new Point(point.x, Math.abs(mapExtent[1]) - point.y);
 

@@ -5,7 +5,7 @@ import { MapMarkers } from "./MapMarkers";
 import { MapMouseCoordinates } from "./MapMouseCoordinates";
 import { MapButtons } from "./MapButtons";
 import { useMainSelector } from "@/state/hooks";
-import { increaseMapZoomBy } from "@/utils/variables";
+import { increaseMapZoomBy } from "@/shared/utils/variables";
 import { selectMap } from "@/state/main/selectors";
 import { MapContextMenu } from "./MapContextMenu";
 
