@@ -14,3 +14,9 @@ export const QUERY_KEY = {
   flatness: "flatness",
   ping: "ping",
 };
+
+export const routes = {
+  base: "/a3-arty-react",
+  home: "/",
+  about: "/about",
+};

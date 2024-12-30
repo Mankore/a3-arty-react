@@ -1,11 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import App from "./components/App";
 import { Provider } from "react-redux";
 import { store } from "./state";
 import "./styles/index.css";
 import "./styles/leaflet-overrides.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { BrowserRouter } from "react-router";
+import { Router } from "./components/Router";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -15,10 +16,12 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={store}>
-      <QueryClientProvider client={queryClient}>
-        <App />
-      </QueryClientProvider>
-    </Provider>
+    <BrowserRouter>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Router />
+        </QueryClientProvider>
+      </Provider>
+    </BrowserRouter>
   </React.StrictMode>,
 );
