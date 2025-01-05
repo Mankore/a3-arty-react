@@ -10,7 +10,7 @@ interface Props extends PropsWithChildren {
 }
 
 export const Page = ({ children, navbar, sidebar }: Props) => (
-  <div className="h-dvh w-dvw">
+  <div className="h-dvh w-dvw overflow-x-hidden">
     <SidebarLayout
       navbar={navbar || <CustomNavbar />}
       sidebar={
