@@ -11,3 +11,5 @@ export { Arty_RM70 } from "./RM70";
 export { Arty_2B14 } from "./2B14-1_Podnos";
 export { Arty_M252 } from "./M252";
 export { Arty_BMD_4 } from "./BMD-4";
+export { Arty_MAAWS_RHS } from "./maaws_rhs";
+export { Arty_MAAWS_Vanilla } from "./maaws_vanilla";
