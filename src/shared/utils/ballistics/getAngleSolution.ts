@@ -56,10 +56,10 @@ export function getAngleSolutionForRange(
   }
 
   if (Math.abs(result.distance - zeroRange) > MAX_ERROR) {
-    return { currentAngle: 0, ...result };
+    return { currentAngle: 0, ...result, tof: 0 };
   }
 
-  console.log({ currentAngle });
+  console.log("Angle before adjustment:", currentAngle);
 
   currentAngle += artillery.angleAdjustment;
 
