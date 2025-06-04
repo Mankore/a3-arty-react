@@ -23,6 +23,7 @@ export const Arty_MAAWS_RHS: Artillery = {
     Shell_FFV751_HEAT_RHS,
   ],
   isAirFriction: false,
+  // Switching back from vanilla laser designator, elevation is reduced by -0,36
   angleAdjustment: 0,
   getBaseProjectileSpawnPoint: function (angle: number): Vector {
     return new Vector(
