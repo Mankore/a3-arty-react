@@ -8,7 +8,6 @@ const ANGLE_TOLERANCE_RAD = toRadians(0.02); // Tolerance for angle adjustment i
 
 /**
  * Finds the angle(elevation) required to hit a target at a specified range using binary search.
- * @returns An object containing the calculated angle, time of flight, exit angle, apex height, and final position.
  */
 export function getAngleSolutionForRange(
   zeroRange: number,
@@ -21,21 +20,20 @@ export function getAngleSolutionForRange(
   let minAngle = artillery.minAngle;
   let maxAngle = artillery.maxAngle;
   let attemptCount = 0;
-  let px = 0,
-    tof = 0,
-    exitAngle = 0,
-    apex = 0,
-    currentAngle = 0;
+  let currentAngle = 0;
+  let result = { px: 0, tof: 0, exitAngle: 0, apex: 0 };
 
   while (attemptCount < MAX_ATTEMPTS) {
     currentAngle = (minAngle + maxAngle) / 2;
-    [px, tof, exitAngle, apex] = simulateShotForAngle(
+    result = simulateShotForAngle(
       muzzleVelocity,
       currentAngle,
       artillery,
       shell,
       altDiff,
     );
+    const { px } = result;
+
     if (zeroRange <= px) {
       if (!isTopDown) {
         maxAngle = currentAngle;
@@ -57,13 +55,13 @@ export function getAngleSolutionForRange(
     ++attemptCount;
   }
 
-  if (Math.abs(px - zeroRange) > MAX_ERROR) {
-    return { currentAngle: 0, tof: 0, exitAngle, apex, px };
+  if (Math.abs(result.px - zeroRange) > MAX_ERROR) {
+    return { currentAngle: 0, ...result };
   }
 
   console.log({ currentAngle });
 
   currentAngle += artillery.angleAdjustment;
 
-  return { currentAngle, tof, exitAngle, apex, px };
+  return { currentAngle, ...result };
 }

@@ -3,6 +3,9 @@ import { Vector } from "../vector";
 import { toDegrees, toRadians } from "./helpers";
 import { GRAVITY } from "./variables";
 
+/**
+ * Simulates a shot for a given angle
+ */
 export function simulateShotForAngle(
   muzzleVelocity: number,
   angle: number,
@@ -52,5 +55,10 @@ export function simulateShotForAngle(
     tof = 0;
   }
 
-  return [currentPos.y, tof, toDegrees(radians), apex];
+  return {
+    px: currentPos.y,
+    tof: tof,
+    exitAngle: toDegrees(radians),
+    apex: apex,
+  };
 }
