@@ -8,7 +8,7 @@ import {
 
 export const Arty_MAAWS_RHS: Artillery = {
   name: "M3 MAAWS (RHS)",
-  simulationStep: 0.05,
+  simulationStep: 0.02,
   minAngle: 0,
   maxAngle: 80,
   fireModes: [
@@ -22,14 +22,16 @@ export const Arty_MAAWS_RHS: Artillery = {
     Shell_FFV502_HEDP_RHS,
     Shell_FFV751_HEAT_RHS,
   ],
-  isAirFriction: false,
-  // Switching back from vanilla laser designator, elevation is reduced by -0,36
+  isAirFriction: true,
   angleAdjustment: 0,
-  getBaseProjectileSpawnPoint: function (angle: number): Vector {
-    return new Vector(
-      0.17,
-      Math.cos(angle) * 0.59,
-      1.5 + Math.sin(angle) * 0.59,
-    );
+  getBaseProjectileSpawnPoint: function (): Vector {
+    return new Vector(0, 0, 0);
   },
+  // getBaseProjectileSpawnPoint: function (angle: number): Vector {
+  //   return new Vector(
+  //     0.17,
+  //     Math.cos(angle) * 0.59,
+  //     1.5 + Math.sin(angle) * 0.59,
+  //   );
+  // },
 };

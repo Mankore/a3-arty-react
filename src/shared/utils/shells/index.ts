@@ -106,7 +106,7 @@ export const Shell_3UOF17: ShellType = {
 
 export const Shell_FFV441_HE_RHS: ShellType = {
   name: "FFV441 HE (RHS)",
-  airFriction: -0.01,
+  airFriction: 0.01,
   initSpeed: 255,
   thrust: 0.1,
   thrustTime: 0.1,
@@ -114,7 +114,7 @@ export const Shell_FFV441_HE_RHS: ShellType = {
 
 export const Shell_FFV751_HEAT_RHS: ShellType = {
   name: "FFV751 HEAT (RHS)",
-  airFriction: -0.01,
+  airFriction: 0.01,
   initSpeed: 290,
   thrust: 0.1,
   thrustTime: 0.1,
@@ -122,7 +122,7 @@ export const Shell_FFV751_HEAT_RHS: ShellType = {
 
 export const Shell_FFV502_HEDP_RHS: ShellType = {
   name: "FFV502 HEDP (RHS)",
-  airFriction: -0.01,
+  airFriction: 0.01,
   initSpeed: 230,
   thrust: 0.1,
   thrustTime: 0.1,
@@ -130,7 +130,7 @@ export const Shell_FFV502_HEDP_RHS: ShellType = {
 
 export const Shell_MAAWS_HE44: ShellType = {
   name: "MAAWS HE 44 Round",
-  airFriction: -0.05,
+  airFriction: 0.05,
   initSpeed: 350,
   thrust: 0.1,
   thrustTime: 0.1,
@@ -138,7 +138,7 @@ export const Shell_MAAWS_HE44: ShellType = {
 
 export const Shell_MAAWS_HEAT75: ShellType = {
   name: "MAAWS HEAT 75 Round",
-  airFriction: -0.05,
+  airFriction: 0.05,
   initSpeed: 350,
   thrust: 0.1,
   thrustTime: 0.1,
@@ -146,7 +146,7 @@ export const Shell_MAAWS_HEAT75: ShellType = {
 
 export const Shell_MAAWS_HEAT55: ShellType = {
   name: "MAAWS HEAT 55 Round",
-  airFriction: -0.05,
+  airFriction: 0.05,
   initSpeed: 350,
   thrust: 0.1,
   thrustTime: 0.1,
