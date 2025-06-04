@@ -41,8 +41,6 @@ export const TargetMarker = ({
     currentMap.mapBounds,
   );
 
-  console.log({ artilleryPosition });
-
   const artyPoint = latLngToArmaCoords(
     artilleryPosition,
     currentMap.mapOptions.maxZoom,
