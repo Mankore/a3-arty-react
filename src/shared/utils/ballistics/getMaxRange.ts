@@ -19,26 +19,26 @@ export function getMaxRange(
 
   if (!artillery.isAirFriction) {
     currentAngle = 45;
-    const { px } = simulateShotForAngle(
+    const { distance } = simulateShotForAngle(
       muzzleVelocity,
       currentAngle,
       artillery,
       shell,
       0,
     );
-    maxRange = px;
+    maxRange = distance;
     return { maxRange, currentAngle };
   }
 
   do {
-    const { px } = simulateShotForAngle(
+    const { distance } = simulateShotForAngle(
       muzzleVelocity,
       currentAngle,
       artillery,
       shell,
       0,
     );
-    currentRange = px;
+    currentRange = distance;
     if (maxRange < currentRange) {
       maxRange = currentRange;
       currentAngle += ANGLE_STEP;
@@ -48,14 +48,14 @@ export function getMaxRange(
   currentAngle -= ANGLE_STEP * 2;
 
   do {
-    const { px } = simulateShotForAngle(
+    const { distance } = simulateShotForAngle(
       muzzleVelocity,
       currentAngle,
       artillery,
       shell,
       0,
     );
-    currentRange = px;
+    currentRange = distance;
     if (maxRange < currentRange) {
       maxRange = currentRange;
       currentAngle -= ANGLE_STEP;

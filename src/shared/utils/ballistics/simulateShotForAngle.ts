@@ -56,7 +56,7 @@ export function simulateShotForAngle(
   }
 
   return {
-    px: currentPos.y,
+    distance: currentPos.y,
     tof: tof,
     exitAngle: toDegrees(radians),
     apex: apex,
