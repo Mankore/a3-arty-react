@@ -77,6 +77,6 @@ export const Arty_M5_Sandstorm_MLRS: Artillery = {
   isAirFriction: false,
   angleAdjustment: -1.275,
   getBaseProjectileSpawnPoint: function (): Vector {
-    return new Vector(0, 0, 0);
+    return new Vector(0, -1.5, 2.8);
   },
 };
