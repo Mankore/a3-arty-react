@@ -21,7 +21,7 @@ export function getAngleSolutionForRange(
   let maxAngle = artillery.maxAngle;
   let attemptCount = 0;
   let currentAngle = 0;
-  let result = { px: 0, tof: 0, exitAngle: 0, apex: 0 };
+  let result = { distance: 0, tof: 0, exitAngle: 0, apex: 0 };
 
   while (attemptCount < MAX_ATTEMPTS) {
     currentAngle = (minAngle + maxAngle) / 2;
@@ -32,9 +32,9 @@ export function getAngleSolutionForRange(
       shell,
       altDiff,
     );
-    const { px } = result;
+    const { distance } = result;
 
-    if (zeroRange <= px) {
+    if (zeroRange <= distance) {
       if (!isTopDown) {
         maxAngle = currentAngle;
       } else {
@@ -55,7 +55,7 @@ export function getAngleSolutionForRange(
     ++attemptCount;
   }
 
-  if (Math.abs(result.px - zeroRange) > MAX_ERROR) {
+  if (Math.abs(result.distance - zeroRange) > MAX_ERROR) {
     return { currentAngle: 0, ...result };
   }
 
