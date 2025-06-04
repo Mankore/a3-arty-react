@@ -7,7 +7,7 @@ import { latLngToArmaCoords } from "../MapUtils";
 const cursorSize = 30;
 
 const setDivPosition = (
-  ref: React.RefObject<HTMLDivElement>,
+  ref: React.RefObject<HTMLDivElement | null>,
   pos: Point,
   left: number,
   top: number,
