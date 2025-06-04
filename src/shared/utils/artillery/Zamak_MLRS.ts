@@ -2,10 +2,10 @@ import { Artillery } from "../types";
 import { Vector } from "../vector";
 import { Rocket_Sandstorm_230 } from "../shells";
 
-export const Arty_M5_Sandstorm_MLRS: Artillery = {
-  name: "M5 Sandstorm MLRS",
+export const Arty_Zamak_MLRS: Artillery = {
+  name: "Zamak MLRS",
   simulationStep: 0.05,
-  minAngle: 5,
+  minAngle: 0,
   maxAngle: 66,
   fireModes: [
     {
@@ -75,8 +75,8 @@ export const Arty_M5_Sandstorm_MLRS: Artillery = {
   ],
   shellTypes: [Rocket_Sandstorm_230],
   isAirFriction: false,
-  angleAdjustment: -1.275,
+  angleAdjustment: 0.79,
   getBaseProjectileSpawnPoint: function (): Vector {
-    return new Vector(0, -1.5, 2.8);
+    return new Vector(0, -3, 2.8);
   },
 };
