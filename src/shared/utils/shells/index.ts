@@ -151,3 +151,11 @@ export const Shell_MAAWS_HEAT55: ShellType = {
   thrust: 0.1,
   thrustTime: 0.1,
 };
+
+export const Rocket_Sandstorm_230: ShellType = {
+  name: "230mm Rocket",
+  airFriction: 0,
+  initSpeed: 850,
+  thrust: 210,
+  thrustTime: 1.5,
+};
