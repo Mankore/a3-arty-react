@@ -24,14 +24,11 @@ export const Arty_MAAWS_RHS: Artillery = {
   ],
   isAirFriction: true,
   angleAdjustment: 0,
-  getBaseProjectileSpawnPoint: function (): Vector {
-    return new Vector(0, 0, 0);
+  getBaseProjectileSpawnPoint: function (angle: number): Vector {
+    return new Vector(
+      0.17,
+      Math.cos(angle) * 0.59,
+      1.5 + Math.sin(angle) * 0.59,
+    );
   },
-  // getBaseProjectileSpawnPoint: function (angle: number): Vector {
-  //   return new Vector(
-  //     0.17,
-  //     Math.cos(angle) * 0.59,
-  //     1.5 + Math.sin(angle) * 0.59,
-  //   );
-  // },
 };
