@@ -70,8 +70,7 @@ function shouldContinueSimulation(
   verticalSpeed: number,
   tof: number,
 ): boolean {
-  // TODO: lower tof
-  return tof < 1000 && (currentAltitude >= altDiff || verticalSpeed > 0);
+  return tof < 200 && (currentAltitude >= altDiff || verticalSpeed > 0);
 }
 
 function updatePosition(
