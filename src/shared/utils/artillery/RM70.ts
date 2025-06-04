@@ -3,7 +3,7 @@ import { Vector } from "../vector";
 import { Rocket_CUP_Grad } from "../shells";
 
 export const Arty_RM70: Artillery = {
-  name: "RM70",
+  name: "RM70 (CUP)",
   simulationStep: 0.05,
   minAngle: 0,
   maxAngle: 85,
