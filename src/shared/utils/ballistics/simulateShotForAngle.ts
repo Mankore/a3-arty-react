@@ -23,7 +23,13 @@ export function simulateShotForAngle(
 
   while (shouldContinueSimulation(position.z, altDiff, speed.z, timeOfFlight)) {
     position = updatePosition(position, speed, deltaT);
-    deltaV = calculateVelocityChange(speed, gravityVector, shell, artillery);
+    deltaV = calculateAcceleration(
+      speed,
+      gravityVector,
+      shell,
+      artillery,
+      timeOfFlight,
+    );
     speed = updateSpeed(speed, deltaV, deltaT);
     apex = updateApex(apex, position.z);
 
@@ -64,6 +70,7 @@ function shouldContinueSimulation(
   verticalSpeed: number,
   tof: number,
 ): boolean {
+  // TODO: lower tof
   return tof < 1000 && (currentAltitude >= altDiff || verticalSpeed > 0);
 }
 
@@ -83,24 +90,40 @@ function updateApex(apex: number, currentAltitude: number): number {
   return Math.max(apex, currentAltitude);
 }
 
-function calculateVelocityChange(
+function calculateAcceleration(
   speed: Vector,
   gravityVector: Vector,
   shell: ShellType,
   artillery: Artillery,
+  tof: number,
 ): Vector {
   // If artillery uses air friction, return with air friction effect
   if (artillery.isAirFriction) {
     // If shell is a missle or rocket with thrust
     if (shell.thrust && shell.thrustTime) {
       const airFrictionRocketMultiplier = -0.002;
-      return gravityVector.scaleBy(1 / airFrictionRocketMultiplier);
+      const missleAirfriction = shell.airFriction * airFrictionRocketMultiplier;
+
+      const remainingThrustTime = Math.max(0, shell.thrustTime - tof);
+      const thrustMagnitude =
+        shell.thrust *
+        Math.min(1, (remainingThrustTime * 4) / shell.thrustTime);
+      const thrustVector = new Vector(
+        speed.x && thrustMagnitude,
+        speed.y && thrustMagnitude,
+        speed.z && thrustMagnitude,
+      );
+
+      return speed
+        .scaleBy(speed.length() * missleAirfriction)
+        .add(thrustVector)
+        .add(gravityVector);
     }
 
     return speed.scaleBy(speed.length() * shell.airFriction).add(gravityVector);
   }
 
-  // If no air friction or thrust, return gravity vector
+  // If no air friction, return gravity vector
   return gravityVector;
 }
 

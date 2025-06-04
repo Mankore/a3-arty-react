@@ -8,7 +8,7 @@ import {
 
 export const Arty_MAAWS_Vanilla: Artillery = {
   name: "MAAWS Mk4 Mod 0 (Vanilla)",
-  simulationStep: 0.05,
+  simulationStep: 0.02,
   minAngle: 0,
   maxAngle: 80,
   fireModes: [
@@ -18,8 +18,7 @@ export const Arty_MAAWS_Vanilla: Artillery = {
     },
   ],
   shellTypes: [Shell_MAAWS_HE44, Shell_MAAWS_HEAT55, Shell_MAAWS_HEAT75],
-  isAirFriction: false,
-  // Switching back from vanilla laser designator, elevation is reduced by -0,91
+  isAirFriction: true,
   angleAdjustment: 0,
   getBaseProjectileSpawnPoint: function (): Vector {
     return new Vector(0, 0, 0);
