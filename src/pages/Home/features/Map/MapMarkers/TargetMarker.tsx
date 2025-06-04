@@ -10,11 +10,6 @@ import {
   selectShell,
   selectTopDown,
 } from "@/state/main/selectors";
-import {
-  getAngleSolutionForRange,
-  getAzimuth,
-  getRange,
-} from "@/shared/utils/ballistics";
 import { iconTarget } from "../MapIcons";
 import { latLngToArmaCoords } from "../MapUtils";
 import { TargetPopup } from "./Popup";
@@ -22,6 +17,8 @@ import { ITargetMarker, ITargetMarkerVisuals } from "./types";
 import { selectTargets } from "@/state/main/selectors";
 import { setTargets } from "@/state/main";
 import { useGetHeight } from "@/shared/utils/hooks/useGetHeight";
+import { getAzimuth, getRange } from "@/shared/utils/ballistics/helpers";
+import { getAngleSolutionForRange } from "@/shared/utils/ballistics/getAngleSolution";
 
 export const TargetMarker = ({
   artilleryPosition,

@@ -1,4 +1,4 @@
-import { toDegrees } from "@/shared/utils/ballistics";
+import { toDegrees } from "@/shared/utils/ballistics/helpers";
 import { IMarkerPopup, ITargetPopup } from "../types";
 
 export const TargetPopup = ({
@@ -12,7 +12,6 @@ export const TargetPopup = ({
   apex,
   exitAngle,
 }: ITargetPopup) => {
-
   // Manual HORIZONTAL spread of 20 meters
   const spreadDistance = 20;
   const manualSpread = 90 - toDegrees(Math.atan(range / spreadDistance));
@@ -44,9 +43,10 @@ export const TargetPopup = ({
             <b>Azimuth</b>: {azimuth.toFixed(2)}&deg;
           </div>
           <div className="text-purple-600">
-            <b>Manual Spread ({spreadDistance}m)</b>: {manualSpread.toFixed(2)}&deg;
+            <b>Manual Spread ({spreadDistance}m)</b>: {manualSpread.toFixed(2)}
+            &deg;
           </div>
-          
+
           <div title="Time of Flight">
             <b>ToF</b>: {tof.toFixed(1)} s
           </div>
