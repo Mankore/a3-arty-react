@@ -1,6 +1,6 @@
 {
-  "name": "MyWebSite",
-  "short_name": "MySite",
+  "name": "A3 Artillery Calculator",
+  "short_name": "A3 Calculator",
   "icons": [
     {
       "src": "/favicons/web-app-manifest-192x192.png",
