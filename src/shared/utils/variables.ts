@@ -18,5 +18,5 @@ export const QUERY_KEY = {
 export const routes = {
   base: "/a3-arty-react",
   home: "/",
-  about: "/about",
+  about: "about",
 };

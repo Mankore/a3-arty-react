@@ -24,11 +24,11 @@ export const CustomSidebar = ({ children }: PropsWithChildren) => {
             <Avatar src={logo} />
             <SidebarLabel>Arma 3 Artillery Calculator</SidebarLabel>
           </SidebarItem>
-          <SidebarItem href={routes.base + routes.home}>
+          <SidebarItem href={`${routes.base}/`}>
             <MapPinIcon />
             <SidebarLabel>Map</SidebarLabel>
           </SidebarItem>
-          <SidebarItem href={routes.base + routes.about}>
+          <SidebarItem href={`${routes.base}/${routes.about}`}>
             <QuestionMarkCircleIcon />
             <SidebarLabel>About</SidebarLabel>
           </SidebarItem>
