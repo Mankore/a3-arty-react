@@ -81,18 +81,20 @@ export const TargetMarker = ({
 
   const altDiff = targetHeight - artilleryHeight + heightAdjustment;
 
-  const solution = useMemo(
-    () =>
-      getAngleSolutionForRange(
-        range,
+  const solution = useMemo(() => {
+    try {
+      return getAngleSolutionForRange({
+        targetRange: range,
         muzzleVelocity,
         altDiff,
         artillery,
         shell,
-        isTopDown,
-      ),
-    [range, muzzleVelocity, altDiff, artillery, shell, isTopDown],
-  );
+        isHighAngle: isTopDown,
+      });
+    } catch {
+      return null;
+    }
+  }, [range, muzzleVelocity, altDiff, artillery, shell, isTopDown]);
 
   const coordinates = {
     x: targetPoint.x,
@@ -107,15 +109,17 @@ export const TargetMarker = ({
       popupContent={
         isTargetDataPending ? (
           <>Loading...</>
-        ) : (
+        ) : solution ? (
           <TargetPopup
             coordinates={coordinates}
             shell={shell}
             fireMode={fireMode}
             range={range}
             azimuth={azimuth}
-            {...solution!}
+            solution={solution}
           />
+        ) : (
+          <div className="text-red-500">Solution not possible</div>
         )
       }
     />

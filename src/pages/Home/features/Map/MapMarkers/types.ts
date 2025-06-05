@@ -1,5 +1,6 @@
 import { CRS, DragEndEventHandlerFn, LatLng } from "leaflet";
 import { FireMode, MapInfo, ShellType } from "@/shared/utils/types";
+import { AngleSolution } from "@/shared/utils/ballistics/types";
 
 export interface IMapMarkers {
   crs: CRS;
@@ -23,14 +24,11 @@ export interface IMarkerPopup {
 }
 
 export interface ITargetPopup extends IMarkerPopup {
-  tof: number;
   shell: ShellType;
   fireMode: FireMode;
   range: number;
-  currentAngle: number;
   azimuth: number;
-  apex: number;
-  exitAngle: number;
+  solution: AngleSolution;
 }
 
 export interface ITargetMarker {
