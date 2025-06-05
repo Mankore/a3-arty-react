@@ -74,7 +74,6 @@ export function getAngleSolutionForRange({
     );
   }
 
-  elevation += artillery.angleAdjustment;
   const artilleryAngle = elevation + artillery.angleAdjustment;
 
   return { elevation, artilleryAngle, ...simulationResult };
