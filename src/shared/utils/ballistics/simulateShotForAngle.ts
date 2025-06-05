@@ -39,13 +39,9 @@ export function simulateShotForAngle(
   const correctedPosition = applyDistanceCorrection(position, speed, altDiff);
 
   if (apex < altDiff) {
-    // If the apex is below the altitude difference, the shot did not reach the target
-    // throw exception
     throw new Error(
       `Shot did not reach the target altitude. Apex: ${apex}, Altitude Difference: ${altDiff}`,
     );
-    // correctedPosition.y = 0;
-    // timeOfFlight = 0;
   }
 
   return {
