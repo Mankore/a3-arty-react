@@ -128,7 +128,6 @@ function calculateAcceleration(
 /**
  * Applies correction to approximate y position of the proejctile at last
  * simulation step.
- *
  * e.g. Last simulation step is few meters below the target,
  * so we need to correct y position to match the target altitude.
  */
