@@ -6,7 +6,6 @@ import { getHeightByCoordinates } from "./useGetHeight";
   Ping backend with default map / coords to check connectivity
 */
 export const usePingBackend = () => {
-  console.log("Pinging backend...");
   return useQuery({
     queryKey: [QUERY_KEY.ping],
     queryFn: () => getHeightByCoordinates({ map: "altis", x: 10, y: 10 }),
