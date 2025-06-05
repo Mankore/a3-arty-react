@@ -1,11 +1,10 @@
 import { Artillery, ShellType } from "../types";
-import { toRadians } from "./helpers";
 import { simulateShotForAngle } from "./simulateShotForAngle";
 import { AngleSolution } from "./types";
 
 const MAX_ERROR = 20; // Maximum acceptable error in meters
 const MAX_ATTEMPTS = 50; // Maximum number of attempts to find the angle
-const ANGLE_TOLERANCE_RAD = toRadians(0.02); // Tolerance for angle adjustment in radians
+const ANGLE_TOLERANCE_DEG = 0.01; // Tolerance for angle adjustment in degrees
 
 interface Args {
   targetRange: number;
@@ -81,5 +80,6 @@ export function getAngleSolutionForRange({
   return { elevation, artilleryAngle, ...simulationResult };
 }
 
-const isWithinTolerance = (min: number, max: number) =>
-  Math.abs(max - min) < ANGLE_TOLERANCE_RAD;
+const isWithinTolerance = (min: number, max: number) => {
+  return Math.abs(max - min) < ANGLE_TOLERANCE_DEG;
+};
