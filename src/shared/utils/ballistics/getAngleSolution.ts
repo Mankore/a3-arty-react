@@ -1,67 +1,85 @@
 import { Artillery, ShellType } from "../types";
 import { toRadians } from "./helpers";
 import { simulateShotForAngle } from "./simulateShotForAngle";
+import { AngleSolution } from "./types";
 
 const MAX_ERROR = 20; // Maximum acceptable error in meters
 const MAX_ATTEMPTS = 50; // Maximum number of attempts to find the angle
 const ANGLE_TOLERANCE_RAD = toRadians(0.02); // Tolerance for angle adjustment in radians
 
+interface Args {
+  targetRange: number;
+  muzzleVelocity: number;
+  altDiff: number;
+  artillery: Artillery;
+  shell: ShellType;
+  isHighAngle?: boolean; // Optional parameter to determine if the search is for high angle
+}
+
 /**
  * Finds the angle(elevation) required to hit a target at a specified range using binary search.
  */
-export function getAngleSolutionForRange(
-  zeroRange: number,
-  muzzleVelocity: number,
-  altDiff: number,
-  artillery: Artillery,
-  shell: ShellType,
-  isTopDown: boolean,
-) {
+export function getAngleSolutionForRange({
+  targetRange,
+  muzzleVelocity,
+  altDiff,
+  artillery,
+  shell,
+  isHighAngle,
+}: Args): AngleSolution {
   let minAngle = artillery.minAngle;
   let maxAngle = artillery.maxAngle;
   let attemptCount = 0;
-  let currentAngle = 0;
-  let result = { distance: 0, tof: 0, exitAngle: 0, apex: 0 };
+  let elevation = 0;
+  let simulationResult = { distance: 0, tof: 0, exitAngle: 0, apex: 0 };
 
   while (attemptCount < MAX_ATTEMPTS) {
-    currentAngle = (minAngle + maxAngle) / 2;
-    result = simulateShotForAngle(
-      muzzleVelocity,
-      currentAngle,
-      artillery,
-      shell,
-      altDiff,
-    );
-    const { distance } = result;
+    elevation = (minAngle + maxAngle) / 2;
+    try {
+      simulationResult = simulateShotForAngle(
+        muzzleVelocity,
+        elevation,
+        artillery,
+        shell,
+        altDiff,
+      );
+    } catch {
+      break;
+    }
+    const { distance } = simulationResult;
 
-    if (zeroRange <= distance) {
-      if (!isTopDown) {
-        maxAngle = currentAngle;
+    if (targetRange <= distance) {
+      if (!isHighAngle) {
+        maxAngle = elevation;
       } else {
-        minAngle = currentAngle;
+        minAngle = elevation;
       }
     } else {
-      if (!isTopDown) {
-        minAngle = currentAngle;
+      if (!isHighAngle) {
+        minAngle = elevation;
       } else {
-        maxAngle = currentAngle;
+        maxAngle = elevation;
       }
     }
 
-    if (Math.abs(maxAngle - minAngle) < ANGLE_TOLERANCE_RAD) {
+    if (isWithinTolerance(minAngle, maxAngle)) {
       break;
     }
 
     ++attemptCount;
   }
 
-  if (Math.abs(result.distance - zeroRange) > MAX_ERROR) {
-    return { currentAngle: 0, ...result, tof: 0 };
+  if (Math.abs(simulationResult.distance - targetRange) > MAX_ERROR) {
+    throw new Error(
+      `Failed to find angle for range ${targetRange}m. Distance achieved: ${simulationResult.distance}m`,
+    );
   }
 
-  console.log("Angle before adjustment:", currentAngle);
+  elevation += artillery.angleAdjustment;
+  const artilleryAngle = elevation + artillery.angleAdjustment;
 
-  currentAngle += artillery.angleAdjustment;
-
-  return { currentAngle, ...result };
+  return { elevation, artilleryAngle, ...simulationResult };
 }
+
+const isWithinTolerance = (min: number, max: number) =>
+  Math.abs(max - min) < ANGLE_TOLERANCE_RAD;

@@ -5,7 +5,7 @@ import { GRAVITY } from "./variables";
 
 export function simulateShotForAngle(
   muzzleVelocity: number,
-  angle: number,
+  angle: number, // Angle in degrees
   artillery: Artillery,
   shell: ShellType,
   altDiff: number = 0,
@@ -41,8 +41,11 @@ export function simulateShotForAngle(
   if (apex < altDiff) {
     // If the apex is below the altitude difference, the shot did not reach the target
     // throw exception
-    correctedPosition.y = 0;
-    timeOfFlight = 0;
+    throw new Error(
+      `Shot did not reach the target altitude. Apex: ${apex}, Altitude Difference: ${altDiff}`,
+    );
+    // correctedPosition.y = 0;
+    // timeOfFlight = 0;
   }
 
   return {
