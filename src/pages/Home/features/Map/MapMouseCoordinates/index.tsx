@@ -74,7 +74,7 @@ export const MapMouseCoordinates = (map: MapInfo) => {
   });
 
   return coords ? (
-    <div className="pointer-events-none absolute inset-0 z-[1001] text-red-600">
+    <div className="pointer-events-none absolute inset-0 z-[401] text-red-600">
       <div className="absolute text-sm font-bold" ref={coordinatesRef}>
         [{coords.x}, {coords.y}]
       </div>
