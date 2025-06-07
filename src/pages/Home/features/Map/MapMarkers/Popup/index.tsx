@@ -32,9 +32,15 @@ export const TargetPopup = ({
       </div>
       <div
         className="text-red-500"
-        title={`True elevation: ${elevation.toFixed(3)}`}
+        title={`Elevation for artillery after correction`}
       >
         <b>Elevation</b>: {artilleryAngle.toFixed(3)}&deg;
+      </div>
+      <div
+        className="text-gray-500"
+        title="Elevation of the barrel (before correction, does not equal elevation in the interface)"
+      >
+        <b>True Elevation</b>: {elevation.toFixed(3)}&deg;
       </div>
       <div className="text-blue-500">
         <b>Azimuth</b>: {azimuth.toFixed(2)}&deg;
