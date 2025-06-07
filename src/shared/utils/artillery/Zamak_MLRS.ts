@@ -37,7 +37,7 @@ export const Arty_Zamak_MLRS: Artillery = {
       artilleryCharge: 0.3,
     },
     {
-      name: "6600m-8500",
+      name: "6600m-8500m",
       artilleryCharge: 0.341,
     },
     {
