@@ -15,3 +15,4 @@ export { Arty_MAAWS_RHS } from "./maaws_rhs";
 export { Arty_MAAWS_Vanilla } from "./maaws_vanilla";
 export { Arty_M5_Sandstorm_MLRS } from "./M5_Sandstorm_MLRS";
 export { Arty_Zamak_MLRS } from "./Zamak_MLRS";
+// export { Arty_MK6 } from "./MK6_Mortar";

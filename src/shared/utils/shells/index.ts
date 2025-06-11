@@ -159,3 +159,9 @@ export const Rocket_Sandstorm_230: ShellType = {
   thrust: 210,
   thrustTime: 1.5,
 };
+
+export const Shell_82mm_AMOS: ShellType = {
+  name: "HE Mortar Shell",
+  airFriction: 0,
+  initSpeed: 200,
+};
