@@ -1,51 +1,29 @@
 import { Container, Label, Wrapper, Option, StyledSelect, StyledInput, StyledFormHelperText, StyledCheckbox } from "./styles";
 import * as artilleryTypes from "../../utils/artillery";
 import * as maps from "../../utils/maps";
-import { Artillery, FireMode, MapInfo, ShellType } from "../../utils/types";
 import FormControlLabel from "@mui/material/FormControlLabel";
-import { useMainDispatch } from "../../state/main/hooks";
-import { setIsTopDown } from "../../state/main";
+import { useMainDispatch, useMainSelector } from "../../state/main/hooks";
+import { setMap, setArtillery, setIsTopDown, setShell, setFireMode, setHeightAdjustment } from "../../state/main";
+import { selectArtillery, selectFireMode, selectHeightAdjustment, selectMap, selectShell } from "../../state/main/selectors";
 
-interface ISidebar {
-  artillery: Artillery;
-  shell: ShellType;
-  fireMode: FireMode;
-  map: MapInfo;
-  heightAdjustment: number;
-  setArtillery: React.Dispatch<React.SetStateAction<Artillery>>;
-  setShell: React.Dispatch<React.SetStateAction<ShellType>>;
-  setFireMode: React.Dispatch<React.SetStateAction<FireMode>>;
-  setMap: React.Dispatch<React.SetStateAction<MapInfo>>;
-  setHeightAdjustment: React.Dispatch<React.SetStateAction<number>>;
-}
-
-export const Sidebar = ({
-  artillery,
-  shell,
-  fireMode,
-  map,
-  setArtillery,
-  setShell,
-  setFireMode,
-  setMap,
-  setHeightAdjustment,
-  heightAdjustment,
-}: ISidebar) => {
+export const Sidebar = () => {
   const dispatch = useMainDispatch();
+  const map = useMainSelector(selectMap);
+  const artillery = useMainSelector(selectArtillery);
+  const shell = useMainSelector(selectShell);
+  const fireMode = useMainSelector(selectFireMode);
+  const heightAdjustment = useMainSelector(selectHeightAdjustment);
+
   const onChangeHandler = (e: any, type: "arty" | "shell" | "fireMode" | "map") => {
     const val = e.target.value;
     switch (type) {
       case "arty":
         const arty = Object.entries(artilleryTypes).find((item) => item[1].name === val);
-        if (arty) {
-          setArtillery(arty[1]);
-          setShell(arty[1].shellTypes[0]);
-          setFireMode(arty[1].fireModes[0]);
-        }
+        arty && dispatch(setArtillery(arty[1]));
         return;
       case "shell":
         const shell = artillery.shellTypes.find((item) => item.name === val);
-        shell && setShell(shell);
+        shell && dispatch(setShell(shell));
         return;
       case "fireMode":
         const fireMode = artillery.fireModes.find((item) => item.name === val);
@@ -53,7 +31,7 @@ export const Sidebar = ({
         return;
       case "map":
         const map = Object.entries(maps).find((item) => item[1].name === val);
-        map && setMap(map[1]);
+        map && dispatch(setMap(map[1]));
         return;
       default:
         return;
@@ -120,7 +98,7 @@ export const Sidebar = ({
           aria-describedby="label-height-adjustment"
           type="number"
           value={heightAdjustment}
-          onChange={(e) => setHeightAdjustment(Number(e.target.value))}
+          onChange={(e) => dispatch(setHeightAdjustment(Number(e.target.value)))}
         />
         <StyledFormHelperText id="label-height-adjustment">Height adjustment, meters</StyledFormHelperText>
       </Wrapper>
