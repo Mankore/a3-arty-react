@@ -7,7 +7,7 @@ export interface IMapMarkers {
   shell: ShellType;
   fireMode: FireMode;
   currentMap: MapInfo;
-  topDown: boolean;
+  // topDown: boolean;
   heightAdjustment: number;
 }
 
@@ -49,7 +49,6 @@ export interface ITargetMarker {
   shell: ShellType;
   fireMode: FireMode;
   currentMap: MapInfo;
-  topDown: boolean;
   heightAdjustment: number;
 }
 

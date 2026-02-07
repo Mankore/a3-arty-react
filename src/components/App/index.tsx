@@ -13,7 +13,6 @@ const App = () => {
   const [artillery, setArtillery] = useState<Artillery>(defaultArtillery);
   const [shell, setShell] = useState<ShellType>(defaultArtillery.shellTypes[0]);
   const [fireMode, setFireMode] = useState<FireMode>(defaultArtillery.fireModes[0]);
-  const [topDown, setTopDown] = useState<boolean>(false);
   const [heightAdjustment, setHeightAdjustment] = useState<number>(0);
 
   return (
@@ -28,17 +27,9 @@ const App = () => {
         setShell={setShell}
         setFireMode={setFireMode}
         setMap={setMap}
-        setTopDown={setTopDown}
         setHeightAdjustment={setHeightAdjustment}
       />
-      <Map
-        map={map}
-        artillery={artillery}
-        shell={shell}
-        fireMode={fireMode}
-        topDown={topDown}
-        heightAdjustment={heightAdjustment}
-      />
+      <Map map={map} artillery={artillery} shell={shell} fireMode={fireMode} heightAdjustment={heightAdjustment} />
     </Container>
   );
 };
